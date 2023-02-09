@@ -1,5 +1,8 @@
+
+
 .container {
   padding: 0 2rem;
+  margin:0 auto;
 }
 
 .main {
@@ -10,15 +13,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center
+}
+
+.main label {
+  text-align: left;
+  align-items: left;
+}
+
+.main a {
+  color: #0070f3;
 }
 
 .footer {
   display: flex;
   flex: 1;
-  padding: 2rem 0;
+  padding: 1.5rem 0 2rem 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .footer a {
@@ -42,7 +56,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .title,
@@ -101,6 +115,60 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.form {
+  text-align: center;
+  align-items: center;
+}
+
+.form input {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  width: 15em;
+}
+
+.form :placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
+.element::-webkit-input-placeholder {
+  color: blue;
+  font-weight: bold;
+}
+
+.form:hover,
+.form:focus,
+.form:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.form code {
+  font-size: 1rem;
+  color: white;
+}
+
+.form label {
+  color:white;
+}
+
+.form button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  align-items: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 0 1rem 0;
+  font-size: 1.5 rem;
+  line-height: 1.5;
+  width: 15em;
 }
 
 .logo {
