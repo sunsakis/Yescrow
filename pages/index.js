@@ -41,7 +41,7 @@ export default function Home() {
     if (typeof window.ethereum !== "undefined") {
       setHasMetaMask(true);
     }
-  });
+  }, []);
 
   const {
     active,
