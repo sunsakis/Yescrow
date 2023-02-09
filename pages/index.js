@@ -41,7 +41,7 @@ export default function Home() {
     if (typeof window.ethereum !== "undefined") {
       setHasMetaMask(true);
     }
-  }, []);
+  },[]);
 
   const {
     active,
@@ -111,7 +111,7 @@ export default function Home() {
                 <h1 className={styles.title}>Crypto escrow built on Ethereum ♦</h1>
               <br></br>
               <div className={styles.description}>
-                <label>Seller's Ethereum address</label><br/>
+                <label>Seller`s Ethereum address</label><br/>
                 <input
                   type="text" 
                   placeholder="0x..." 
@@ -150,7 +150,7 @@ export default function Home() {
               <div>
               <ul className={styles.card}>
                 <b>!</b> Parties negotiate their terms in private (amount, delivery time).<br/><br/>
-                <b>#</b> To escrow Ether, buyer provides the seller's address.<br/><br/>
+                <b>#</b> To escrow Ether, buyer provides the seller`s address.<br/><br/>
                 <b>@</b> Buyer is assigned a unique ID to his/her deposit.<br/><br/>
                 <b>$</b> Buyer can <Link href="/release">release the escrow</Link> using the ID as a key.<br/><br/>
                 <b>%</b> In case of disagreement, crow@yescrow.xyz can settle it for 5%.

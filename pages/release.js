@@ -20,7 +20,7 @@ export default function Release() {
         if (typeof window.ethereum !== "undefined") {
           setHasMetaMask(true);
         }
-      });
+      },[]);
 
     const {
         active,
@@ -92,9 +92,9 @@ export default function Release() {
         <main className={styles.main}>
           <form onSubmit={releaseEscrow}>
               <div>
-                <h1 className={styles.title}>Release Ether ♦</h1>
+                <h1 className={styles.title}>Release Ether ♦</h1><br/><br/>
                 <p>Buyer can release the funds to the seller <b>anytime</b> by submitting the e-mailed ID from the Ethereum address that originally made the escrow.</p>
-              </div>
+              </div><br/><br/>
               <div className={styles.form}>
             <label htmlFor="id" className={styles.description}>Escrow ID number</label><br/>
               <input
