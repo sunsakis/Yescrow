@@ -55,13 +55,14 @@ export default function Home() {
     e.preventDefault(); 
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: 'eth_chainId' });
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
       if (chainId !== '0x1') {
         alert('Please connect to the Ethereum Mainnet.')
       }
       if (chainId == '0x1') {try {
         await activate(injected);
-        setAccounts("Your Ethereum account "+accounts+" is now connected to the Ethereum Mainnet. Click 'Escrow' to proceed.")
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+        if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else 
+        { setAccounts("Your Ethereum account "+accounts+" is now connected to the Ethereum Mainnet. Click 'Escrow' to proceed.") }
       } catch (e) {
         console.log(e);
       }
@@ -72,7 +73,7 @@ export default function Home() {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, ABI, signer);
         try { await contract.safeDeposit(_seller, email, { value: ethers.utils.parseEther(amount)}) }
-        catch (error) {alert(error)}
+        catch (error) {alert("The transaction failed. Please check your Metamask account and try again.")}
         
         try {
           contract.on("NewDeposit", (buyerAddress, sellerAddress, depositAmount, counter, email, event) => {
@@ -96,7 +97,7 @@ export default function Home() {
       alert("Please install MetaMask browser extension.");
     }
   }
-   
+
   return (
     <div className={styles.container}>
       <Head>
