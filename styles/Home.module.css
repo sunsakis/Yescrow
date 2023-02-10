@@ -13,7 +13,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center
+  text-align: center;
+  margin:0 auto;
+  max-width: 400px;
 }
 
 .main label {
@@ -22,7 +24,8 @@
 }
 
 .main a {
-  color: #0070f3;
+  color: green;
+  text-decoration-line: underline;
 }
 
 .footer {
@@ -156,7 +159,7 @@
 }
 
 .form button {
-  background-color: green;
+  background-color: blue;
   border: none;
   color: white;
   padding: 15px 32px;
