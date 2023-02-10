@@ -57,6 +57,7 @@
 }
 
 .title {
+  padding-top: 2rem;
   margin: 0;
   line-height: 1.15;
   font-size: 2rem;
@@ -104,7 +105,8 @@
 
 .card:hover,
 .card:focus,
-.card:active {
+.card:active
+{ 
   color: #0070f3;
   border-color: #0070f3;
 }
@@ -137,15 +139,10 @@
   opacity: 1; /* Firefox */
 }
 
-.element::-webkit-input-placeholder {
-  color: blue;
-  font-weight: bold;
-}
-
-.form:hover,
-.form:focus,
-.form:active {
-  color: #0070f3;
+.form:hover .input,
+.form:focus .input,
+.form:active .input 
+{
   border-color: #0070f3;
 }
 

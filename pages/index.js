@@ -62,7 +62,7 @@ export default function Home() {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else 
-        { setAccounts("Your Ethereum account "+accounts+" is now connected to the Ethereum Mainnet. Click 'Escrow' to proceed.") }
+        { setAccounts("Your Ethereum account "+accounts+" is now connected to Ethereum`s Mainnet. You may escrow now.") }
       } catch (e) {
         console.log(e);
       }
@@ -113,7 +113,7 @@ export default function Home() {
               <br></br>
               <div className={styles.description}>
                 <label>Seller`s Ethereum address</label><br/>
-                <input
+                <input className={styles.input}
                   type="text" 
                   placeholder="0x..." 
                   required
@@ -122,14 +122,14 @@ export default function Home() {
                   onChange={handleAddressChange} 
                 /><br/>
                 <label>Your e-mail</label><br/>
-                <input 
+                <input className={styles.input}
                   type="email" 
                   placeholder="@" 
                   onChange={handleEmailChange} 
                   required
                   /><br/>
                 <label>Escrow amount in ETH</label><br/>
-                <input 
+                <input className={styles.input}
                   type="number" 
                   placeholder="Ξ" 
                   step="any"

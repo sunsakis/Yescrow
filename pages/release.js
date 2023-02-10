@@ -51,7 +51,7 @@ export default function Release() {
     }
     if (chainId == '0x1') {try {
         await activate(injected);
-        setAccounts("Your Ethereum account "+accounts+" is connected to the Ethereum Mainnet. Input your ID and hit 'Release'.")
+        setAccounts("Your Ethereum account "+accounts+" is now connected to Ethereum`s Mainnet. You may now release the escrow.")
       } catch (e) {
         console.log(e);
       }
@@ -90,20 +90,19 @@ export default function Release() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>
-          <form onSubmit={releaseEscrow}>
+          <form className={styles.form} onSubmit={releaseEscrow}>
               <div>
                 <h1 className={styles.title}>Release Ether ♦</h1><br/><br/>
                 <p>Buyer can release the funds to the seller <b>anytime</b> by submitting the e-mailed ID from the Ethereum address that originally made the escrow.</p>
               </div><br/><br/>
               <div className={styles.form}>
             <label htmlFor="id" className={styles.description}>Escrow ID number</label><br/>
-              <input
+              <input className={styles.input}
                 type="number" 
-                className="form-control" 
                 placeholder="#"
                 required
                 onChange={handleIDChange} />
-                <br/>
+                <br/><br/>
               <button type="submit">♦ Release</button>
               <br/><code><small>{accounts}</small></code><br/><br/>
               </div>
