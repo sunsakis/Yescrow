@@ -128,7 +128,7 @@ export default function Home() {
                   onChange={handleEmailChange} 
                   required
                   /><br/>
-                <label>ETH escrow amount</label><br/>
+                <label>Escrow amount in ETH</label><br/>
                 <input 
                   type="number" 
                   placeholder="Ξ" 
@@ -144,27 +144,25 @@ export default function Home() {
             </form>
             <div>
               <code>{accounts}</code>
-              <h2 className={styles.description}>Escrow services, secured on the blockchain by Ledger</h2>
-            </div>
-            <div>
-              <h3>How to use a crypto escrow?</h3>
+              </div>
               <div>
+              <h2 className={styles.description}>How to use the crypto escrow?</h2>
+              <h2>The crypto escrow service commandments</h2>
               <ul className={styles.card}>
                 <b>!</b> Parties negotiate their terms in private (amount, delivery time).<br/><br/>
-                <b>#</b> To escrow Ether, buyer provides the seller`s address.<br/><br/>
-                <b>@</b> Buyer is assigned a unique ID to his/her deposit.<br/><br/>
-                <b>$</b> Buyer can <Link href="/release">release the escrow</Link> using the ID as a key.<br/><br/>
-                <b>%</b> In case of disagreement, crow@yescrow.xyz can settle it for 5%.
+                <b>2@</b> To escrow Ether, buyer provides the seller`s address.<br/><br/>
+                <b>3#</b> Buyer is assigned a unique ID to his/her deposit.<br/><br/>
+                <b>4$</b> Buyer can <Link href="/release">release the escrow</Link> using the ID as a key.<br/><br/>
+                <b>5%</b> In case of disagreement, crow@yescrow.xyz can settle it for 5%.
               </ul><br/>
               <h4>Any questions?<br /><br /> Ask the <br />crow@yescrow.xyz <br/>
-              <br/> OR <br/><br/> Annoy <br/><br/>the dev<br/> on <br/><br/><a href="https://t.me/sunsakis" rel="nofollow">Telegram</a></h4>
-              </div>            
+              <br/> OR <br/><br/> Annoy <br/><br/>the dev<br/> on <br/><br/><a href="https://t.me/sunsakis" rel="nofollow">Telegram</a></h4>           
           </div>
         </div>
       </main>
       <footer className={styles.footer}>
       Putting money where the mouth is since 2023
       </footer>
-    </div>
+      </div>
   )
 }

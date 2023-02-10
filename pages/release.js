@@ -61,7 +61,7 @@ export default function Release() {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, ABI, signer);
         try { await contract.releaseDeposit(_id, {gasLimit: 250000}) }
-        catch (error) {alert("Please type in your ID correctly.")};
+        catch (error) {alert("Please type in the ID correctly.")};
         
         try{
         contract.on("DepositReleased", (buyerAddress, sellerAddress, releaseAmount, counter, event) => {
@@ -101,13 +101,14 @@ export default function Release() {
                 type="number" 
                 className="form-control" 
                 placeholder="#"
+                required
                 onChange={handleIDChange} />
                 <br/>
               <button type="submit">♦ Release</button>
               <br/><code><small>{accounts}</small></code><br/><br/>
               </div>
             </form>
-            <Link href='./' fontSize="100px" className="center">Go back</Link><br/>
+            <Link href='./' fontSize="100px" className="center">Go back</Link><br/><br/><br/>
             <small><p className="col center mt-3">Questions / bug reports - crow@yescrow.xyz</p>
         </small>
       </main>
