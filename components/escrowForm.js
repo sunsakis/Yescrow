@@ -97,7 +97,7 @@ export default function EscrowForm() {
           <div className={styles.main}>
           <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
               {/* Should alert if user clicks button but is not connected to mainnet */}
-                <h1 className={styles.title}>Crypto escrow built on Ethereum ♦</h1>
+                <h1 className={styles.title}>Online escrow built on Ethereum ♦</h1>
               <br></br>
               <div className={styles.description}>
                 <label>Seller`s Ethereum address</label><br/>
