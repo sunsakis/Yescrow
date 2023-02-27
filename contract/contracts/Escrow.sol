@@ -3,6 +3,8 @@ pragma solidity ^0.8.4;
 
 contract Escrow {
 
+// Need to add try/catch to all the functions so that they do not end in an uncaught error if the transaction fails.
+
   struct Deposit {
       uint256 amount;
       address buyer;
@@ -31,9 +33,6 @@ contract Escrow {
 
   function safeDeposit(address _seller, string memory _email) external payable {
 
-    require(msg.value >= 0.1 ether,
-    "Escrow value must be at least 0.1 ETH.");
-
     Deposit storage _deposit = ids[counter];
 
     _deposit.buyer = msg.sender;
@@ -52,16 +51,13 @@ contract Escrow {
     require (msg.sender == ids[id].buyer, "Only the buyer can release the escrow.");
 
     require (ids[id].executed == false, "The deposit has already been released.");
-    //add try catch
-
-    //require to not be able to release unassigned id.
 
     ids[id].executed = true;
 
     uint256 releaseAmount = ids[id].amount - ids[id].amount / 100 / 2;
 
-    (bool sent,) = payable(ids[id].seller).call{value: releaseAmount, gas: 25000}("");
-    //remove gas 
+    (bool sent,) = payable(ids[id].seller).call{value: releaseAmount}("");
+    
     require(sent, "Failed to send.");
 
     emit DepositReleased(

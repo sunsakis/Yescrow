@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>The smart contract escrow of Ethereum : Yescrow</title>
-        <meta name="description" content="The fastest, cheapest and simply the most simple way to escrow your money." />
+        <title>Crypto Escrow Enabling Online Trust: Fast, Simple And Cheap</title>
+        <meta name="description" content="Automated escrow services are finally here. No need to register, simply lock USD or ETH to a smart contract and release it with one click. Private and secure." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>  
