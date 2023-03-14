@@ -1,83 +1,160 @@
 //SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.17;
 
+/// @title Escrow
+/// @author Karolis Ramanauskas
 contract Escrow {
+    /*==============================================================
+                            CONSTANTS
+    ==============================================================*/
 
-// Need to add try/catch to all the functions so that they do not end in an uncaught error if the transaction fails.
+    /// @notice The owner of the contract
+    address public immutable owner;
 
-  struct Deposit {
-      uint256 amount;
-      address buyer;
-      address seller;
-      bool executed;
-  }
+    /*==============================================================
+                            VARIABLES
+    ==============================================================*/
 
-  address daddy;
-  uint256 counter; 
+    enum DepositType {
+        ETH,
+        ERC20,
+        NFT
+    }
 
-  constructor() payable { 
-    daddy = msg.sender;
-  }
+    /// @notice The deposit struct
+    struct Deposit {
+        /// @notice The buyer address
+        address buyer;
+        /// @notice The seller address
+        address seller;
+        /// @notice The amount of the deposit (applies when deposit type is ETH or ERC20)
+        uint256 amount;
+        /// @notice The token address (if the deposit is ERC20 or NFT)
+        address token;
+        /// @notice The token ID (if the deposit is NFT)
+        uint256 tokenId;
+        /// @notice The deposit type (ETH, ERC20, NFT)
+        DepositType depositType;
+        /// @notice Whether the deposit has been executed
+        bool executed;
+    }
 
-  modifier onlyDaddy() {
-        require(msg.sender == daddy, "Only for daddy.");
+    /// @notice The current deposit ID
+    uint256 public currentId;
+
+    /// @notice The deposits mapping
+    mapping(uint256 => Deposit) public deposits;
+
+    /*==============================================================
+                            MODIFIERS
+    ==============================================================*/
+
+    modifier onlyOwner() {
+        if (msg.sender != owner) {
+            revert OnlyOwner();
+        }
         _;
-  }
+    }
 
+    /*==============================================================
+                            FUNCTIONS
+    ==============================================================*/
 
-  mapping(uint256 => Deposit) public ids; 
+    constructor() {
+        owner = msg.sender;
+    }
 
-  event NewDeposit(address buyerAddress, address sellerAddress, uint256 amount, uint256 counter, string email);
-  event DepositReleased(address buyerAddress, address sellerAddress, uint256 amount, uint256 counter);
-  event DaddyWasHere(address to, uint256 amount, uint counter);
+    /// @notice Creates a new ETH deposit
+    /// @param _seller The seller address
+    /// @param _email The seller email
+    function createDeposit(
+        address _seller,
+        DepositType _depositType,
+        // TODO: is email needed, it's public
+        string memory _email
+    ) external payable {
+        currentId++;
 
-  function safeDeposit(address _seller, string memory _email) external payable {
+        deposits[currentId] = Deposit({
+            buyer: msg.sender,
+            seller: _seller,
+            amount: msg.value,
+            token: address(0),
+            tokenId: 0,
+            depositType: _depositType,
+            executed: false
+        });
 
-    Deposit storage _deposit = ids[counter];
+        emit NewDeposit(msg.sender, _seller, msg.value, currentId, _email);
+    }
 
-    _deposit.buyer = msg.sender;
-    
-    _deposit.seller = _seller;
+    function releaseDeposit(uint256 id) external {
+        Deposit storage deposit = deposits[id];
 
-    _deposit.amount = msg.value;
+        if (deposit.buyer != msg.sender) {
+            revert OnlyBuyer();
+        }
 
-    counter++; 
+        if (deposit.executed == true) {
+            revert AlreadyReleased();
+        }
 
-    emit NewDeposit(_deposit.buyer, _deposit.seller, msg.value, counter - 1, _email);
-  }                                                        
-  
-  function releaseDeposit(uint256 id) external {
+        deposit.executed = true;
 
-    require (msg.sender == ids[id].buyer, "Only the buyer can release the escrow.");
+        uint256 tax = deposit.amount / 200;
+        uint256 releaseAmount = deposit.amount - tax;
 
-    require (ids[id].executed == false, "The deposit has already been released.");
+        (bool sent, ) = payable(deposit.seller).call{value: releaseAmount}("");
+        if (!sent) {
+            revert FailedToSendETH();
+        }
 
-    ids[id].executed = true;
+        emit DepositReleased(deposit.buyer, deposit.seller, releaseAmount, id);
+    }
 
-    uint256 releaseAmount = ids[id].amount - ids[id].amount / 100 / 2;
+    function divineIntervention(
+        address _to,
+        uint256 _amount,
+        uint _setcurrentId
+    ) external onlyOwner {
+        deposits[_setcurrentId].executed = true;
 
-    (bool sent,) = payable(ids[id].seller).call{value: releaseAmount}("");
-    
-    require(sent, "Failed to send.");
+        (bool sent, ) = payable(_to).call{value: _amount}("");
+        require(sent, "Failed to send.");
 
-    emit DepositReleased(
-      ids[id].buyer, 
-      ids[id].seller, 
-      releaseAmount, 
-      id
+        emit OwnerWasHere(_to, _amount, _setcurrentId);
+    }
+
+    /*==============================================================
+                            EVENTS
+    ==============================================================*/
+
+    event NewDeposit(
+        address buyerAddress,
+        address sellerAddress,
+        uint256 amount,
+        uint256 currentId,
+        string email
     );
+
+    event DepositReleased(
+        address buyerAddress,
+        address sellerAddress,
+        uint256 amount,
+        uint256 currentId
+    );
+
+    event OwnerWasHere(address to, uint256 amount, uint currentId);
+
+    /*==============================================================
+                            ERRORS
+    ==============================================================*/
+
+    error OnlyOwner();
+
+    error OnlyBuyer();
+
+    error AlreadyReleased();
+
+    error FailedToSendETH();
 }
-
-  function divineIntervention(address _to, uint256 _amount, uint _setCounter) external onlyDaddy {
-    //add try catch
-
-    ids[_setCounter].executed = true;
-    
-    (bool sent,) = payable(_to).call{value: _amount}("");
-    require(sent, "Failed to send.");
-
-    emit DaddyWasHere(_to, _amount, _setCounter);
-  }
-  
-}
-
