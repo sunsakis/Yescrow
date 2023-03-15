@@ -42,6 +42,9 @@ contract Escrow {
     /// @notice The current deposit ID
     uint256 public currentId;
 
+    /// @notice The accrued fees
+    uint256 public accruedFees;
+
     /// @notice The deposits mapping
     mapping(uint256 => Deposit) public deposits;
 
@@ -103,27 +106,43 @@ contract Escrow {
 
         uint256 tax = deposit.amount / 200;
         uint256 releaseAmount = deposit.amount - tax;
+        accruedFees += tax;
 
-        (bool sent, ) = payable(deposit.seller).call{value: releaseAmount}("");
-        if (!sent) {
-            revert FailedToSendETH();
+        (bool success, ) = payable(deposit.seller).call{value: releaseAmount}(
+            ""
+        );
+        if (!success) {
+            revert FailedToSendReleasedETH();
         }
 
         emit DepositReleased(deposit.buyer, deposit.seller, releaseAmount, id);
     }
 
-    function divineIntervention(
-        address _to,
-        uint256 _amount,
-        uint _setcurrentId
-    ) external onlyOwner {
-        deposits[_setcurrentId].executed = true;
+    function withdraw() external onlyOwner {
+        if (accruedFees == 0) {
+            revert NoFeesAccrued();
+        }
 
-        (bool sent, ) = payable(_to).call{value: _amount}("");
-        require(sent, "Failed to send.");
+        accruedFees = 0;
 
-        emit OwnerWasHere(_to, _amount, _setcurrentId);
+        (bool success, ) = payable(owner).call{value: accruedFees}("");
+        if (!success) {
+            revert FailedToSendWithdrawnETH();
+        }
     }
+
+    // function divineIntervention(
+    //     address _to,
+    //     uint256 _amount,
+    //     uint _setcurrentId
+    // ) external onlyOwner {
+    //     deposits[_setcurrentId].executed = true;
+
+    //     (bool sent, ) = payable(_to).call{value: _amount}("");
+    //     require(sent, "Failed to send.");
+
+    //     emit OwnerWasHere(_to, _amount, _setcurrentId);
+    // }
 
     /*==============================================================
                             EVENTS
@@ -156,5 +175,9 @@ contract Escrow {
 
     error AlreadyReleased();
 
-    error FailedToSendETH();
+    error FailedToSendReleasedETH();
+
+    error FailedToSendWithdrawnETH();
+
+    error NoFeesAccrued();
 }
