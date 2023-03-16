@@ -163,9 +163,12 @@ contract Escrow {
         Deposit storage deposit = deposits[_id];
         deposit.executed = true;
 
+        uint256 tax = deposit.amount / 200;
+        uint256 releaseAmount = deposit.amount - tax;
+
         bool success = IERC20(deposit.token).transfer(
             deposit.seller,
-            deposit.amount
+            releaseAmount
         );
         if (!success) {
             revert FailedToSendReleasedERC20();
