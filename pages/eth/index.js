@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css';
-import EscrowForm from '../../components/ethEscrowForm';
+import EthEscrowForm from '../../components/ethEscrowForm';
 import HowToUse from '../../components/ethHowToUse';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
@@ -19,7 +19,7 @@ export default function Eth() {
       </Head>
       <main className={styles.main}>
         <Header />  
-        <EscrowForm />
+        <EthEscrowForm />
 
         <HowToUse />
         <Support />

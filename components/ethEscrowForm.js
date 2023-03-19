@@ -11,19 +11,19 @@ const ABI = [
 
 export const injected = new InjectedConnector({ supportedChainIds: [1] });
 
-export default function ethEscrowForm() {
+export default function EthEscrowForm() {
 
   const [amount, setDepositValue] = useState('')
   const [_seller, setSellerAddress] = useState('')
   const [hasMetaMask, setHasMetaMask] = useState(false);
   const [accounts, setAccounts] = useState('');
 
-  function HandleDepositChange(e) {
+  function handleDepositChange(e) {
     setDepositValue(e.target.value);
     
   }
 
-  function HandleAddressChange(e) {
+  function handleAddressChange(e) {
     setSellerAddress(e.target.value);
   }
 
@@ -103,14 +103,14 @@ export default function ethEscrowForm() {
                   required
                   minLength="42"
                   maxLength="42"
-                  onChange={HandleAddressChange} 
+                  onChange={handleAddressChange} 
                 /><br/>
                 <label>Escrow amount in ETH</label><br/>
                 <input className={styles.input}
                   type="number" 
                   placeholder="Ξ" 
                   step="any"
-                  onChange={HandleDepositChange} 
+                  onChange={handleDepositChange} 
                   />
                 <br />
                 <code>0.5% fee + gas</code>
