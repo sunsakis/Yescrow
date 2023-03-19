@@ -55,6 +55,7 @@ contract Escrow {
                             MODIFIERS
     ==============================================================*/
 
+    /// @notice Only owner can execute
     modifier onlyOwner() {
         if (msg.sender != owner) {
             revert OnlyOwner();
@@ -62,6 +63,8 @@ contract Escrow {
         _;
     }
 
+    /// @notice Deposit not executed and buyer is the caller
+    /// @param _id The deposit ID
     modifier releaseGuard(uint256 _id) {
         Deposit storage deposit = deposits[_id];
         if (deposit.buyer != msg.sender) {
@@ -96,12 +99,17 @@ contract Escrow {
             buyer: msg.sender,
             seller: _seller,
             amount: msg.value,
-            depositType: DepositType.ETH
+            depositType: DepositType.ETH,
+            token: address(0),
+            tokenId: 0,
+            executed: false
         });
 
         emit NewDeposit(msg.sender, _seller, msg.value, currentId);
     }
 
+    /// @notice Allows the buyer to release the ETH deposit
+    /// @param _id The deposit ID
     function releaseDepositETH(uint256 _id) external releaseGuard(_id) {
         Deposit storage deposit = deposits[_id];
         deposit.executed = true;
@@ -120,6 +128,10 @@ contract Escrow {
         emit DepositReleased(deposit.buyer, deposit.seller, releaseAmount, _id);
     }
 
+    /// @notice Creates a new ERC20 deposit
+    /// @param _seller The seller address
+    /// @param _token The token address
+    /// @param _amount The amount of tokens
     function createDepositERC20(
         address _seller,
         address _token,
@@ -143,7 +155,9 @@ contract Escrow {
             seller: _seller,
             amount: _amount,
             token: _token,
-            depositType: DepositType.ERC20
+            depositType: DepositType.ERC20,
+            tokenId: 0,
+            executed: false
         });
 
         bool success = IERC20(_token).transferFrom(
@@ -156,6 +170,8 @@ contract Escrow {
         }
     }
 
+    /// @notice Allows the buyer to release the ERC20 deposit
+    /// @param _id The deposit ID
     function releaseDepositERC20(uint256 _id) external releaseGuard(_id) {
         Deposit storage deposit = deposits[_id];
         deposit.executed = true;
@@ -174,6 +190,10 @@ contract Escrow {
         emit DepositReleased(deposit.buyer, deposit.seller, releaseAmount, _id);
     }
 
+    /// @notice Creates a new ERC721 deposit
+    /// @param _seller The seller address
+    /// @param _token The token address
+    /// @param _tokenId The token ID
     function createDepositERC721(
         address _seller,
         address _token,
@@ -193,34 +213,34 @@ contract Escrow {
             seller: _seller,
             token: _token,
             tokenId: _tokenId,
-            depositType: DepositType.ERC721
+            depositType: DepositType.ERC721,
+            amount: 1,
+            executed: false
         });
 
-        bool success = IERC721(_token).transferFrom(
+        IERC721(_token).safeTransferFrom(
             msg.sender,
             address(this),
-            _amount
+            _tokenId
         );
-        if (!success) {
-            revert FailedToTransferERC721();
-        }
     }
 
+    /// @notice Allows the buyer to release the ERC721 deposit
+    /// @param _id The deposit ID
     function releaseDepositERC721(uint256 _id) external releaseGuard(_id) {
         Deposit storage deposit = deposits[_id];
         deposit.executed = true;
 
-        bool success = IERC721(deposit.token).transfer(
+        IERC721(deposit.token).safeTransferFrom(
+            address(this),
             deposit.seller,
             deposit.tokenId
         );
-        if (!success) {
-            revert FailedToSendReleasedERC721();
-        }
 
-        emit DepositReleased(deposit.buyer, deposit.seller, releaseAmount, _id);
+        emit DepositReleased(deposit.buyer, deposit.seller, 1, _id);
     }
 
+    /// @notice Allows the owner to withdraw the accrued fees
     function withdraw() external onlyOwner {
         if (accruedFees == 0) {
             revert NoFeesAccrued();
@@ -234,23 +254,33 @@ contract Escrow {
         }
     }
 
+    /// @notice Allows the owner to release a deposit
+    /// @param _to The address to send the funds to
+    /// @param _amount The amount to send
+    /// @param _id The current deposit id
     function divineIntervention(
         address _to,
         uint256 _amount,
-        uint _setcurrentId
+        uint _id
     ) external onlyOwner {
-        deposits[_setcurrentId].executed = true;
+        deposits[_id].executed = true;
 
         (bool sent, ) = payable(_to).call{value: _amount}("");
         require(sent, "Failed to send.");
 
-        emit OwnerWasHere(_to, _amount, _setcurrentId);
+        emit OwnerWasHere(_to, _amount, _id);
     }
 
     /*==============================================================
                             EVENTS
     ==============================================================*/
 
+    /// @notice Emitted when a new deposit is created
+    /// @param buyerAddress The buyer address
+    /// @param sellerAddress The seller address
+    /// @param amount The amount of the deposit
+    /// @param currentId The current deposit id
+    /// @param email The seller email
     event NewDeposit(
         address buyerAddress,
         address sellerAddress,
@@ -258,6 +288,11 @@ contract Escrow {
         uint256 currentId
     );
 
+    /// @notice Emitted when a deposit is released
+    /// @param buyerAddress The buyer address
+    /// @param sellerAddress The seller address
+    /// @param amount The amount of the deposit
+    /// @param currentId The current deposit id
     event DepositReleased(
         address buyerAddress,
         address sellerAddress,
@@ -265,7 +300,11 @@ contract Escrow {
         uint256 currentId
     );
 
-    event OwnerWasHere(address to, uint256 amount, uint currentId);
+    /// @notice Emitted when the owner withdraws fees
+    /// @param to The address to which the fees are sent
+    /// @param amount The amount of fees withdrawn
+    /// @param currentId The current deposit id
+    event OwnerWasHere(address to, uint256 amount, uint256 currentId);
 
     /*==============================================================
                             ERRORS
