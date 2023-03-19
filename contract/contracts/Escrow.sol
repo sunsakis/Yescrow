@@ -280,7 +280,6 @@ contract Escrow {
     /// @param sellerAddress The seller address
     /// @param amount The amount of the deposit
     /// @param currentId The current deposit id
-    /// @param email The seller email
     event NewDeposit(
         address buyerAddress,
         address sellerAddress,
