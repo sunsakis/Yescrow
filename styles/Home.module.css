@@ -1,5 +1,3 @@
-
-
 .container {
   padding: 0 2rem;
   margin:0 auto;
@@ -24,25 +22,17 @@
 }
 
 .main a {
-  color: green;
+  color: lightblue;
   text-decoration-line: underline;
 }
 
 .footer {
-  display: flex;
-  flex: 1;
-  padding: 1.5rem 0 2rem 0;
+  padding: 1rem 0 2rem 0;
   border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+.header {
+  padding: 1rem 0 0rem 0;
 }
 
 .title a {
@@ -174,6 +164,28 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right {
+  float: right;
+  padding: 10px;
+  align-items: right;
+  align-content: right;
+  text-align: right;
+}
+
+.left {
+  float: left;
+  padding: 10px;
+  align-items: left;
+  align-content: left;
+  text-align: left;
 }
 
 @media (max-width: 600px) {

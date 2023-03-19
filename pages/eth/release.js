@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import ReleaseForm from "../components/releaseForm";
-import Footer from "../components/footer";
+import styles from '../../styles/Home.module.css';
+import ReleaseForm from "../../components/ethReleaseForm";
+import Footer from "../../components/footer";
+import Header from "../../components/header";
 
 export default function Release() {
 
@@ -13,6 +14,7 @@ export default function Release() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>
+          <Header />
         <ReleaseForm />
       </main>
         <Footer />

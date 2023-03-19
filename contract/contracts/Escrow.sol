@@ -84,11 +84,8 @@ contract Escrow {
 
     /// @notice Creates a new ETH deposit
     /// @param _seller The seller address
-    /// @param _email The seller email
     function createDepositETH(
-        address _seller,
-        // TODO: is email needed, it's public
-        string memory _email
+        address _seller
     ) external payable {
         if (msg.value == 0) {
             revert DepositAmountZero();
@@ -102,7 +99,7 @@ contract Escrow {
             depositType: DepositType.ETH
         });
 
-        emit NewDeposit(msg.sender, _seller, msg.value, currentId, _email);
+        emit NewDeposit(msg.sender, _seller, msg.value, currentId);
     }
 
     function releaseDepositETH(uint256 _id) external releaseGuard(_id) {
@@ -258,8 +255,7 @@ contract Escrow {
         address buyerAddress,
         address sellerAddress,
         uint256 amount,
-        uint256 currentId,
-        string email
+        uint256 currentId
     );
 
     event DepositReleased(

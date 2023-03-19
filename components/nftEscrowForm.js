@@ -97,10 +97,11 @@ export default function EscrowForm() {
           <div className={styles.main}>
           <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
               {/* Should alert if user clicks button but is not connected to mainnet */}
-                <h1 className={styles.title}>Online escrow built on Ethereum ♦</h1>
-              <br></br>
+                <h1 className={styles.title}>♦ Ethereum escrow for NFTs</h1>
+              <br/>
+              <p>When selling your NFT, safety matters - the only way to trust anonymously is to use an escrow.</p>
               <div className={styles.description}>
-                <label>Seller`s Ethereum address</label><br/>
+                <label>Buyer`s Ethereum address</label><br/>
                 <input className={styles.input}
                   type="text" 
                   placeholder="0x..." 
@@ -109,23 +110,23 @@ export default function EscrowForm() {
                   maxLength="42"
                   onChange={handleAddressChange} 
                 /><br/>
-                <label>Your e-mail</label><br/>
+                <label>NFT address</label><br/>
                 <input className={styles.input}
-                  type="email" 
-                  placeholder="@" 
+                  type="text" 
+                  placeholder="0x..."
+                  minLength="42"
+                  maxLength="42"
                   onChange={handleEmailChange} 
                   required
                   /><br/>
-                <label>Escrow amount in ETH</label><br/>
+                <label>NFT ID</label><br/>
                 <input className={styles.input}
                   type="number" 
-                  placeholder="Ξ" 
-                  step="any"
-                  min="0.1"
-                  onChange={handleDepositChange} 
+                  placeholder="#" 
+                  step="1"
+                  onChange={handleDepositChange}
+                  required 
                   />
-                <br />
-                <code>0.5% fee + gas</code>
                 <br /><br />
                 <button type="submit">♦ Escrow</button>
               </div>
