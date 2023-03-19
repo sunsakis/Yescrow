@@ -15,21 +15,16 @@ export default function ethEscrowForm() {
 
   const [amount, setDepositValue] = useState('')
   const [_seller, setSellerAddress] = useState('')
-  const [email, setEmailAddress] = useState('')
   const [hasMetaMask, setHasMetaMask] = useState(false);
   const [accounts, setAccounts] = useState('');
 
-  function handleDepositChange(e) {
+  function HandleDepositChange(e) {
     setDepositValue(e.target.value);
     
   }
 
-  function handleAddressChange(e) {
+  function HandleAddressChange(e) {
     setSellerAddress(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setEmailAddress(e.target.value);
   }
 
   useEffect(() => {
@@ -108,14 +103,14 @@ export default function ethEscrowForm() {
                   required
                   minLength="42"
                   maxLength="42"
-                  onChange={handleAddressChange} 
+                  onChange={HandleAddressChange} 
                 /><br/>
                 <label>Escrow amount in ETH</label><br/>
                 <input className={styles.input}
                   type="number" 
                   placeholder="Ξ" 
                   step="any"
-                  onChange={handleDepositChange} 
+                  onChange={HandleDepositChange} 
                   />
                 <br />
                 <code>0.5% fee + gas</code>

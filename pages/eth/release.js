@@ -9,8 +9,8 @@ export default function Release() {
   return (
       <div className={styles.container}>
         <Head>
-          <title>Crypto Escrow - Release Deposit With 1 Click : Yescrow.xyz</title>
-          <meta name="description" content="A bankless, fully automated Ethereum escrow for putting money where the mouth is."/>
+          <title>Release Ether To Seller - yescrow.xyz</title>
+          <meta name="description" content="A simple interface to release your staked Ether."/>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>

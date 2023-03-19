@@ -1,4 +1,5 @@
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function About() {
     return (
@@ -19,7 +20,7 @@ export default function About() {
 	<p>Using a crypto escrow service can provide peace of mind for both parties involved in a transaction, helping to <u>reduce the risk of fraud</u>. </p>
         <br/><br/><h2 className="text-xl">Why take an unnecessary risk when your money is at stake?</h2>
         <br/><br/><h3>Use <code className="hover:text-teal-500">yescrow</code> to secure your transactions.</h3>
-        <p>Escrow <a href="/eth" className="hover:text-teal-500">Ether</a> and <a href="/nft" className="hover:text-teal-500">NFTs</a> in an automated manner.</p>
+        <p>Escrow <Link href="/eth" className="hover:text-teal-500">Ether</Link> and <Link href="/nft" className="hover:text-teal-500">NFTs</Link> in an automated manner.</p>
         </div>
     )
 }

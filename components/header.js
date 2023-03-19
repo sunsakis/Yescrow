@@ -1,4 +1,5 @@
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Header() {
     return (
@@ -6,9 +7,9 @@ export default function Header() {
             <nav>
             <div>
                 <ul className="flex">
-                    <li><a href="/" className="block px-3 py-2 transition hover:text-teal-500"><code>yescrow</code> :</a></li>
-                    <li><a href="/eth" className="block px-3 py-2 transition hover:text-teal-500">Ethereum</a></li>
-                    <li><a href="/nft" className="block px-3 py-2 transition hover:text-teal-500">NFT</a></li>
+                    <li><Link href="/" className="block px-3 py-2 transition hover:text-teal-500"><code>yescrow</code> :</Link></li>
+                    <li><Link href="/eth" className="block px-3 py-2 transition hover:text-teal-500">Ethereum</Link></li>
+                    <li><Link href="/nft" className="block px-3 py-2 transition hover:text-teal-500">NFT</Link></li>
                 </ul>
             </div>
             </nav>
