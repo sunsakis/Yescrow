@@ -80,6 +80,13 @@ contract Escrow {
         _;
     }
 
+    modifier nonEmptySeller(address _seller) {
+        if (_seller == address(0)) {
+            revert SellerAddressEmpty();
+        }
+        _;
+    }
+
     /*==============================================================
                             FUNCTIONS
     ==============================================================*/
@@ -90,11 +97,9 @@ contract Escrow {
 
     /// @notice Creates a new ETH deposit
     /// @param _seller The seller address
-    function createDepositETH(address _seller) external payable {
-        if (_seller == address(0)) {
-            revert SellerAddressEmpty();
-        }
-
+    function createDepositETH(
+        address _seller
+    ) external payable nonEmptySeller(_seller) {
         if (msg.value == 0) {
             revert DepositAmountZero();
         }
@@ -117,11 +122,7 @@ contract Escrow {
         address _seller,
         address _token,
         uint256 _amount
-    ) external {
-        if (_seller == address(0)) {
-            revert SellerAddressEmpty();
-        }
-
+    ) external nonEmptySeller(_seller) {
         if (_token == address(0)) {
             revert TokenAddressEmpty();
         }
@@ -151,11 +152,7 @@ contract Escrow {
         address _seller,
         address _token,
         uint256[] calldata _tokenIds
-    ) external {
-        if (_seller == address(0)) {
-            revert SellerAddressEmpty();
-        }
-
+    ) external nonEmptySeller(_seller) {
         if (_token == address(0)) {
             revert TokenAddressEmpty();
         }
@@ -169,7 +166,7 @@ contract Escrow {
         deposit.seller = _seller;
         deposit.token = _token;
         deposit.tokenIds = _tokenIds;
-        deposit.depositType = DepositType.ERC20;
+        deposit.depositType = DepositType.ERC721;
         deposits[++currentId] = deposit;
 
         uint256 length = _tokenIds.length;
@@ -286,7 +283,8 @@ contract Escrow {
     }
 
     /// @notice Allows the owner to withdraw the accrued ETH fees
-    function withdrawETHFees() external onlyOwner {
+    /// @param _to The address to send the fees to
+    function withdrawFeesETH(address _to) external onlyOwner {
         if (accruedFeesETH == 0) {
             revert NoFeesAccrued();
         }
@@ -294,15 +292,16 @@ contract Escrow {
         uint256 feesToTransfer = accruedFeesETH;
         accruedFeesETH = 0;
 
-        (bool success, ) = payable(owner).call{value: feesToTransfer}("");
+        (bool success, ) = payable(_to).call{value: feesToTransfer}("");
         if (!success) {
             revert FailedToSendWithdrawnETH();
         }
     }
 
     /// @notice Allows the owner to withdraw the accrued ERC20 fees
+    /// @param _to The address to send the fees to
     /// @param _token The token address
-    function withdrawERC20Fees(address _token) external onlyOwner {
+    function withdrawFeesERC20(address _to, address _token) external onlyOwner {
         if (accruedFeesERC20[_token] == 0) {
             revert NoFeesAccrued();
         }
@@ -310,7 +309,7 @@ contract Escrow {
         uint256 feesToTransfer = accruedFeesERC20[_token];
         accruedFeesERC20[_token] = 0;
 
-        IERC20(_token).safeTransfer(owner, feesToTransfer);
+        IERC20(_token).safeTransfer(_to, feesToTransfer);
     }
 
     /// @notice Calculates the fee for a deposit

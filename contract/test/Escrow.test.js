@@ -5,122 +5,468 @@ const {
 const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
 const { expect } = require("chai");
 
+const ONE_ETHER = ethers.utils.parseEther("1");
+
 describe("Escrow", function () {
   // We define a fixture to reuse the same setup in every test.
   // We use loadFixture to run this setup once, snapshot that state,
   // and reset Hardhat Network to that snapshot in every test.
-  async function deployOneYearLockFixture() {
-    const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-    const ONE_GWEI = 1_000_000_000;
-
-    const lockedAmount = ONE_GWEI;
-    const unlockTime = (await time.latest()) + ONE_YEAR_IN_SECS;
-
+  async function deployEscrow() {
     // Contracts are deployed using the first signer/account by default
-    const [owner, otherAccount] = await ethers.getSigners();
+    const [owner, buyer, seller, otherAccount] = await ethers.getSigners();
 
-    const Lock = await ethers.getContractFactory("Lock");
-    const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+    const Escrow = await ethers.getContractFactory("Escrow");
+    const escrow = await Escrow.deploy();
 
-    return { lock, unlockTime, lockedAmount, owner, otherAccount };
+    const ERC20 = await ethers.getContractFactory("TestERC20");
+    const erc20 = await ERC20.deploy([buyer.address]);
+
+    const ERC721 = await ethers.getContractFactory("TestERC721");
+    const erc721 = await ERC721.deploy([buyer.address]);
+
+    return { escrow, erc20, erc721, owner, buyer, seller, otherAccount };
   }
 
   describe("Deployment", function () {
-    it("Should set the right unlockTime", async function () {
-      const { lock, unlockTime } = await loadFixture(deployOneYearLockFixture);
+    it("Should deploy", async function () {
+      const { escrow, owner } = await loadFixture(deployEscrow);
 
-      expect(await lock.unlockTime()).to.equal(unlockTime);
-    });
-
-    it("Should set the right owner", async function () {
-      const { lock, owner } = await loadFixture(deployOneYearLockFixture);
-
-      expect(await lock.owner()).to.equal(owner.address);
-    });
-
-    it("Should receive and store the funds to lock", async function () {
-      const { lock, lockedAmount } = await loadFixture(
-        deployOneYearLockFixture
-      );
-
-      expect(await ethers.provider.getBalance(lock.address)).to.equal(
-        lockedAmount
-      );
-    });
-
-    it("Should fail if the unlockTime is not in the future", async function () {
-      // We don't use the fixture here because we want a different deployment
-      const latestTime = await time.latest();
-      const Lock = await ethers.getContractFactory("Lock");
-      await expect(Lock.deploy(latestTime, { value: 1 })).to.be.revertedWith(
-        "Unlock time should be in the future"
-      );
+      expect(escrow.address).to.have.lengthOf(42);
+      expect(await escrow.owner()).to.equal(owner.address);
     });
   });
 
-  describe("Withdrawals", function () {
-    describe("Validations", function () {
-      it("Should revert with the right error if called too soon", async function () {
-        const { lock } = await loadFixture(deployOneYearLockFixture);
+  describe("Escrow ETH", function () {
+    it("Allows to deposit ETH", async function () {
+      // Arrange
+      const { escrow, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
 
-        await expect(lock.withdraw()).to.be.revertedWith(
-          "You can't withdraw yet"
-        );
-      });
+      // Act
+      await expect(
+        escrow
+          .connect(buyer)
+          .createDepositETH(seller.address, { value: ONE_ETHER })
+      )
+        .to.emit(escrow, "NewDepositETH")
+        .withArgs(1, buyer.address, seller.address, ONE_ETHER);
 
-      it("Should revert with the right error if called from another account", async function () {
-        const { lock, unlockTime, otherAccount } = await loadFixture(
-          deployOneYearLockFixture
-        );
+      // Assert
+      expect(await ethers.provider.getBalance(escrow.address)).to.equal(
+        ONE_ETHER
+      );
 
-        // We can increase the time in Hardhat Network
-        await time.increaseTo(unlockTime);
+      const deposit = await escrow.deposits(1);
+      expect(deposit.buyer).to.equal(buyer.address);
+      expect(deposit.seller).to.equal(seller.address);
+      expect(deposit.token).to.equal(ethers.constants.AddressZero);
+      expect(deposit.amount).to.equal(ONE_ETHER);
+      expect(deposit.released).to.equal(false);
+      expect(deposit.depositType).to.equal(0);
 
-        // We use lock.connect() to send a transaction from another account
-        await expect(lock.connect(otherAccount).withdraw()).to.be.revertedWith(
-          "You aren't the owner"
-        );
-      });
+      // Act
+      await expect(
+        escrow
+          .connect(buyer)
+          .createDepositETH(otherAccount.address, { value: ONE_ETHER })
+      )
+        .to.emit(escrow, "NewDepositETH")
+        .withArgs(2, buyer.address, otherAccount.address, ONE_ETHER);
 
-      it("Shouldn't fail if the unlockTime has arrived and the owner calls it", async function () {
-        const { lock, unlockTime } = await loadFixture(
-          deployOneYearLockFixture
-        );
-
-        // Transactions are sent using the first signer by default
-        await time.increaseTo(unlockTime);
-
-        await expect(lock.withdraw()).not.to.be.reverted;
-      });
+      // Assert
+      const deposit2 = await escrow.deposits(2);
+      expect(deposit2.buyer).to.equal(buyer.address);
+      expect(deposit2.seller).to.equal(otherAccount.address);
+      expect(deposit2.token).to.equal(ethers.constants.AddressZero);
+      expect(deposit2.amount).to.equal(ONE_ETHER);
+      expect(deposit2.released).to.equal(false);
+      expect(deposit2.depositType).to.equal(0);
     });
 
-    describe("Events", function () {
-      it("Should emit an event on withdrawals", async function () {
-        const { lock, unlockTime, lockedAmount } = await loadFixture(
-          deployOneYearLockFixture
-        );
+    it("Enables buyer to release ETH", async function () {
+      // Arrange
+      const { escrow, buyer, seller } = await loadFixture(deployEscrow);
+      const prevSellerBalance = await ethers.provider.getBalance(
+        seller.address
+      );
 
-        await time.increaseTo(unlockTime);
+      await escrow
+        .connect(buyer)
+        .createDepositETH(seller.address, { value: ONE_ETHER });
 
-        await expect(lock.withdraw())
-          .to.emit(lock, "Withdrawal")
-          .withArgs(lockedAmount, anyValue); // We accept any value as `when` arg
-      });
+      // Act
+      await expect(escrow.connect(buyer).releaseDeposit(1))
+        .to.emit(escrow, "DepositReleased")
+        .withArgs(1);
+
+      // Assert
+      const fee = ONE_ETHER.div(200);
+      expect(await ethers.provider.getBalance(escrow.address)).to.equal(fee);
+      expect(await ethers.provider.getBalance(seller.address)).to.equal(
+        prevSellerBalance.add(ONE_ETHER).sub(fee)
+      );
+
+      const deposit = await escrow.deposits(1);
+      expect(deposit.released).to.equal(true);
     });
 
-    describe("Transfers", function () {
-      it("Should transfer the funds to the owner", async function () {
-        const { lock, unlockTime, lockedAmount, owner } = await loadFixture(
-          deployOneYearLockFixture
-        );
+    it("Enables owner to intervene and release ETH", async function () {
+      // Arrange
+      const { escrow, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
+      const prevSellerBalance = await ethers.provider.getBalance(
+        seller.address
+      );
+      const prevOtherAccountBalance = await ethers.provider.getBalance(
+        otherAccount.address
+      );
 
-        await time.increaseTo(unlockTime);
+      await escrow
+        .connect(buyer)
+        .createDepositETH(seller.address, { value: ONE_ETHER });
 
-        await expect(lock.withdraw()).to.changeEtherBalances(
-          [owner, lock],
-          [lockedAmount, -lockedAmount]
-        );
+      // Act
+      await expect(escrow.intervene(1, otherAccount.address))
+        .to.emit(escrow, "Intervened")
+        .withArgs(1, otherAccount.address);
+
+      // Assert
+      const fee = ONE_ETHER.div(200);
+      expect(await ethers.provider.getBalance(escrow.address)).to.equal(fee);
+      expect(await ethers.provider.getBalance(seller.address)).to.equal(
+        prevSellerBalance
+      );
+      expect(await ethers.provider.getBalance(otherAccount.address)).to.equal(
+        prevOtherAccountBalance.add(ONE_ETHER).sub(fee)
+      );
+
+      const deposit = await escrow.deposits(1);
+      expect(deposit.released).to.equal(true);
+    });
+
+    it("Disallows non-owners to intervene and release ETH", async function () {
+      // Arrange
+      const { escrow, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
+
+      await escrow
+        .connect(buyer)
+        .createDepositETH(seller.address, { value: ONE_ETHER });
+
+      // Act / Assert
+      await expect(
+        escrow.connect(seller).intervene(1, otherAccount.address)
+      ).to.be.revertedWithCustomError(escrow, "OnlyOwner");
+    });
+
+    it("Disallows non-buyers to release ETH", async function () {
+      // Arrange
+      const { escrow, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
+
+      await escrow
+        .connect(buyer)
+        .createDepositETH(seller.address, { value: ONE_ETHER });
+
+      // Act / Assert
+      await expect(
+        escrow.connect(seller).releaseDeposit(1)
+      ).to.be.revertedWithCustomError(escrow, "OnlyBuyer");
+    });
+
+    it("Disallows release of ETH if already released", async function () {
+      // Arrange
+      const { escrow, buyer, seller } = await loadFixture(deployEscrow);
+
+      escrow
+        .connect(buyer)
+        .createDepositETH(seller.address, { value: ONE_ETHER });
+
+      await escrow.connect(buyer).releaseDeposit(1);
+
+      // Act / Assert
+      await expect(
+        escrow.connect(buyer).releaseDeposit(1)
+      ).to.be.revertedWithCustomError(escrow, "AlreadyReleased");
+    });
+  });
+
+  describe("Escrow ERC20", function () {
+    it("Allows to deposit ERC20", async function () {
+      // Arrange
+      const { escrow, erc20, buyer, seller } = await loadFixture(deployEscrow);
+      await erc20.connect(buyer).increaseAllowance(escrow.address, ONE_ETHER);
+
+      // Act
+      await expect(
+        escrow
+          .connect(buyer)
+          .createDepositERC20(seller.address, erc20.address, ONE_ETHER)
+      )
+        .to.emit(escrow, "NewDepositERC20")
+        .withArgs(1, buyer.address, seller.address, erc20.address, ONE_ETHER);
+
+      // Assert
+      expect(await erc20.balanceOf(escrow.address)).to.equal(ONE_ETHER);
+
+      const deposit = await escrow.deposits(1);
+      expect(deposit.buyer).to.equal(buyer.address);
+      expect(deposit.seller).to.equal(seller.address);
+      expect(deposit.token).to.equal(erc20.address);
+      expect(deposit.amount).to.equal(ONE_ETHER);
+      expect(deposit.released).to.equal(false);
+      expect(deposit.depositType).to.equal(1);
+    });
+
+    it("Enables buyer to release ERC20", async function () {
+      // Arrange
+      const { escrow, erc20, buyer, seller } = await loadFixture(deployEscrow);
+      const prevSellerBalance = await erc20.balanceOf(seller.address);
+
+      await erc20.connect(buyer).increaseAllowance(escrow.address, ONE_ETHER);
+      await escrow
+        .connect(buyer)
+        .createDepositERC20(seller.address, erc20.address, ONE_ETHER);
+
+      // Act
+      await expect(escrow.connect(buyer).releaseDeposit(1))
+        .to.emit(escrow, "DepositReleased")
+        .withArgs(1);
+
+      // Assert
+      const fee = ONE_ETHER.div(200);
+      expect(await erc20.balanceOf(escrow.address)).to.equal(fee);
+      expect(await erc20.balanceOf(seller.address)).to.equal(
+        prevSellerBalance.add(ONE_ETHER).sub(fee)
+      );
+    });
+
+    it("Enables owner to intervene and release ERC20", async function () {
+      // Arrange
+      const { escrow, erc20, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
+      const prevOtherAccountBalance = await erc20.balanceOf(
+        otherAccount.address
+      );
+      const prevSellerBalance = await erc20.balanceOf(seller.address);
+
+      await erc20.connect(buyer).increaseAllowance(escrow.address, ONE_ETHER);
+      await escrow
+        .connect(buyer)
+        .createDepositERC20(seller.address, erc20.address, ONE_ETHER);
+
+      // Act
+      await expect(escrow.intervene(1, otherAccount.address))
+        .to.emit(escrow, "Intervened")
+        .withArgs(1, otherAccount.address);
+
+      // Assert
+      const fee = ONE_ETHER.div(200);
+      expect(await erc20.balanceOf(escrow.address)).to.equal(fee);
+      expect(await erc20.balanceOf(seller.address)).to.equal(prevSellerBalance);
+      expect(await erc20.balanceOf(otherAccount.address)).to.equal(
+        prevOtherAccountBalance.add(ONE_ETHER).sub(fee)
+      );
+    });
+
+    it("Disallows non-buyers to release ERC20", async function () {
+      // Arrange
+      const { escrow, erc20, buyer, seller } = await loadFixture(deployEscrow);
+
+      await erc20.connect(buyer).increaseAllowance(escrow.address, ONE_ETHER);
+      await escrow
+        .connect(buyer)
+        .createDepositERC20(seller.address, erc20.address, ONE_ETHER);
+
+      // Act / Assert
+      await expect(
+        escrow.connect(seller).releaseDeposit(1)
+      ).to.be.revertedWithCustomError(escrow, "OnlyBuyer");
+    });
+
+    it("Disallows release of ERC20 if already released", async function () {
+      // Arrange
+      const { escrow, erc20, buyer, seller } = await loadFixture(deployEscrow);
+
+      await erc20.connect(buyer).increaseAllowance(escrow.address, ONE_ETHER);
+      await escrow
+        .connect(buyer)
+        .createDepositERC20(seller.address, erc20.address, ONE_ETHER);
+
+      await escrow.connect(buyer).releaseDeposit(1);
+
+      // Act / Assert
+      await expect(
+        escrow.connect(buyer).releaseDeposit(1)
+      ).to.be.revertedWithCustomError(escrow, "AlreadyReleased");
+    });
+
+    it("Disallows release of non-existant deposit", async function () {
+      // Arrange
+      const { escrow, buyer } = await loadFixture(deployEscrow);
+
+      // Act / Assert
+      await expect(
+        escrow.connect(buyer).releaseDeposit(1)
+      ).to.be.revertedWithCustomError(escrow, "DepositDoesNotExist");
+    });
+  });
+
+  describe("Escrow ERC721", function () {
+    it("Allows to deposit ERC721", async function () {
+      // Arrange
+      const { escrow, erc721, buyer, seller } = await loadFixture(deployEscrow);
+      await erc721.connect(buyer).approve(escrow.address, 1);
+      await erc721.connect(buyer).approve(escrow.address, 2);
+
+      // Act
+      await expect(
+        escrow
+          .connect(buyer)
+          .createDepositERC721(seller.address, erc721.address, [1, 2])
+      )
+        .to.emit(escrow, "NewDepositERC721")
+        .withArgs(1, buyer.address, seller.address, erc721.address, [1, 2]);
+
+      // Assert
+      expect(await erc721.balanceOf(escrow.address)).to.equal(2);
+
+      const deposit = await escrow.deposits(1);
+      expect(deposit.buyer).to.equal(buyer.address);
+      expect(deposit.seller).to.equal(seller.address);
+      expect(deposit.token).to.equal(erc721.address);
+      expect(deposit.released).to.equal(false);
+      expect(deposit.depositType).to.equal(2);
+    });
+
+    it("Enables buyer to release ERC721", async function () {
+      // Arrange
+      const { escrow, erc721, buyer, seller } = await loadFixture(deployEscrow);
+      await erc721.connect(buyer).approve(escrow.address, 1);
+      await erc721.connect(buyer).approve(escrow.address, 2);
+      await escrow
+        .connect(buyer)
+        .createDepositERC721(seller.address, erc721.address, [1, 2]);
+
+      // Act
+      await expect(escrow.connect(buyer).releaseDeposit(1))
+        .to.emit(escrow, "DepositReleased")
+        .withArgs(1);
+
+      // Assert
+      expect(await erc721.balanceOf(escrow.address)).to.equal(0);
+      expect(await erc721.balanceOf(seller.address)).to.equal(2);
+
+      const deposit = await escrow.deposits(1);
+      expect(deposit.released).to.equal(true);
+    });
+
+    it("Enables owner to intervene and release ERC721", async function () {
+      // Arrange
+      const { escrow, erc721, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
+      await erc721.connect(buyer).approve(escrow.address, 1);
+      await erc721.connect(buyer).approve(escrow.address, 2);
+      await escrow
+        .connect(buyer)
+        .createDepositERC721(seller.address, erc721.address, [1, 2]);
+
+      // Act
+      await expect(escrow.intervene(1, otherAccount.address))
+        .to.emit(escrow, "Intervened")
+        .withArgs(1, otherAccount.address);
+
+      // Assert
+      expect(await erc721.balanceOf(escrow.address)).to.equal(0);
+      expect(await erc721.balanceOf(seller.address)).to.equal(0);
+      expect(await erc721.balanceOf(otherAccount.address)).to.equal(2);
+
+      const deposit = await escrow.deposits(1);
+      expect(deposit.released).to.equal(true);
+    });
+
+    it("Disallows non-buyers to release ERC721", async function () {
+      // Arrange
+      const { escrow, erc721, buyer, seller } = await loadFixture(deployEscrow);
+      await erc721.connect(buyer).approve(escrow.address, 1);
+      await erc721.connect(buyer).approve(escrow.address, 2);
+      await escrow
+        .connect(buyer)
+        .createDepositERC721(seller.address, erc721.address, [1, 2]);
+
+      // Act / Assert
+      await expect(
+        escrow.connect(seller).releaseDeposit(1)
+      ).to.be.revertedWithCustomError(escrow, "OnlyBuyer");
+    });
+
+    it("Disallows release of ERC721 if already released", async function () {
+      // Arrange
+      const { escrow, erc721, buyer, seller } = await loadFixture(deployEscrow);
+      await erc721.connect(buyer).approve(escrow.address, 1);
+      await erc721.connect(buyer).approve(escrow.address, 2);
+      await escrow
+        .connect(buyer)
+        .createDepositERC721(seller.address, erc721.address, [1, 2]);
+
+      await escrow.connect(buyer).releaseDeposit(1);
+
+      // Act / Assert
+      await expect(
+        escrow.connect(buyer).releaseDeposit(1)
+      ).to.be.revertedWithCustomError(escrow, "AlreadyReleased");
+    });
+  });
+
+  describe("Fees", function () {
+    it("Allows to withdraw fees (ETH)", async function () {
+      // Arrange
+      const { escrow, owner, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
+      const prevOtherAccountBalance = await ethers.provider.getBalance(
+        otherAccount.address
+      );
+
+      await escrow.connect(buyer).createDepositETH(seller.address, {
+        value: ONE_ETHER,
       });
+      await escrow.connect(buyer).releaseDeposit(1);
+
+      // Act
+      await escrow.withdrawFeesETH(otherAccount.address);
+
+      // Assert
+      const fees = ONE_ETHER.div(200);
+      expect(await ethers.provider.getBalance(otherAccount.address)).to.eq(
+        prevOtherAccountBalance.add(fees)
+      );
+      expect(await ethers.provider.getBalance(escrow.address)).to.eq(0);
+    });
+
+    it("Allows to withdraw fees (ERC20)", async function () {
+      // Arrange
+      const { escrow, erc20, owner, buyer, seller, otherAccount } = await loadFixture(
+        deployEscrow
+      );
+      await erc20.connect(buyer).approve(escrow.address, ONE_ETHER);
+
+      await escrow.connect(buyer).createDepositERC20(seller.address, erc20.address, ONE_ETHER);
+      await escrow.connect(buyer).releaseDeposit(1);
+
+      // Act
+      await escrow.withdrawFeesERC20(otherAccount.address, erc20.address);
+
+      // Assert
+      const fees = ONE_ETHER.div(200);
+      expect(await erc20.balanceOf(otherAccount.address)).to.eq(fees);
+      expect(await erc20.balanceOf(escrow.address)).to.eq(0);
     });
   });
 });
