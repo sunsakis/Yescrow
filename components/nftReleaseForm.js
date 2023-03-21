@@ -1,10 +1,9 @@
 import { ethers } from "ethers";
-import Head from 'next/head';
 import Link from "next/link";
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
 import { useWeb3React } from "@web3-react/core";
-import { injected } from "../components/escrowForm";
+import { injected } from "./ethEscrowForm";
 
 const ABI = [
   "function releaseDeposit(uint256 id) external",
@@ -83,8 +82,8 @@ export default function ReleaseForm() {
   return (
     <div className={styles.main}>
           <form className={styles.form} onSubmit={releaseEscrow}>
-                <h1 className={styles.title}>Release Ether ♦</h1><br/><br/>
-                <p>Buyer can release the funds to the seller <b>anytime</b> by submitting the e-mailed ID from the Ethereum address that originally made the escrow.</p>
+                <h1 className={styles.title}>Release NFT ♦</h1><br/><br/>
+                <p>Seller can release the NFT to the buyer <b>anytime</b> by submitting the ID from the Ethereum address that originally made the escrow.</p>
               <br/><br/>
               <div className={styles.form}>
             <label htmlFor="id" className={styles.description}>Escrow ID number</label><br/>

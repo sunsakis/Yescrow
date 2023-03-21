@@ -11,11 +11,10 @@ const ABI = [
 
 export const injected = new InjectedConnector({ supportedChainIds: [1] });
 
-export default function EscrowForm() {
+export default function EthEscrowForm() {
 
   const [amount, setDepositValue] = useState('')
   const [_seller, setSellerAddress] = useState('')
-  const [email, setEmailAddress] = useState('')
   const [hasMetaMask, setHasMetaMask] = useState(false);
   const [accounts, setAccounts] = useState('');
 
@@ -26,10 +25,6 @@ export default function EscrowForm() {
 
   function handleAddressChange(e) {
     setSellerAddress(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setEmailAddress(e.target.value);
   }
 
   useEffect(() => {
@@ -97,8 +92,9 @@ export default function EscrowForm() {
           <div className={styles.main}>
           <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
               {/* Should alert if user clicks button but is not connected to mainnet */}
-                <h1 className={styles.title}>Online escrow built on Ethereum ♦</h1>
-              <br></br>
+                <h1 className={styles.title}>Escrow Ethereum ♦</h1>
+              <br/>
+              <p>When buying online, safety matters - the only way to trust anonymously is to use an escrow.</p>
               <div className={styles.description}>
                 <label>Seller`s Ethereum address</label><br/>
                 <input className={styles.input}
@@ -109,19 +105,11 @@ export default function EscrowForm() {
                   maxLength="42"
                   onChange={handleAddressChange} 
                 /><br/>
-                <label>Your e-mail</label><br/>
-                <input className={styles.input}
-                  type="email" 
-                  placeholder="@" 
-                  onChange={handleEmailChange} 
-                  required
-                  /><br/>
                 <label>Escrow amount in ETH</label><br/>
                 <input className={styles.input}
                   type="number" 
                   placeholder="Ξ" 
                   step="any"
-                  min="0.1"
                   onChange={handleDepositChange} 
                   />
                 <br />
