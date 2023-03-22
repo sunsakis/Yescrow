@@ -6,7 +6,7 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 
 const ABI = [
   "function createDepositERC721(address _seller, address _token, uint256[] calldata _tokenIds) external",
-  "function approve(address to, uint256 tokenId) public virtual override",
+  "function approve(address to, uint256 tokenId) public",
   "event NewDepositERC721(uint256 indexed currentId, address indexed buyer, address indexed seller, address token, uint256[] tokenIds)"
   ];
 
@@ -51,10 +51,10 @@ export default function EscrowForm() {
     e.preventDefault(); 
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: 'eth_chainId' });
-      if (chainId !== '0x11155111') {
+      if (chainId !== '0xaa36a7') {
         alert('Please connect to the Ethereum Sepolia.')
       }
-      if (chainId == '0x11155111') {try {
+      if (chainId == '0xaa36a7') {try {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else 
@@ -68,10 +68,11 @@ export default function EscrowForm() {
 
         const signer = provider.getSigner();
         const contract = new ethers.Contract(process.env.NEXT_PUBLIC_SEPOLIA_ADDRESS, ABI, signer);
-        try { await contract.approve(contract.address, _tokenIds) }
-        catch (error) {alert("The transaction failed. Please make sure you approve escrowing the NFTs in your Metamask account and try again.")}
-        try { await contract.createDepositERC721(_seller, _nftAddress, _tokenIds) }
-        catch (error) {alert("The transaction failed. Please make sure you have enough NFTs in your Metamask account and try again.")}
+        try { await contract.approve(contract.address, _tokenIds, {gasLimit: 100000})  }
+        catch (error) {console.log(error),
+          alert("The transaction failed. Please make sure you approve escrowing the NFTs in your Metamask account and try again.")}
+        // try { await contract.createDepositERC721(_seller, _nftAddress, _tokenIds) }
+        // catch (error) {alert("The transaction failed. Please make sure you have enough NFTs in your Metamask account and try again.")}
         
         try {
           contract.on("NewDepositERC721", (counter, buyerAddress, sellerAddress, _nftAddress, _tokenIds, event) => {
