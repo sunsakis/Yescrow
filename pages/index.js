@@ -10,6 +10,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
+        <meta name="robots" content="noindex"></meta>
         <title>Blockchain Escrow Services: Trust Anonymously - yescrow.xyz</title>
         <meta name="description" content="Automated crypto escrow services for your online safety. No need to register, simply stake and release when you are satisfied." />
         <link rel="icon" href="/favicon.ico" />

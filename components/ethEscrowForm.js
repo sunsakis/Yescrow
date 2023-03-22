@@ -5,11 +5,11 @@ import { ethers } from "ethers";
 import { InjectedConnector } from "@web3-react/injected-connector";
 
 const ABI = [
-  "function safeDeposit(address _seller, string memory _email) external payable",
-  "event NewDeposit(address buyerAddress, address sellerAddress, uint amount, uint256 counter, string email)"
+  "function createDepositETH(address _seller) external payable",
+  "event NewDepositETH(uint256 indexed currentId, address indexed buyer, address indexed seller, uint256 amount)"
   ];
 
-export const injected = new InjectedConnector({ supportedChainIds: [1] });
+export const injected = new InjectedConnector({ supportedChainIds: [11155111] });
 
 export default function EthEscrowForm() {
 
@@ -20,7 +20,6 @@ export default function EthEscrowForm() {
 
   function handleDepositChange(e) {
     setDepositValue(e.target.value);
-    
   }
 
   function handleAddressChange(e) {
@@ -45,14 +44,15 @@ export default function EthEscrowForm() {
     e.preventDefault(); 
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: 'eth_chainId' });
-      if (chainId !== '0x1') {
-        alert('Please connect to the Ethereum Mainnet.')
+      if (chainId !== '0xaa36a7') {
+        console.log(chainId)
+        alert('Please connect to the Ethereum Sepolia.')
       }
-      if (chainId == '0x1') {try {
+      if (chainId == '0xaa36a7') {try {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else 
-        { setAccounts("Your Ethereum account "+accounts+" is now connected to Ethereum`s Mainnet. You may escrow now.") }
+        { setAccounts("Your Ethereum account "+accounts+" is now connected to Ethereum`s Sepolia. You may escrow now.") }
       } catch (e) {
         console.log(e);
       }
@@ -61,22 +61,21 @@ export default function EthEscrowForm() {
       if (active) {
 
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS, ABI, signer);
-        try { await contract.safeDeposit(_seller, email, { value: ethers.utils.parseEther(amount)}) }
+        const contract = new ethers.Contract("0x4193f089C9e41135329c989a0899B60B101C3994", ABI, signer);
+        try { await contract.createDepositETH(_seller, { value: ethers.utils.parseEther(amount) }) }
         catch (error) {alert("The transaction failed. Please make sure you have enough ETH in your Metamask account and try again.")}
         
         try {
-          contract.on("NewDeposit", (buyerAddress, sellerAddress, depositAmount, counter, email, event) => {
+          contract.on("NewDepositETH", (counter, buyerAddress, sellerAddress, depositAmount, event) => {
             provider.once("block", () => {
               console.log(
                 "Buyer address: "+buyerAddress,
                 "Seller address: "+sellerAddress,
                 "Escrow amount: "+JSON.stringify(depositAmount.toString()),
                 "Escrow ID: "+counter,
-                "Buyer's e-mail: "+email,
                 "Transaction hash: "+event.transactionHash);
 
-                alert("Your escrow has been created. Please check your e-mail for the ID and transaction hash.");}
+                alert("Appreciate the patience. Your escrow has been mined. Save your ID number: " +counter +".")}
             ) 
           })
          } catch (error) {console.log(error)};

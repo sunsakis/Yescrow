@@ -6,8 +6,8 @@ import { useWeb3React } from "@web3-react/core";
 import { injected } from "./ethEscrowForm";
 
 const ABI = [
-  "function releaseDeposit(uint256 id) external",
-  "event DepositReleased(address buyerAddress, address sellerAddress, uint256 releaseAmount, uint256 counter)",
+  "function releaseDeposit(uint256 _id) external releaseGuard(_id)",
+  "event DepositReleased(uint256 indexed id)"
 ];
 
 export default function ReleaseForm() {
@@ -41,14 +41,14 @@ export default function ReleaseForm() {
   if(hasMetaMask == true) {
     const chainId = await window.ethereum.request({ method: 'eth_chainId'});
     // Check if user is connected to Mainnet
-    if(chainId !== '0x1') {
+    if(chainId !== '0x11155111') {
       alert("Please connect to the Ethereum Mainnet.");
     }
-    if (chainId == '0x1') {try {
+    if (chainId == '0x11155111') {try {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else
-        setAccounts("Your Ethereum account "+accounts+" is connected to Ethereum`s Mainnet. You may now release the escrow.")
+        setAccounts("Your Ethereum account "+accounts+" is connected to Ethereum`s Sepolia. You may now release the escrow.")
       } catch (e) {
         console.log(e);
       }
@@ -56,7 +56,7 @@ export default function ReleaseForm() {
       try {
         if (active) {
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS, ABI, signer);
+        const contract = new ethers.Contract(process.env.NEXT_PUBLIC_SEPOLIA_ADDRESS, ABI, signer);
         try { await contract.releaseDeposit(_id, {gasLimit: 250000}) }
         catch (error) {alert("Type in the correct ID or your transaction will be rejected.")};
         
