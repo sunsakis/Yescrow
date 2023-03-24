@@ -21,7 +21,7 @@ export default function Nft() {
       <div className={styles.container}>
         <Head>
           <meta name="robots" content="noindex"></meta>
-          <title>Smart Contract NFT Escrow Service - yescrow.xyz</title>
+          <title>Smart Contract NFT Escrow - yescrow</title>
           <meta name="description" content="A smart contract to help you sell your NFTs safely. No need to register, no fee (just pay for gas)." />
           <link rel="icon" href="/favicon.ico" />
         </Head>

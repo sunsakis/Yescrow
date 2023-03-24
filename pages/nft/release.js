@@ -10,7 +10,7 @@ export default function Release() {
       <div className={styles.container}>
         <Head>
         <meta name="robots" content="noindex"></meta>
-          <title>Release NFT To Buyer - yescrow.xyz</title>
+          <title>Release NFT To Buyer - yescrow</title>
           <meta name="description" content="A simple interface to release your staked NFT to the buyer."/>
           <link rel="icon" href="/favicon.ico" />
         </Head>

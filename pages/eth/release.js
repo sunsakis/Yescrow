@@ -10,7 +10,7 @@ export default function Release() {
       <div className={styles.container}>
         <Head>
           <meta name="robots" content="noindex"></meta>
-          <title>Release Ether To Seller - yescrow.xyz</title>
+          <title>Release Ether To Seller - yescrow</title>
           <meta name="description" content="A simple interface to release your staked Ether."/>
           <link rel="icon" href="/favicon.ico" />
         </Head>

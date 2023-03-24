@@ -6,7 +6,7 @@ import { useWeb3React } from "@web3-react/core";
 import { injected } from "./ethEscrowForm";
 
 const ABI = [
-  "function releaseDeposit(uint256 _id) external releaseGuard(_id)",
+  "function releaseDeposit(uint256 _id) external",
   "event DepositReleased(uint256 indexed id)"
 ];
 
@@ -41,10 +41,11 @@ export default function ReleaseForm() {
   if(hasMetaMask == true) {
     const chainId = await window.ethereum.request({ method: 'eth_chainId'});
     // Check if user is connected to Mainnet
-    if(chainId !== '0x11155111') {
+    if(chainId !== '0xaa36a7') {
+      console.log(chainId)
       alert("Please connect to the Ethereum Mainnet.");
     }
-    if (chainId == '0x11155111') {try {
+    if (chainId == '0xaa36a7') {try {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else
@@ -61,13 +62,9 @@ export default function ReleaseForm() {
         catch (error) {alert("Type in the correct ID or your transaction will be rejected.")};
         
         try{
-        contract.on("DepositReleased", (buyerAddress, sellerAddress, releaseAmount, counter, event) => {
-          console.log("Buyer address: "+buyerAddress,
-          "Seller address: "+sellerAddress,
-          "Escrow amount: "+JSON.stringify(releaseAmount.toString()),
-          "ID: "+counter, 
-          "Transaction hash: "+event.transactionHash)
-        })
+          contract.on("DepositReleased", (id, event) => {
+            alert("Escrow #" + id + " has been released.");
+          })
         } catch (error) {alert(error)};
      
   } 
