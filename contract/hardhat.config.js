@@ -1,6 +1,9 @@
 require("dotenv").config();
 require("@nomicfoundation/hardhat-toolbox");
 
+ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
+ETH_PRIVATE_KEY = process.env.ETH_PRIVATE_KEY;
+
 module.exports = {
   solidity: "0.8.17",
   networks: {

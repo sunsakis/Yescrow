@@ -9,7 +9,9 @@ const ESCROW_ABI = [
   "event NewDepositERC721(uint256 indexed currentId, address indexed buyer, address indexed seller, address token, uint256[] tokenIds)",
 ];
 
-const ERC721_ABI = ["function approve(address to, uint256 tokenId) public"];
+const ERC721_ABI = [
+  "function approve(address to, uint256 tokenId) public"
+];
 
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 11155111],
@@ -74,7 +76,6 @@ export default function EscrowForm() {
       }
       try {
         if (active) {
-          console.log(process.env.NEXT_PUBLIC_SEPOLIA_ADDRESS);
 
           const signer = provider.getSigner();
           const contract = new ethers.Contract(
@@ -89,29 +90,27 @@ export default function EscrowForm() {
             signer
           );
 
-          console.log(_seller);
-          console.log(_nftAddress);
-          console.log(_tokenIds);
-
-          try {
-            const approveTx = await nftContract.approve(contract.address, _tokenIds, {
-              gasLimit: 100000,
-            });
-            await approveTx.wait();
-
+          try { 
+            
+              const approveTx = await nftContract.approve(contract.address, _tokenIds, {
+                gasLimit: 100000,
+              });
+              await approveTx.wait();
+            
+            
             const createDepositTx =  await contract.createDepositERC721(_seller, _nftAddress, [_tokenIds], {
               gasLimit: 300000,
             });
             await createDepositTx.wait();
+            
+
           } catch (error) {
             console.log(error),
               alert(
                 "The transaction failed. Please make sure you approve escrowing the NFTs in your Metamask account and try again."
               );
           }
-          // try { await contract.createDepositERC721(_seller, _nftAddress, _tokenIds) }
-          // catch (error) {alert("The transaction failed. Please make sure you have enough NFTs in your Metamask account and try again.")}
-
+        
           try {
             contract.on(
               "NewDepositERC721",
@@ -123,7 +122,7 @@ export default function EscrowForm() {
                 _tokenIds,
                 event
               ) => {
-                provider.once("block", () => {
+
                   console.log(
                     "Buyer address: " + buyerAddress,
                     "Seller address: " + sellerAddress,
@@ -134,9 +133,8 @@ export default function EscrowForm() {
                   );
 
                   alert(
-                    "Your escrow has been created. Please check your e-mail for the ID and transaction hash."
+                    "Appreciate the patience. Your escrow has been mined. Save your ID number: " + counter 
                   );
-                });
               }
             );
           } catch (error) {
