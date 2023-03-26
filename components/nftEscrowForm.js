@@ -23,6 +23,7 @@ export default function EscrowForm() {
   const [_nftAddress, setNftAddress] = useState("");
   const [hasMetaMask, setHasMetaMask] = useState(false);
   const [accounts, setAccounts] = useState("");
+  const [isConnected, setIsConnected] = useState(false);
 
   function handleIDChange(e) {
     setIDValue(e.target.value);
@@ -55,7 +56,7 @@ export default function EscrowForm() {
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: "eth_chainId" });
       if (chainId !== "0xaa36a7") {
-        alert("Please connect to the Ethereum Sepolia.");
+        alert("Please connect to the Ethereum.");
       }
       if (chainId == "0xaa36a7") {
         try {
@@ -63,20 +64,15 @@ export default function EscrowForm() {
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts.length == 0) {
             setAccounts("Connect your Metamask account");
-          } else {
-            setAccounts(
-              "Your Ethereum account " +
-                accounts +
-                " is now connected to Ethereum`s Sepolia. You may escrow now."
-            );
-          }
+          } else { if (isConnected == false) {
+            alert("Your Ethereum account "+accounts+" is now connected. You may escrow now.")
+            setIsConnected(true) }}
         } catch (e) {
           console.log(e);
         }
       }
       try {
         if (active) {
-
           const signer = provider.getSigner();
           const contract = new ethers.Contract(
             process.env.NEXT_PUBLIC_SEPOLIA_ADDRESS,
@@ -91,19 +87,18 @@ export default function EscrowForm() {
           );
 
           try { 
-            
               const approveTx = await nftContract.approve(contract.address, _tokenIds, {
                 gasLimit: 100000,
               });
-              await approveTx.wait();
-            
+              alert("Approving escrow of NFTs...")
+              await approveTx.wait()
+              alert("Approved escrow of NFTs. Now you can escrow your NFT.");
             
             const createDepositTx =  await contract.createDepositERC721(_seller, _nftAddress, [_tokenIds], {
               gasLimit: 300000,
             });
             await createDepositTx.wait();
-            
-
+          
           } catch (error) {
             console.log(error),
               alert(
@@ -133,7 +128,7 @@ export default function EscrowForm() {
                   );
 
                   alert(
-                    "Appreciate the patience. Your escrow has been mined. Save your ID number: " + counter 
+                    "Appreciate the patience. Your escrow has been created. Save your ID#: " +counter+ "." 
                   );
               }
             );

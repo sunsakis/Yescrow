@@ -17,6 +17,7 @@ export default function EthEscrowForm() {
   const [_seller, setSellerAddress] = useState('')
   const [hasMetaMask, setHasMetaMask] = useState(false);
   const [accounts, setAccounts] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
 
   function handleDepositChange(e) {
     setDepositValue(e.target.value);
@@ -46,37 +47,34 @@ export default function EthEscrowForm() {
       const chainId = await ethereum.request({ method: 'eth_chainId' });
       if (chainId !== '0xaa36a7') {
         console.log(chainId)
-        alert('Please connect to the Ethereum Sepolia.')
+        alert('Please connect to the Ethereum.')
       }
       if (chainId == '0xaa36a7') {try {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else 
-        { setAccounts("Your Ethereum account "+accounts+" is now connected to Ethereum`s Sepolia. You may escrow now.") }
+        { if (isConnected == false) {
+          alert("Your Ethereum account "+accounts+" is now connected. You may escrow now.")
+          setIsConnected(true) }}
       } catch (e) {
         console.log(e);
       }
       }
       try {
       if (active) {
-
         const signer = provider.getSigner();
         const contract = new ethers.Contract("0x4193f089C9e41135329c989a0899B60B101C3994", ABI, signer);
-        try { await contract.createDepositETH(_seller, { value: ethers.utils.parseEther(amount) }) }
+        try { await contract.createDepositETH(_seller, { value: ethers.utils.parseEther(amount) })}
         catch (error) {alert("The transaction failed. Please make sure you have enough ETH in your Metamask account and try again.")}
-        
         try {
           contract.on("NewDepositETH", (counter, buyerAddress, sellerAddress, depositAmount, event) => {
-            provider.once("block", () => {
               console.log(
                 "Buyer address: "+buyerAddress,
                 "Seller address: "+sellerAddress,
                 "Escrow amount: "+JSON.stringify(depositAmount.toString()),
                 "Escrow ID: "+counter,
                 "Transaction hash: "+event.transactionHash);
-
-                alert("Appreciate the patience. Your escrow has been mined. Save your ID number: " +counter +".")}
-            ) 
+                alert("Appreciate the patience. Your escrow has been created. Save your ID#: " +counter+ ".")
           })
          } catch (error) {console.log(error)};
       }
