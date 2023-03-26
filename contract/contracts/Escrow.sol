@@ -28,9 +28,9 @@ contract Escrow {
     /// @notice The deposit struct
     struct Deposit {
         /// @notice The buyer address
-        address seller;
-        /// @notice The buyer address
         address buyer;
+        /// @notice The seller address
+        address seller;
         /// @notice The amount of the deposit (applies when deposit type is ETH or ERC20)
         uint256 amount;
         /// @notice The token address (if the deposit is ERC20 or ERC721)
@@ -70,7 +70,7 @@ contract Escrow {
     /// @param _id The deposit ID
     modifier releaseGuard(uint256 _id) {
         Deposit storage deposit = deposits[_id];
-        if (deposit.seller == address(0)) {
+        if (deposit.buyer == address(0)) {
             revert DepositDoesNotExist();
         }
 
@@ -80,9 +80,9 @@ contract Escrow {
         _;
     }
 
-    modifier nonEmptyBuyer(address _buyer) {
-        if (_buyer == address(0)) {
-            revert BuyerAddressEmpty();
+    modifier nonEmptySeller(address _seller) {
+        if (_seller == address(0)) {
+            revert SellerAddressEmpty();
         }
         _;
     }
@@ -96,33 +96,33 @@ contract Escrow {
     }
 
     /// @notice Creates a new ETH deposit
-    /// @param _buyer The buyer address
+    /// @param _seller The seller address
     function createDepositETH(
-        address _buyer
-    ) external payable nonEmptyBuyer(_buyer) {
+        address _seller
+    ) external payable nonEmptySeller(_seller) {
         if (msg.value == 0) {
             revert DepositAmountZero();
         }
 
         Deposit memory deposit;
-        deposit.buyer = _buyer;
-        deposit.seller = msg.sender;
+        deposit.buyer = msg.sender;
+        deposit.seller = _seller;
         deposit.amount = msg.value;
         deposit.depositType = DepositType.ETH;
         deposits[++currentId] = deposit;
 
-        emit NewDepositETH(currentId, msg.sender, _buyer, msg.value);
+        emit NewDepositETH(currentId, msg.sender, _seller, msg.value);
     }
 
     /// @notice Creates a new ERC20 deposit
-    /// @param _buyer The buyer address
+    /// @param _seller The seller address
     /// @param _token The token address
     /// @param _amount The amount of tokens
     function createDepositERC20(
-        address _buyer,
+        address _seller,
         address _token,
         uint256 _amount
-    ) external nonEmptyBuyer(_buyer) {
+    ) external nonEmptySeller(_seller) {
         if (_token == address(0)) {
             revert TokenAddressEmpty();
         }
@@ -132,8 +132,8 @@ contract Escrow {
         }
 
         Deposit memory deposit;
-        deposit.buyer = _buyer;
-        deposit.seller = msg.sender;
+        deposit.buyer = msg.sender;
+        deposit.seller = _seller;
         deposit.amount = _amount;
         deposit.token = _token;
         deposit.depositType = DepositType.ERC20;
@@ -141,18 +141,18 @@ contract Escrow {
 
         IERC20(_token).safeTransferFrom(msg.sender, address(this), _amount);
 
-        emit NewDepositERC20(currentId, msg.sender, _buyer, _token, _amount);
+        emit NewDepositERC20(currentId, msg.sender, _seller, _token, _amount);
     }
 
     /// @notice Creates a new ERC721 deposit
-    /// @param _buyer The buyer address
+    /// @param _seller The seller address
     /// @param _token The token address
     /// @param _tokenIds The token IDs
     function createDepositERC721(
-        address _buyer,
+        address _seller,
         address _token,
         uint256[] calldata _tokenIds
-    ) external nonEmptyBuyer(_buyer) {
+    ) external nonEmptySeller(_seller) {
         if (_token == address(0)) {
             revert TokenAddressEmpty();
         }
@@ -162,8 +162,8 @@ contract Escrow {
         }
 
         Deposit memory deposit;
-        deposit.buyer = _buyer;
-        deposit.seller = msg.sender;
+        deposit.buyer = msg.sender;
+        deposit.seller = _seller;
         deposit.token = _token;
         deposit.tokenIds = _tokenIds;
         deposit.depositType = DepositType.ERC721;
@@ -178,24 +178,30 @@ contract Escrow {
             );
         }
 
-        emit NewDepositERC721(currentId, msg.sender, _buyer, _token, _tokenIds);
+        emit NewDepositERC721(
+            currentId,
+            msg.sender,
+            _seller,
+            _token,
+            _tokenIds
+        );
     }
 
     function releaseDeposit(uint256 _id) external releaseGuard(_id) {
         Deposit storage deposit = deposits[_id];
-        if (deposit.seller != msg.sender) {
-            revert OnlySeller();
+        if (deposit.buyer != msg.sender) {
+            revert OnlyBuyer();
         }
 
         deposit.released = true;
 
         if (deposit.depositType == DepositType.ETH) {
-            _releaseDepositETH(deposit.buyer, deposit.amount);
+            _releaseDepositETH(deposit.seller, deposit.amount);
         } else if (deposit.depositType == DepositType.ERC20) {
-            _releaseDepositERC20(deposit.buyer, deposit.token, deposit.amount);
+            _releaseDepositERC20(deposit.seller, deposit.token, deposit.amount);
         } else if (deposit.depositType == DepositType.ERC721) {
             _releaseDepositERC721(
-                deposit.buyer,
+                deposit.seller,
                 deposit.token,
                 deposit.tokenIds
             );
@@ -226,26 +232,26 @@ contract Escrow {
     }
 
     /// @notice Allows the buyer to release the ETH deposit
-    /// @param _buyer The buyer address
+    /// @param _seller The seller address
     /// @param _amount The amount of ETH
-    function _releaseDepositETH(address _buyer, uint256 _amount) internal {
+    function _releaseDepositETH(address _seller, uint256 _amount) internal {
         uint256 fee = _calculateFee(_amount);
         uint256 releaseAmount = _amount - fee;
 
         accruedFeesETH += fee;
 
-        (bool success, ) = payable(_buyer).call{value: releaseAmount}("");
+        (bool success, ) = payable(_seller).call{value: releaseAmount}("");
         if (!success) {
             revert FailedToSendReleasedETH();
         }
     }
 
     /// @notice Allows the buyer to release the ERC20 deposit
-    /// @param _buyer The buyer address
+    /// @param _seller The seller address
     /// @param _token The token address
     /// @param _amount The amount of tokens
     function _releaseDepositERC20(
-        address _buyer,
+        address _seller,
         address _token,
         uint256 _amount
     ) internal {
@@ -254,15 +260,15 @@ contract Escrow {
 
         accruedFeesERC20[_token] += fee;
 
-        IERC20(_token).safeTransfer(_buyer, releaseAmount);
+        IERC20(_token).safeTransfer(_seller, releaseAmount);
     }
 
     /// @notice Allows the buyer to release the ERC721 deposit
-    /// @param _buyer The buyer address
+    /// @param _seller The seller address
     /// @param _token The token address
     /// @param _tokenIds The token IDs
     function _releaseDepositERC721(
-        address _buyer,
+        address _seller,
         address _token,
         uint256[] memory _tokenIds
     ) internal {
@@ -270,7 +276,7 @@ contract Escrow {
         for (uint256 i = 0; i < length; ++i) {
             IERC721(_token).safeTransferFrom(
                 address(this),
-                _buyer,
+                _seller,
                 _tokenIds[i]
             );
         }
@@ -329,40 +335,40 @@ contract Escrow {
 
     /// @notice Emitted when a new deposit is created
     /// @param currentId The current deposit id
-    /// @param seller The seller address
     /// @param buyer The buyer address
+    /// @param seller The seller address
     /// @param amount The amount of the deposit
     event NewDepositETH(
         uint256 indexed currentId,
-        address indexed seller,
         address indexed buyer,
+        address indexed seller,
         uint256 amount
     );
 
     /// @notice Emitted when a new deposit is created
     /// @param currentId The current deposit id
-    /// @param seller The seller address
     /// @param buyer The buyer address
+    /// @param seller The seller address
     /// @param token The token address
     /// @param amount The amount of the deposit
     event NewDepositERC20(
         uint256 indexed currentId,
-        address indexed seller,
         address indexed buyer,
+        address indexed seller,
         address token,
         uint256 amount
     );
 
     /// @notice Emitted when a new deposit is created
     /// @param currentId The current deposit id
-    /// @param seller The seller address
     /// @param buyer The buyer address
+    /// @param seller The seller address
     /// @param token The token address
     /// @param tokenIds The token ids
     event NewDepositERC721(
         uint256 indexed currentId,
-        address indexed seller,
         address indexed buyer,
+        address indexed seller,
         address token,
         uint256[] tokenIds
     );
@@ -382,7 +388,7 @@ contract Escrow {
 
     error OnlyOwner();
 
-    error OnlySeller();
+    error OnlyBuyer();
 
     error DepositDoesNotExist();
 
@@ -400,7 +406,7 @@ contract Escrow {
 
     error TokenAddressEmpty();
 
-    error BuyerAddressEmpty();
+    error SellerAddressEmpty();
 
     error FailedToTransferERC20();
 
