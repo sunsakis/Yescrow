@@ -6,7 +6,7 @@ export default function About() {
         <div>
         <h1 className={styles.title}>Crypto escrow usecases:</h1><br /><br/>
         <p>An escrow service can be used anytime two parties are engaging in a transaction online or offline selling or buying <b>anything at all</b> and want to ensure that the deal is completed securely and fairly.</p> <br/>
-        <p> With a crypto escrow, the costs are minimized so you don't even need to transact in big sums.</p><p><br/>Here are some common usecases:<br/> <br/></p>
+        <p> With a crypto escrow, the costs are minimized so you don`t even need to transact in big sums.</p><p><br/>Here are some common usecases:<br/> <br/></p>
         <li><b>Freelance work:</b> When hiring a freelancer, an escrow service can be used to hold the payment until the work is completed to the satisfaction of the employer. This provides a level of security for both parties and can help avoid disputes.</li>
         <br/>
         <li><b>Selling data:</b> When you want to sell (or buy) software, it can be hard to be the first to initiate the deal, especially if the other party is uknown to you. If you send the code before you get the money, they might just copy it and not pay you. On the other hand, if you are the first to pay, you might never get the code in return.</li>
