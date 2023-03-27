@@ -9,7 +9,7 @@ const ABI = [
   "event NewDepositETH(uint256 indexed currentId, address indexed buyer, address indexed seller, uint256 amount)"
   ];
 
-export const injected = new InjectedConnector({ supportedChainIds: [11155111] });
+export const injected = new InjectedConnector({ supportedChainIds: [1, 11155111] });
 
 export default function EthEscrowForm() {
 
@@ -63,7 +63,7 @@ export default function EthEscrowForm() {
       try {
       if (active) {
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(NEXT_PUBLIC_MAINNET_ADDRESS, ABI, signer);
+        const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, ABI, signer);
         try { await contract.createDepositETH(_seller, { value: ethers.utils.parseEther(amount) })}
         catch (error) {alert("The transaction failed. Please make sure you have enough ETH in your Metamask account and try again.")}
         try {
