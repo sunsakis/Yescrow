@@ -45,11 +45,11 @@ export default function EthEscrowForm() {
     e.preventDefault(); 
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: 'eth_chainId' });
-      if (chainId !== '0xaa36a7') {
+      if (chainId !== '0x1') {
         console.log(chainId)
-        alert('Please connect to the Ethereum.')
+        alert('Please select the Ethereum mainnet on your MetaMask.')
       }
-      if (chainId == '0xaa36a7') {try {
+      if (chainId == '0x1') {try {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else 
@@ -63,7 +63,7 @@ export default function EthEscrowForm() {
       try {
       if (active) {
         const signer = provider.getSigner();
-        const contract = new ethers.Contract("0x4193f089C9e41135329c989a0899B60B101C3994", ABI, signer);
+        const contract = new ethers.Contract(NEXT_PUBLIC_MAINNET_ADDRESS, ABI, signer);
         try { await contract.createDepositETH(_seller, { value: ethers.utils.parseEther(amount) })}
         catch (error) {alert("The transaction failed. Please make sure you have enough ETH in your Metamask account and try again.")}
         try {

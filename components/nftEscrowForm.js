@@ -55,10 +55,10 @@ export default function EscrowForm() {
     e.preventDefault();
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: "eth_chainId" });
-      if (chainId !== "0xaa36a7") {
-        alert("Please connect to the Ethereum.");
+      if (chainId !== "0x1") {
+        alert("Please select the Ethereum mainnet on your MetaMask.");
       }
-      if (chainId == "0xaa36a7") {
+      if (chainId == "0x1") {
         try {
           await activate(injected);
           const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -75,7 +75,7 @@ export default function EscrowForm() {
         if (active) {
           const signer = provider.getSigner();
           const contract = new ethers.Contract(
-            process.env.NEXT_PUBLIC_SEPOLIA_ADDRESS,
+            process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
             ESCROW_ABI,
             signer
           );

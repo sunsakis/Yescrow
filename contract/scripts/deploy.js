@@ -1,3 +1,23 @@
+const hre = require("hardhat");
+const { LedgerSigner } = require("@anders-t/ethers-ledger");  
+
+async function main () {
+  
+  const ledger = new LedgerSigner(hre.ethers.provider);                                                                                                                              
+  const Escrow = await hre.ethers.getContractFactory('Escrow');
+  console.log('Deploying Escrow...');
+  let contractFactory = Escrow.connect(ledger);
+  const escrow = await contractFactory.deploy();
+  await escrow.deployed();
+  console.log('Escrow deployed to:', escrow.address);
+}
+main()
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
+
 // const { ethers } = require("hardhat");
 
 // async function main() {
@@ -19,20 +39,3 @@
 //   console.error(error);
 //   process.exitCode = 1;
 // });
-
-
-async function main() {
-  const MyNFT = await ethers.getContractFactory("MyNFT")
-
-  // Start deployment, returning a promise that resolves to a contract object
-  const myNFT = await MyNFT.deploy()
-  await myNFT.deployed()
-  console.log("Contract deployed to address:", myNFT.address)
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error)
-    process.exit(1)
-  })
