@@ -12,6 +12,7 @@ export default function Home() {
       <Head>
         <title>yescrow - Blockchain Escrow Services: Trust Anonymously</title>
         <meta name="description" content="Automated crypto escrow services for your online safety. No need to register, simply stake and release when you are satisfied." />
+        <link rel="canonical" href="https://yescrow.xyz" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
