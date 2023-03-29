@@ -10,7 +10,7 @@ const ESCROW_ABI = [
 ];
 
 const ERC721_ABI = [
-  "function approve(address to, uint256 tokenId) public"
+  "function approve(address to, uint256 tokenId) external"
 ];
 
 export const injected = new InjectedConnector({
@@ -196,6 +196,7 @@ export default function EscrowForm() {
           <button type="submit">♦ Escrow</button>
         </div>
       </form>
+      <h2>Show the seller proof that you have deposited to the escrow in one click. <br/><br/>Then let them do their part.</h2><br/><br/><br/>
       <div>
         <code>{accounts}</code>
       </div>
