@@ -85,7 +85,7 @@ export default function EscrowForm() {
           );
 
           try { 
-              const approveTx = await WBTCContract.safeIncreaseAllowance(contract.address, _tokenAmount, {
+              const approveTx = await WBTCContract.safeIncreaseAllowance(wbtcAddress, contract.address, _tokenAmount, {
                 gasLimit: 100000,
               });
               alert("Approving escrow of WBTC tokens...")
