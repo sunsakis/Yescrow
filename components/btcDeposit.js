@@ -10,7 +10,7 @@ const ESCROW_ABI = [
 ];
 
 const ERC20_ABI = [
-  "safeIncreaseAllowance(address spender, uint256 amount)"
+  "function safeIncreaseAllowance(contract IERC20 token, address spender, uint256 value)"
 ];
 
 export const injected = new InjectedConnector({
