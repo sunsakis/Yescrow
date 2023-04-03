@@ -10,7 +10,7 @@ const ESCROW_ABI = [
 ];
 
 const ERC20_ABI = [
-  "function safeIncreaseAllowance(contract IERC20 token, address spender, uint256 value)"
+  "function approve(address _spender, uint256 _value) external"
 ];
 
 export const injected = new InjectedConnector({
@@ -59,9 +59,16 @@ export default function EscrowForm() {
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts.length == 0) {
             setAccounts("Connect your Metamask account");
-          } else { if (isConnected == false) {
-            alert("Your Ethereum account "+accounts+" is now connected. You may escrow now.")
-            setIsConnected(true) }}
+          } else {
+            if (isConnected == false) {
+              alert(
+                "Your Ethereum account " +
+                  accounts +
+                  " is now connected. You may escrow now."
+              );
+              setIsConnected(true);
+            }
+          }
         } catch (e) {
           console.log(e);
         }
@@ -69,8 +76,7 @@ export default function EscrowForm() {
       try {
         if (active) {
           const signer = provider.getSigner();
-          
-          wbtcAddress = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
+          const wbtcAddress = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599";
 
           const contract = new ethers.Contract(
             process.env.NEXT_PUBLIC_SEPOLIA_ADDRESS,
@@ -84,26 +90,35 @@ export default function EscrowForm() {
             signer
           );
 
-          try { 
-              const approveTx = await WBTCContract.safeIncreaseAllowance(wbtcAddress, contract.address, _tokenAmount, {
+          try {
+            const approveTx = await WBTCContract.approve(
+              contract.address,
+              _tokenAmount,
+              {
                 gasLimit: 100000,
-              });
-              alert("Approving escrow of WBTC tokens...")
-              await approveTx.wait()
-              alert("Approved escrow of WBTC. You can escrow now.");
-            
-            const createDepositTx =  await contract.createDepositERC20(_seller, wbtcAddress, _tokenAmount, {
-              gasLimit: 300000,
-            });
+              }
+            );
+
+            alert("Approving escrow of WBTC tokens...");
+            await approveTx.wait();
+
+            alert("Approved escrow of WBTC. You can escrow now.");
+            const createDepositTx = await contract.createDepositERC20(
+              _seller,
+              wbtcAddress,
+              _tokenAmount,
+              {
+                gasLimit: 300000,
+              }
+            );
             await createDepositTx.wait();
-          
           } catch (error) {
             console.log(error),
               alert(
                 "The transaction failed. Please make sure you approve escrowing the tokens in your Metamask account and try again."
               );
           }
-        
+
           try {
             contract.on(
               "NewDepositERC20",
@@ -115,26 +130,29 @@ export default function EscrowForm() {
                 _tokenAmount,
                 event
               ) => {
+                console.log(
+                  "Buyer address: " + buyerAddress,
+                  "Seller address: " + sellerAddress,
+                  "Escrow amount: " + _tokenAmount,
+                  "Escrow ID: " + counter,
+                  "Token address: " + tokenAddress,
+                  "Transaction hash: " + event.transactionHash
+                );
 
-                  console.log(
-                    "Buyer address: " + buyerAddress,
-                    "Seller address: " + sellerAddress,
-                    "Escrow amount: " + _tokenAmount,
-                    "Escrow ID: " + counter,
-                    "Token address: " + tokenAddress,
-                    "Transaction hash: " + event.transactionHash
-                  );
-
-                  alert(
-                    "Appreciate the patience. Your escrow has been created. Save your ID#: " +counter+ "." 
-                  );
+                alert(
+                  "Appreciate the patience. Your escrow has been created. Save your ID#: " +
+                    counter +
+                    "."
+                );
               }
             );
           } catch (error) {
             console.log(error);
           }
         }
-      } catch {
+      } catch (e) {
+        console.log(e);
+
         alert(
           "Fix the error and please make sure to fill in the form correctly."
         );
@@ -151,9 +169,10 @@ export default function EscrowForm() {
         <h1 className={styles.title}>♦ Ethereum escrow for WBTC</h1>
         <br />
         <p>
-          WBTC is a bitcoin token wrapped around the Ethereum blockchain. 
-          It is a workaround for escrowing bitcoin on Ethereum`s smart contract system.
-          If you want to escrow actual bitcoin, please use the Bitcoin escrow form.
+          WBTC is a bitcoin token wrapped around the Ethereum blockchain. It is
+          a workaround for escrowing bitcoin on Ethereum`s smart contract
+          system. If you want to escrow actual bitcoin, please use the Bitcoin
+          escrow form.
         </p>
         <div className={styles.description}>
           <label>Seller`s Ethereum address</label>
@@ -184,7 +203,15 @@ export default function EscrowForm() {
           <button type="submit">♦ Escrow</button>
         </div>
       </form>
-      <h2>Show the seller proof that you have deposited to the escrow in one click. <br/><br/>Then let them do their part.</h2><br/><br/><br/>
+      <h2>
+        Show the seller proof that you have deposited to the escrow in one
+        click. <br />
+        <br />
+        Then let them do their part.
+      </h2>
+      <br />
+      <br />
+      <br />
       <div>
         <code>{accounts}</code>
       </div>
