@@ -207,7 +207,7 @@ export default function EscrowForm() {
       Release the escrow
       </Link> 
       {" "}when you are happy.</h4><br/>
-      <p>It's that simple.</p>
+      <p>It`s that simple.</p>
       <br />
       <br />
       <br />
