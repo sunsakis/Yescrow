@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css';
-import NftEscrowForm from '../../components/nftEscrowForm';
+import DepositForm from '../../components/nftDeposit';
 import NftHowToUse from '../../components/nftHowToUse';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
@@ -27,7 +27,7 @@ export default function Nft() {
         </Head>
         <main className={styles.main}>
           <Header />  
-          <NftEscrowForm />
+          <DepositForm />
           <NftHowToUse />
           <Support />
         </main>

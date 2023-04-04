@@ -80,7 +80,7 @@ export default function ReleaseForm() {
     <div className={styles.main}>
           <form className={styles.form} onSubmit={releaseEscrow}>
                 <h1 className={styles.title}>Release NFT ♦</h1><br/><br/>
-                <p>Seller can release the NFT to the buyer <b>anytime</b> by submitting the ID from the Ethereum address that originally made the escrow.</p>
+                <h2>A depositor can release the escrow <b>anytime</b> by submitting the ID using the original Ethereum address.</h2>
               <br/><br/>
               <div className={styles.form}>
             <label htmlFor="id" className={styles.description}>Escrow ID number</label><br/>

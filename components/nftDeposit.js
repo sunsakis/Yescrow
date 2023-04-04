@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
 import { InjectedConnector } from "@web3-react/injected-connector";
+import Link from "next/link";
 
 const ESCROW_ABI = [
   "function createDepositERC721(address _seller, address _token, uint256[] calldata _tokenIds) external",
@@ -92,7 +93,7 @@ export default function EscrowForm() {
               });
               alert("Approving escrow of NFTs...")
               await approveTx.wait()
-              alert("Approved escrow of NFTs. Now you can escrow your NFT.");
+              alert("Approved escrow of NFTs. You can escrow now.");
             
             const createDepositTx =  await contract.createDepositERC721(_seller, _nftAddress, [_tokenIds], {
               gasLimit: 300000,
@@ -152,10 +153,10 @@ export default function EscrowForm() {
         {/* Should alert if user clicks button but is not connected to mainnet */}
         <h1 className={styles.title}>♦ Ethereum escrow for NFTs</h1>
         <br />
-        <p>
+        <h2>
           When selling your NFT, safety matters - the only way to trust
           anonymously is to use an escrow.
-        </p>
+        </h2>
         <div className={styles.description}>
           <label>Buyer`s Ethereum address</label>
           <br />
@@ -196,7 +197,20 @@ export default function EscrowForm() {
           <button type="submit">♦ Escrow</button>
         </div>
       </form>
-      <h2>Show the seller proof that you have deposited to the escrow in one click. <br/><br/>Then let them do their part.</h2><br/><br/><br/>
+      <h3>
+        Show the seller your transaction hash to prove you have deposited.<br />
+        <br />
+        Then let them do their part.
+      </h3><br/>
+      <h4>
+      <Link href="/nft/escrow">
+      Release the escrow
+      </Link> 
+      {" "}when you are happy.</h4><br/>
+      <p>It's that simple.</p>
+      <br />
+      <br />
+      <br />
       <div>
         <code>{accounts}</code>
       </div>

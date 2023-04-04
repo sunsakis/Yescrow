@@ -77,7 +77,7 @@ export default function EscrowForm() {
       try {
         if (active) {
           const signer = provider.getSigner();
-          const ERC20Address = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599";
+          const ERC20Address = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
 
           const contract = new ethers.Contract(
             process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
@@ -94,16 +94,16 @@ export default function EscrowForm() {
           try {
             const approveTx = await ERC20Contract.approve(
               contract.address,
-              ethers.utils.parseUnits(_tokenAmount, 8),
+              ethers.utils.parseUnits(_tokenAmount, 6),
               {
                 gasLimit: 100000,
               }
             );
 
-            alert("Approving escrow of WBTC tokens...");
+            alert("Approving escrow of USDC tokens...");
             await approveTx.wait();
 
-            alert("Approved escrow of WBTC. You can escrow now.");
+            alert("Approved escrow of USDC. You can escrow now.");
             const createDepositTx = await contract.createDepositERC20(
               _seller,
               ERC20Address,
@@ -171,15 +171,10 @@ export default function EscrowForm() {
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>♦ Ethereum escrow for WBTC</h1>
+        <h1 className={styles.title}>♦ Ethereum escrow for USDC</h1>
         <br />
         <h2>
-          WBTC is a bitcoin token wrapped around the Ethereum blockchain. It is
-          a workaround for escrowing bitcoin on Ethereum`s smart contract
-          system. {/*<br/><br/>If you want to escrow actual bitcoin, please use the{" "}
-          <a href='#' onClick={alerter}>
-          Bitcoin escrow form
-          </a> (not automated, yet). */}
+          USDC is a stablecoin native to Ethereum, pegged 1:1 to USD and fully backed by the U.S. dollar asset reserves.
         </h2>
         <div className={styles.description}>
           <label>Seller`s Ethereum address</label>
@@ -195,12 +190,12 @@ export default function EscrowForm() {
           />
           <br />
           <br />
-          <label>WBTC amount</label>
+          <label>USDC amount</label>
           <br />
           <input
             className={styles.input}
             type="number"
-            placeholder="₿"
+            placeholder="$"
             step="any"
             onChange={handleAmountChange}
             required
@@ -216,7 +211,7 @@ export default function EscrowForm() {
         Then let them do their part.
       </h3><br/>
       <h4>
-      <Link href="/btc/escrow">
+      <Link href="/usd/escrow">
       Release the escrow
       </Link> 
       {" "}when you are happy.</h4><br/>
