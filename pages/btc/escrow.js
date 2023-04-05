@@ -11,7 +11,7 @@ export default function Release() {
         <Head>
           <title>Release WBTC Escrow To Seller - yescrow</title>
           <meta name="description" content="A simple interface to release your wrapped bitcoin to the seller's Ethereum address."/>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.png" />
           <link rel="canonical" href="https://yescrow.xyz/btc/escrow" />
         </Head>
         <main className={styles.main}>

@@ -15,7 +15,7 @@ export default function Btc() {
       <Head>
         <title>Bitcoin Escrow Services - yescrow</title>
         <meta name="description" content="A smart contract to help you escrow bitcoin safely. No need to register - just stake and release crypto to the seller when you receive your end of the deal." />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
         <link rel="canonical" href="https://yescrow.xyz/btc" />
       </Head>
       <main className={styles.main}>

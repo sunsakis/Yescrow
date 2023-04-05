@@ -3,6 +3,19 @@
   margin:0 auto;
 }
 
+.logo {
+    margin-left: 117px;
+    margin-right: auto;
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out;
+}
+
+.logo:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
 .main {
   min-height: 100vh;
   padding: 2rem 0;
@@ -22,7 +35,7 @@
 }
 
 .main a {
-  color: lightblue;
+  color: #03A062;
   text-decoration-line: underline;
 }
 
@@ -159,11 +172,6 @@
   font-size: 1.5 rem;
   line-height: 1.5;
   width: 15em;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
 }
 
 .flex {

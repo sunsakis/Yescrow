@@ -16,7 +16,7 @@ export default function Eth() {
         <title>Ethereum Smart Contract Escrow Service - yescrow</title>
         <meta name="description" content="A smart contract to help you buy with Ether safely. No need to register - just stake and release ETH to seller when you receive your end of the deal." />
         <link rel="canonical" href="https://yescrow.xyz/eth" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <main className={styles.main}>
         <Header />  

@@ -11,7 +11,7 @@ export default function Release() {
         <Head>
           <title>Release USDC Escrow - yescrow</title>
           <meta name="description" content="A simple interface to one-click release your escrowed USDC."/>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.png" />
           <link rel="canonical" href="https://yescrow.xyz/usd/escrow" />
         </Head>
         <main className={styles.main}>

@@ -1,11 +1,15 @@
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Header() {
     return (
         <header className={styles.header}>
             <nav>
             <div>
+                <Link href="/">
+                <Image src="/logo.png" className={styles.logo} alt="yescrow" width={100} height={100} />
+                </Link>
                 <Link href="/" className="block px-3 py-2 transition hover:text-teal-500"><code>yescrow:</code></Link>
                 <ul className="flex">
                     <li><Link href="/eth" className="block px-3 py-2 transition hover:text-teal-500">Ethereum</Link></li>

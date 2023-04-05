@@ -11,7 +11,7 @@ export default function Release() {
         <Head>
           <title>Release NFT To Buyer - yescrow</title>
           <meta name="description" content="A simple interface to release your staked NFT to the buyer."/>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.png" />
           <link rel="canonical" href="https://yescrow.xyz/nft/escrow" />
         </Head>
         <main className={styles.main}>
