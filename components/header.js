@@ -14,7 +14,8 @@ export default function Header() {
                 <ul className="flex">
                     <li><Link href="/eth" className="block px-3 py-2 transition hover:text-teal-500">Ethereum</Link></li>
                     <li><Link href="/btc" className="block px-3 py-2 transition hover:text-teal-500">Bitcoin</Link></li>
-                    <li><Link href="/usd" className="block px-3 py-2 transition hover:text-teal-500">Dollars</Link></li>
+                    <li><Link href="/usdc" className="block px-3 py-2 transition hover:text-teal-500">USDC</Link></li>
+                    <li><Link href="/usdt" className="block px-3 py-2 transition hover:text-teal-500">USDT</Link></li>
                     <li><Link href="/nft" className="block px-3 py-2 transition hover:text-teal-500">NFT</Link></li>
                 </ul>
             </div>

@@ -77,7 +77,7 @@ export default function EscrowForm() {
       try {
         if (active) {
           const signer = provider.getSigner();
-          const ERC20Address = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+          const ERC20Address = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
 
           const contract = new ethers.Contract(
             process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
@@ -100,10 +100,10 @@ export default function EscrowForm() {
               }
             );
 
-            alert("Approving escrow of USDC tokens...");
+            alert("Approving escrow of USDT tokens...");
             await approveTx.wait();
 
-            alert("Approved escrow of USDC. You can escrow now.");
+            alert("Approved escrow of USDT. You can escrow now.");
             const createDepositTx = await contract.createDepositERC20(
               _seller,
               ERC20Address,
@@ -163,18 +163,14 @@ export default function EscrowForm() {
     }
   }
 
-  function alerter() {
-    alert("Send bitcoin to the address bc1qd0mr7dekwdk08rrppthee40yfp2uuxwgh7fkxp and share the transaction hash with crow@yescrow.xyz and the seller.");
-  }
-
   return (
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>♦ Ethereum escrow for USDC</h1>
+        <h1 className={styles.title}>♦ Ethereum escrow for USDT</h1>
         <br />
         <h2>
-          USDC is a stablecoin native to Ethereum, pegged 1:1 to USD and fully backed by the U.S. dollar asset reserves.
+          USDT is a stablecoin native to Ethereum, redeemable 1:1 for USD.
         </h2>
         <div className={styles.description}>
           <label>Seller`s Ethereum address</label>
@@ -190,7 +186,7 @@ export default function EscrowForm() {
           />
           <br />
           <br />
-          <label>USDC amount</label>
+          <label>USDT amount</label>
           <br />
           <input
             className={styles.input}
@@ -211,7 +207,7 @@ export default function EscrowForm() {
         Then let them do their part.
       </h3><br/>
       <h4>
-      <Link href="/usd/escrow">
+      <Link href="/usdt/escrow">
       Release the escrow
       </Link> 
       {" "}when you are happy.</h4><br/>
