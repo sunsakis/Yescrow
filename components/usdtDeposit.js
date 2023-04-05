@@ -100,10 +100,10 @@ export default function EscrowForm() {
               }
             );
 
-            alert("Approving escrow of USDT tokens...");
+            alert("Approving spending of USDT tokens...");
             await approveTx.wait();
 
-            alert("Approved escrow of USDT. You can escrow now.");
+            alert("Approved spending of USDT. You can escrow now.");
             const createDepositTx = await contract.createDepositERC20(
               _seller,
               ERC20Address,
@@ -167,10 +167,10 @@ export default function EscrowForm() {
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>♦ Ethereum escrow for USDT</h1>
+        <h1 className={styles.title}>♦ USDT escrow</h1>
         <br />
         <h2>
-          USDT is a stablecoin native to Ethereum, redeemable 1:1 for USD.
+          Pay with USDT - a stablecoin native to Ethereum, redeemable 1:1 for USD.
         </h2>
         <div className={styles.description}>
           <label>Seller`s Ethereum address</label>
@@ -185,7 +185,6 @@ export default function EscrowForm() {
             onChange={handleAddressChange}
           />
           <br />
-          <br />
           <label>USDT amount</label>
           <br />
           <input
@@ -196,8 +195,9 @@ export default function EscrowForm() {
             onChange={handleAmountChange}
             required
           />
-          <br />
-          <br />
+                <br />
+                <code>0.5% fee + gas</code>
+                <br /><br />
           <button type="submit">♦ Escrow</button>
         </div>
       </form>

@@ -100,10 +100,10 @@ export default function EscrowForm() {
               }
             );
 
-            alert("Approving escrow of WBTC tokens...");
+            alert("Approving spending of WBTC tokens...");
             await approveTx.wait();
 
-            alert("Approved escrow of WBTC. You can escrow now.");
+            alert("Approved spending of WBTC. You can escrow now.");
             const createDepositTx = await contract.createDepositERC20(
               _seller,
               ERC20Address,
@@ -164,22 +164,22 @@ export default function EscrowForm() {
   }
 
   function alerter() {
-    alert("Send bitcoin to the address bc1qd0mr7dekwdk08rrppthee40yfp2uuxwgh7fkxp and share the transaction hash with crow@yescrow.xyz and the seller.");
+    alert("Send bitcoin to address bc1qd0mr7dekwdk08rrppthee40yfp2uuxwgh7fkxp and email the transaction hash to crow@yescrow.xyz to initiate.");
   }
 
   return (
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>♦ Ethereum escrow for WBTC</h1>
+        <h1 className={styles.title}>♦ WBTC escrow (or BTC)</h1>
         <br />
         <h2>
-          WBTC is a bitcoin token wrapped around the Ethereum blockchain. It is
+          WBTC is a 1:1 bitcoin backed token wrapped on the Ethereum blockchain. It is
           a workaround for escrowing bitcoin on Ethereum`s smart contract
-          system. {/*<br/><br/>If you want to escrow actual bitcoin, please use the{" "}
+          system. <br/><br/><i>If you want to pay with actual bitcoin, please use the{" "}
           <a href='#' onClick={alerter}>
-          Bitcoin escrow form
-          </a> (not automated, yet). */}
+          bitcoin escrow form 
+          </a> (not automated).</i>
         </h2>
         <div className={styles.description}>
           <label>Seller`s Ethereum address</label>
@@ -194,7 +194,6 @@ export default function EscrowForm() {
             onChange={handleAddressChange}
           />
           <br />
-          <br />
           <label>WBTC amount</label>
           <br />
           <input
@@ -205,8 +204,9 @@ export default function EscrowForm() {
             onChange={handleAmountChange}
             required
           />
-          <br />
-          <br />
+                <br />
+                <code>0.5% fee + gas</code>
+                <br /><br />
           <button type="submit">♦ Escrow</button>
         </div>
       </form>
