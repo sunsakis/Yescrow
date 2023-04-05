@@ -175,7 +175,7 @@ export default function EscrowForm() {
         <h1 className={styles.title}>♦ ERC20 escrow</h1>
         <br />
         <h2>
-          Pay with any ERC20 token - Ethereum's native fungible token standard. 
+          Pay with any ERC20 token - Ethereum`s native fungible token standard. 
         </h2>
         <div className={styles.description}>
         <label>ERC20 token contract</label>
