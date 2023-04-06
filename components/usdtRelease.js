@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
 import { useWeb3React } from "@web3-react/core";
-import { injected } from "./ethEscrowForm";
+import { injected } from "./ethDeposit";
 
 const ABI = [
   "function releaseDeposit(uint256 _id) external",
