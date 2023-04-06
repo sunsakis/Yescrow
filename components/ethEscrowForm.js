@@ -120,7 +120,7 @@ export default function EthEscrowForm() {
   }
 
   return (
-    <div className={styles.main}>
+    <div>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
         <h1 className={styles.title}>Escrow Ethereum <span className={styles.symbol}>♦</span></h1>

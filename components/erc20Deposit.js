@@ -169,13 +169,13 @@ export default function EscrowForm() {
   }
 
   return (
-    <div className={styles.main}>
+    <div>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
         <h1 className={styles.title}><span className={styles.symbol}>♦</span> ERC20 escrow</h1>
         <br />
         <h2>
-          Pay with any ERC20 token - Ethereum`s native fungible token standard. 
+          Pay with any ERC20 token - Ethereum`s fungible token standard. 
         </h2>
         <div className={styles.description}>
         <label>ERC20 token contract</label>
@@ -231,10 +231,6 @@ export default function EscrowForm() {
       <p>It`s that simple.</p>
       <br />
       <br />
-      <br />
-      <div>
-        <code>{accounts}</code>
-      </div>
     </div>
   );
 }

@@ -77,7 +77,7 @@ export default function ReleaseForm() {
 } 
 
   return (
-    <div className={styles.main}>
+    <div>
           <form className={styles.form} onSubmit={releaseEscrow}>
                 <h1 className={styles.title}>Release ERC20 <span className={styles.symbol}>♦</span></h1><br/><br/>
                 <h2>A depositor can release the escrow <b>anytime</b> by submitting the ID using the original Ethereum address.</h2>

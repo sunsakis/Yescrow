@@ -148,7 +148,7 @@ export default function EscrowForm() {
   }
 
   return (
-    <div className={styles.main}>
+    <div>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
         <h1 className={styles.title}><span className={styles.symbol}>♦</span> NFT escrow</h1>
@@ -211,10 +211,6 @@ export default function EscrowForm() {
       <p>It`s that simple.</p>
       <br />
       <br />
-      <br />
-      <div>
-        <code>{accounts}</code>
-      </div>
     </div>
   );
 }
