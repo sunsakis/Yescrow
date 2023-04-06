@@ -4,6 +4,7 @@ import Footer from '../components/footer';
 import Header from '../components/header';
 import About from '../components/about';
 import Support from '../components/support';
+import HowToUse from '../components/howToUse';
 
 export default function Home() {
 
@@ -40,6 +41,7 @@ export default function Home() {
       <main className={styles.main}>
         <Header /> 
         <About />
+        <HowToUse />
         <Support />
       </main>
       <Footer />

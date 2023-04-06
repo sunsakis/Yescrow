@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css';
 import DepositForm from '../../components/ethDeposit';
-import HowToUse from '../../components/ethHowToUse';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Support from '../../components/support';
@@ -21,8 +20,6 @@ export default function Eth() {
       <main className={styles.main}>
         <Header />  
         <DepositForm />
-
-        <HowToUse />
         <Support />
       </main>
       <Footer />

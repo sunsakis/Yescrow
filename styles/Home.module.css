@@ -59,6 +59,10 @@
   text-decoration: underline;
 }
 
+.symbol {
+  color: #03A062;
+  text-decoration: none;}
+
 .title {
   padding-top: 2rem;
   margin: 0;
@@ -110,7 +114,7 @@
 .card:focus,
 .card:active
 { 
-  color: #0070f3;
+  color: #03A062;
   border-color: #0070f3;
 }
 

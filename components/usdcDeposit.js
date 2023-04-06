@@ -167,7 +167,7 @@ export default function EscrowForm() {
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>♦ USDC escrow</h1>
+        <h1 className={styles.title}><span className={styles.symbol}>♦</span> USDC escrow</h1>
         <br />
         <h2>
           Pay with USDC - a stablecoin native to Ethereum, pegged 1:1 to USD and fully backed by the U.S. dollar asset reserves.

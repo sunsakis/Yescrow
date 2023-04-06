@@ -171,7 +171,7 @@ export default function EscrowForm() {
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>♦ WBTC escrow (or BTC)</h1>
+        <h1 className={styles.title}><span className={styles.symbol}>♦</span> WBTC escrow (or BTC)</h1>
         <br />
         <h2>
           WBTC is a 1:1 bitcoin backed token wrapped on the Ethereum blockchain. It is

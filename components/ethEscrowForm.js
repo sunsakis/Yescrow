@@ -123,7 +123,7 @@ export default function EthEscrowForm() {
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>Escrow Ethereum ♦</h1>
+        <h1 className={styles.title}>Escrow Ethereum <span className={styles.symbol}>♦</span></h1>
         <br />
         <p>
           When buying online, safety matters - the only way to trust anonymously

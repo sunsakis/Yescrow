@@ -151,7 +151,7 @@ export default function EscrowForm() {
     <div className={styles.main}>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}>♦ NFT escrow</h1>
+        <h1 className={styles.title}><span className={styles.symbol}>♦</span> NFT escrow</h1>
         <br />
         <h2>
           When selling your non-fungible token, safety matters - the only way to trust
