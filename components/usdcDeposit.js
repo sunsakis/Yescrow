@@ -202,9 +202,9 @@ export default function EscrowForm() {
         </div>
       </form>
       <h3>
-        Show the seller your transaction hash to prove you have deposited.<br />
+      Share your transaction hash to prove you have escrowed the funds.<br />
         <br />
-        Then let them do their part.
+        Then let the other party do their part.
       </h3><br/>
       <h4>
       <Link href="/usdc/escrow">
