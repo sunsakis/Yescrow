@@ -92,9 +92,9 @@ export default function EthEscrowForm() {
               {/* Should alert if user clicks button but is not connected to mainnet */}
                 <h1 className={styles.title}><span className={styles.symbol}>♦</span> Ethereum escrow</h1>
               <br/>
-              <h2>When paying online, use protection - the only way to trust a stranger online is to use an escrow.</h2>
+              <h2>When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow.</h2>
               <div className={styles.description}>
-                <label>Seller`s Ethereum address</label><br/>
+                <label>Receiver`s Ethereum address</label><br/>
                 <input className={styles.input}
                   type="text" 
                   placeholder="0x..." 

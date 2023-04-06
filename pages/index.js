@@ -24,10 +24,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>yescrow - Blockchain Escrow Services: Trust Anonymously</title>
+        <title>yescrow - Private Escrow Services: Trust Anonymously</title>
         <meta 
           name="description" 
-          content="Automated crypto escrow services for your online safety. No need to register, simply stake and release when you are satisfied." 
+          content="Private crypto escrow services to facilitate online trust. No need to register, simply deposit and release when you are satisfied." 
           key="desc"
           />
         <script

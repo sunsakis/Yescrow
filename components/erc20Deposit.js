@@ -178,19 +178,7 @@ export default function EscrowForm() {
           Pay with any ERC20 token - Ethereum`s fungible token standard. 
         </h2>
         <div className={styles.description}>
-        <label>ERC20 token contract</label>
-          <br />
-          <input
-            className={styles.input}
-            type="text"
-            placeholder="0x..."
-            minLength="42"
-            maxLength="42"
-            onChange={handleTokenAddressChange}
-            required
-          />
-          <br />
-          <label>Seller`s Ethereum address</label>
+          <label>Receiver`s Ethereum address</label>
           <br />
           <input
             className={styles.input}
@@ -200,6 +188,18 @@ export default function EscrowForm() {
             minLength="42"
             maxLength="42"
             onChange={handleAddressChange}
+          />
+          <br />
+          <label>ERC20 token contract</label>
+          <br />
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="0x..."
+            minLength="42"
+            maxLength="42"
+            onChange={handleTokenAddressChange}
+            required
           />
           <br />
           <label>Escrow amount</label>

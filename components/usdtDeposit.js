@@ -173,7 +173,7 @@ export default function EscrowForm() {
           Pay with USDT - a stablecoin native to Ethereum, redeemable 1:1 for USD.
         </h2>
         <div className={styles.description}>
-          <label>Seller`s Ethereum address</label>
+          <label>Receiver`s Ethereum address</label>
           <br />
           <input
             className={styles.input}

@@ -173,7 +173,7 @@ export default function EscrowForm() {
           Pay with USDC - a stablecoin native to Ethereum, pegged 1:1 to USD and fully backed by the U.S. dollar asset reserves.
         </h2>
         <div className={styles.description}>
-          <label>Seller`s Ethereum address</label>
+          <label>Receiver`s Ethereum address</label>
           <br />
           <input
             className={styles.input}
