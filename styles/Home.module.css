@@ -136,14 +136,16 @@
 }
 
 .form input {
+  background-color: rgb(238, 233, 233);
   margin: 0 0 1rem 0;
   font-size: 1.25rem;
   line-height: 1.5;
   width: 15em;
+  color: black;
 }
 
-.form :placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
+.form ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: gray;
   opacity: 1; /* Firefox */
 }
 
