@@ -136,7 +136,7 @@
 }
 
 .form input {
-  background-color: lightgray;
+  background-color: #63666A;
   margin: 0 0 1rem 0;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -145,7 +145,7 @@
 }
 
 .form ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: gray;
+  color: darkgray;
   opacity: 1; /* Firefox */
 }
 
