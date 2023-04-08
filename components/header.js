@@ -21,8 +21,6 @@ export default function Header() {
                     <li><Link href="/erc20" className="block px-2 py-2 transition hover:text-teal-500">ERC20</Link></li>
                     <li><Link href="/btc" className="block px-2 py-2 transition hover:text-teal-500">Bitcoin</Link></li>
                 </ul>
-                <h1 className={styles.title}><code style={{color: '#03A062'}}>yescrow:</code> blockchain escrow services</h1>
-                <br />
             </div>
             </nav>
         </header>

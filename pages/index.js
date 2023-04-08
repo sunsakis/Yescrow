@@ -41,6 +41,8 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Header /> 
+        <h1 className={styles.title}><code style={{color: '#03A062'}}>yescrow:</code> blockchain escrow services</h1>
+        <br/>
         <About />
         <HowToUse />
         <EthEscrowForm />
