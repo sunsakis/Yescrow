@@ -5,6 +5,7 @@ import Header from '../components/header';
 import About from '../components/about';
 import Support from '../components/support';
 import HowToUse from '../components/howToUse';
+import EthEscrowForm from '../components/ethDeposit';
 
 export default function Home() {
 
@@ -24,10 +25,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>yescrow - Private Escrow Services: Trust Anonymously</title>
+        <title>yescrow - Blockchain Escrow Services: Trust Anonymously</title>
         <meta 
           name="description" 
-          content="Private crypto escrow services to facilitate online trust. No need to register, simply deposit and release when you are satisfied." 
+          content="Blockchain escrow services to facilitate online trust. No need to register, simply deposit and release when you are satisfied." 
           key="desc"
           />
         <script
@@ -42,6 +43,7 @@ export default function Home() {
         <Header /> 
         <About />
         <HowToUse />
+        <EthEscrowForm />
         <Support />
       </main>
       <Footer />
