@@ -6,7 +6,11 @@ export default function Support() {
         <br/><br/><code>ask
         <br/>the dev</code>
         <br/> on 
-        <br/><br/><a href="https://t.me/sunsakis" className="hover:text-teal-500" rel="nofollow">Telegram</a><br/>
+        <br/><br/>
+        <a href="https://t.me/sunsakis" className="hover:text-teal-500" rel="nofollow">Telegram</a> 
+        {" "}|{" "}     
+        <a href="https://twitter.com/sunsakis" className="hover:text-teal-500" rel="nofollow">Twitter</a>
+        <br/>
         <br/><code>(give the bugger some feedback)</code>
         </div>
     )
