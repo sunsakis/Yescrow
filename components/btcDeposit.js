@@ -176,9 +176,9 @@ export default function EscrowForm() {
         <h2>
           WBTC is a 1:1 bitcoin backed token wrapped on the Ethereum blockchain. It is
           a workaround for escrowing bitcoin on Ethereum`s smart contract
-          system. <br/><br/><i>If you want to escrow actual bitcoin, please use the{" "}
+          system. <br/><br/><i>If you want to escrow actual bitcoin, please {" "}
           <a href='#' onClick={alerter}>
-          bitcoin escrow form 
+          follow these rules 
           </a> (not automated: 1% fee).</i>
         </h2>
         <div className={styles.description}>
