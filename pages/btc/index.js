@@ -4,22 +4,87 @@ import DepositForm from '../../components/btcDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Support from '../../components/support';
+import HowToBtc from '../../components/howToBtc';
 
 
 export default function Btc() {
-  
+
+  function addWebsiteJsonLd() {
+    return {
+      __html: `{
+      "@context": "https://schema.org/",
+
+      "@type": "WebPage",
+      "name": "Bitcoin Escrow",
+      "alternateName": "yescrow",
+      "url": "https://yescrow.io/btc",
+      
+      "@type": "HowTo",
+      "name": "How to escrow bitcoin",
+      "description": "A bitcoin escrow can be used anytime two parties are engaging in a transaction 
+      online or offline selling or buying anything at all and want to ensure that the deal is completed 
+      securely and fairly.",
+      "image": {
+        @type": "ImageObject",
+        "url":
+        "https://en.wikipedia.org/wiki/Bitcoin#/media/File:Bitcoin.svg",
+          "width": 400,
+          "height": 400
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "url": "https://yescrow.io",
+          "name": "Parties negotiate their exclusive terms in private.",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "url": "https://yescrow.io",
+          "name": "Depositor provides the crypto address of the payee and deposits.",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "url": "https://yescrow.io",
+          "name": "Blockchain assigns the escrow a unique ID.",
+          "position": 3
+        },
+        {
+          "@type": "HowToStep",
+          "url": "https://yescrow.io",
+          "name": "When satisfied, the depositor can use it to release the escrow.",
+          "position": 4
+        },
+        {
+          "@type": "HowToStep",
+          "url": "https://yescrow.io",
+          "name": "If any party does not uphold their end of the deal, crow@yescrow.xyz helps.",
+          "position": 5
+        }
+
+    }
+  `,
+    };
+  }
 
   return (
     <div className={styles.container}>
       <Head>
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={addWebsiteJsonLd()}
+          key="website-jsonld"
+        />
         <title>Bitcoin Escrow Services - yescrow</title>
         <meta name="description" content="Escrow bitcoin safely. No need to register - just deposit crypto and release it when you receive your end of the deal." />
         <link rel="icon" href="/favicon.png" />
-        <link rel="canonical" href="https://yescrow.xyz/btc" />
+        <link rel="canonical" href="https://yescrow.io/btc" />
       </Head>
       <main className={styles.main}>
         <Header />  
         <DepositForm />
+        <HowToBtc />
         <Support />
       </main>
       <Footer />
