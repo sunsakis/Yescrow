@@ -4,6 +4,7 @@ import DepositForm from '../../components/usdcDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Support from '../../components/support';
+import HowToUse from '../../components/howTo';
 
 
 export default function Escrow() {
@@ -20,9 +21,8 @@ export default function Escrow() {
       
       @type: "HowTo",
       name: "How to escrow USDC",
-      description: "A crypto escrow can be used anytime two parties are engaging 
-      in a transaction online or offline selling or buying anything at all and want to 
-      ensure that the deal is completed securely and fairly.",
+      description: "When transacting on the internet - use protection: 
+      the only way to trust a stranger online is to use an escrow.",
       "image": {
         @type": "ImageObject",
         "url":
@@ -40,13 +40,13 @@ export default function Escrow() {
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "Depositor provides the Ethereum address of the payee and deposits.",
+          "name": "Payer provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "Blockchain assigns the escrow a unique ID.",
+          "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
@@ -58,7 +58,7 @@ export default function Escrow() {
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "If any party does not uphold their end of the deal, crow@yescrow.xyz helps.",
+          "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }
 
@@ -84,6 +84,8 @@ export default function Escrow() {
       <main className={styles.main}>
         <Header />  
         <DepositForm />
+        <br/><h3 className={styles.title}>How to escrow USDC?</h3>
+        <HowToUse />
         <Support />
       </main>
       <Footer />

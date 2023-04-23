@@ -164,7 +164,7 @@ export default function EscrowForm() {
   }
 
   function alerter() {
-    alert("Send bitcoin to address bc1qd0mr7dekwdk08rrppthee40yfp2uuxwgh7fkxp and email the transaction hash to crow@yescrow.xyz to initiate.");
+    alert("Send bitcoin to address bc1qd0mr7dekwdk08rrppthee40yfp2uuxwgh7fkxp and email the transaction hash to crow@yescrow.io to initiate.");
   }
 
   return (
@@ -174,12 +174,14 @@ export default function EscrowForm() {
         <h1 className={styles.title}><span className={styles.symbol}>♦</span> Escrow WBTC (or BTC)</h1>
         <br />
         <h2>
-          WBTC is a 1:1 bitcoin backed token wrapped on the Ethereum blockchain. It is
+          WBTC is a tokenized version of bitcoin on Ethereum. This is
           a workaround for escrowing bitcoin on Ethereum`s smart contract
           system. <br/><br/><i>If you want to escrow actual bitcoin, please {" "}
           <a href='#' onClick={alerter}>
           follow these rules 
-          </a> (not automated: 1% fee).</i>
+          </a> (not automated: 1% fee).
+          <br /><br />
+          Otherwise:</i>
         </h2>
         <div className={styles.description}>
           <label>Receiver`s Ethereum address</label>

@@ -170,7 +170,7 @@ export default function EscrowForm() {
         <h1 className={styles.title}><span className={styles.symbol}>♦</span> Escrow USDT</h1>
         <br />
         <h2>
-          Pay with USDT - a stablecoin native to Ethereum, redeemable 1:1 for USD.
+        When transacting online, safety matters - the only way to trust anonymously is to use an escrow.
         </h2>
         <div className={styles.description}>
           <label>Receiver`s Ethereum address</label>

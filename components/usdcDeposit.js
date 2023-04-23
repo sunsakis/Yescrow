@@ -170,7 +170,7 @@ export default function EscrowForm() {
         <h1 className={styles.title}><span className={styles.symbol}>♦</span> Escrow USDC</h1>
         <br />
         <h2>
-          Pay with USDC - a stablecoin native to Ethereum, pegged 1:1 to USD and fully backed by the U.S. dollar asset reserves.
+        When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow.
         </h2>
         <div className={styles.description}>
           <label>Receiver`s Ethereum address</label>

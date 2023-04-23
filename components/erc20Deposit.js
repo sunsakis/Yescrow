@@ -175,7 +175,7 @@ export default function EscrowForm() {
         <h1 className={styles.title}><span className={styles.symbol}>♦</span> Escrow ERC20</h1>
         <br />
         <h2>
-          Pay with any ERC20 token - Ethereum`s fungible token standard. 
+        When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
         </h2>
         <div className={styles.description}>
           <label>Receiver`s Ethereum address</label>

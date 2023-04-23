@@ -4,7 +4,7 @@ import DepositForm from '../../components/btcDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Support from '../../components/support';
-import HowToBtc from '../../components/howToBtc';
+import HowToUse from '../../components/howTo';
 
 
 export default function Btc() {
@@ -21,9 +21,8 @@ export default function Btc() {
       
       "@type": "HowTo",
       "name": "How to escrow bitcoin",
-      "description": "A bitcoin escrow can be used anytime two parties are engaging in a transaction 
-      online or offline selling or buying anything at all and want to ensure that the deal is completed 
-      securely and fairly.",
+      "description": "WBTC is a tokenized version of bitcoin on Ethereum. 
+      This is a workaround for escrowing bitcoin on Ethereum's smart contract system.",
       "image": {
         @type": "ImageObject",
         "url":
@@ -41,25 +40,25 @@ export default function Btc() {
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "Depositor provides the crypto address of the payee and deposits.",
+          "name": "Depositor provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "Blockchain assigns the escrow a unique ID.",
+          "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "When satisfied, the depositor can use it to release the escrow.",
+          "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "If any party does not uphold their end of the deal, crow@yescrow.xyz helps.",
+          "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }
 
@@ -84,7 +83,8 @@ export default function Btc() {
       <main className={styles.main}>
         <Header />  
         <DepositForm />
-        <HowToBtc />
+        <br/><h3 className={styles.title}>How to escrow bitcoin?</h3>
+        <HowToUse />
         <Support />
       </main>
       <Footer />

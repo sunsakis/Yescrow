@@ -7,6 +7,7 @@ import Support from '../components/support';
 import HowTo from '../components/howTo';
 import EthEscrowForm from '../components/ethDeposit';
 
+
 export default function Home() {
 
   function addWebsiteJsonLd() {
@@ -21,9 +22,9 @@ export default function Home() {
       
       @type: "HowTo",
       name: "How to escrow crypto",
-      description: "A crypto escrow can be used anytime two parties are engaging 
-      in a transaction online or offline selling or buying anything at all and want to 
-      ensure that the deal is completed securely and fairly.",
+      description: "A crypto escrow should be used anytime two parties are engaging 
+      in a transaction online or offline selling or buying anything at all and want 
+      to ensure that the deal is completed securely, fairly and in time.",
       "image": {
         @type": "ImageObject",
         "url":
@@ -41,25 +42,25 @@ export default function Home() {
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "Depositor provides the Ethereum address of the payee and deposits.",
+          "name": "Payer provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "Blockchain assigns the escrow a unique ID.",
+          "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "When satisfied, the depositor can use it to release the escrow.",
+          "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
           "url": "https://yescrow.io",
-          "name": "If any party does not uphold their end of the deal, crow@yescrow.xyz helps.",
+          "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }
 
