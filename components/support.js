@@ -7,9 +7,9 @@ export default function Support() {
         <br/>the dev</code>
         <br/> on 
         <br/><br/>
-        <a href="https://t.me/sunsakis" className="hover:text-teal-500" target="_blank" rel="noopener noreferrer nofollow">Telegram</a> 
+        <a target="_blank" href="https://t.me/sunsakis" className="hover:text-teal-500" rel="noopener noreferrer nofollow">Telegram</a> 
         {" "}|{" "}     
-        <a href="https://twitter.com/sunsakis" className="hover:text-teal-500" target="_blank" rel="noopenner noreferrer nofollow">Twitter</a>
+        <a target="_blank" href="https://twitter.com/sunsakis" className="hover:text-teal-500" rel="noopenner noreferrer nofollow">Twitter</a>
         <br/>
         <br/><code>(give the bugger some feedback)</code>
         </div>
