@@ -24,7 +24,7 @@ export default function Btc() {
       "description": "WBTC is a tokenized version of bitcoin on Ethereum. 
       This is a workaround for escrowing bitcoin on Ethereum's smart contract system.",
       "image": {
-        @type": "ImageObject",
+        "@type": "ImageObject",
         "url":
         "https://en.wikipedia.org/wiki/Bitcoin#/media/File:Bitcoin.svg",
           "width": 400,

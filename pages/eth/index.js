@@ -19,9 +19,9 @@ export default function Eth() {
       "alternateName": "yescrow",
       "url": "https://yescrow.io",
       
-      @type: "HowTo",
-      name: "How to escrow Ethereum",
-      description: "When transacting on the internet - use protection: 
+      "@type": "HowTo",
+      "name": "How to escrow Ethereum",
+      "description": "When transacting on the internet - use protection: 
       the only way to trust a stranger online is to use an escrow.",
       "image": {
         @type": "ImageObject",

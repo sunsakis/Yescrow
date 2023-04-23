@@ -19,12 +19,12 @@ export default function Escrow() {
       "alternateName": "yescrow",
       "url": "https://yescrow.io",
       
-      @type: "HowTo",
-      name: "How to escrow USDT",
-      description: "When transacting online, safety matters - the only way to trust anonymously is to use an escrow.
+      "@type": "HowTo",
+      "name": "How to escrow USDT",
+      "description": "When transacting online, safety matters - the only way to trust anonymously is to use an escrow.
       ",
       "image": {
-        @type": "ImageObject",
+        "@type": "ImageObject",
         "url":
         "/usdt.png",
           "width": 400,

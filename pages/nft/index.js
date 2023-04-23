@@ -26,12 +26,12 @@ export default function Nft() {
       "alternateName": "yescrow",
       "url": "https://yescrow.io",
       
-      @type: "HowTo",
-      name: "How to escrow NFT",
-      description: "When selling your non-fungible token, safety matters - 
+      "@type": "HowTo",
+      "name": "How to escrow NFT",
+      "description": "When selling your non-fungible token, safety matters - 
       the only way to trust anonymously is to use an escrow.",
       "image": {
-        @type": "ImageObject",
+        "@type": "ImageObject",
         "url":
         "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
           "width": 400,

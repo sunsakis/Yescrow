@@ -17,16 +17,16 @@ export default function Home() {
 
       "@type": "WebSite",
       "name": "Blockchain Escrow",
-      "alternateName": "yescrow", "crypto escrow"
+      "alternateName": "yescrow", "crypto escrow",
       "url": "https://yescrow.io",
       
-      @type: "HowTo",
-      name: "How to escrow crypto",
-      description: "A crypto escrow should be used anytime two parties are engaging 
+      "@type": "HowTo",
+      "name": "How to escrow crypto",
+      "description": "A crypto escrow should be used anytime two parties are engaging 
       in a transaction online or offline selling or buying anything at all and want 
       to ensure that the deal is completed securely, fairly and in time.",
       "image": {
-        @type": "ImageObject",
+        "@type": "ImageObject",
         "url":
         "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
           "width": 400,
