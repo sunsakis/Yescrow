@@ -15,8 +15,8 @@ export default function Home() {
       "@context": "https://schema.org/",
 
       "@type": "WebSite",
-      "name": "Yescrow",
-      "alternateName": "yescrow",
+      "name": "Blockchain Escrow",
+      "alternateName": "yescrow", "crypto escrow"
       "url": "https://yescrow.io",
       
       @type: "HowTo",
@@ -71,17 +71,17 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={addWebsiteJsonLd()}
+          key="website-jsonld"
+        />
         <title>yescrow - Blockchain Escrow Services: Trust Anonymously</title>
         <meta 
           name="description" 
           content="Blockchain escrow services to facilitate online trust. No need to register, simply deposit and release when you are satisfied." 
           key="desc"
           />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={addWebsiteJsonLd()}
-          key="website-jsonld"
-        />
         <link rel="canonical" href="https://yescrow.io" />
         <link rel="icon" href="/favicon.png" />
       </Head>
