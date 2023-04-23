@@ -22,9 +22,7 @@ export default function Home() {
       
       "@type": "HowTo",
       "name": "How to escrow crypto",
-      "description": "A crypto escrow should be used anytime two parties are engaging 
-      in a transaction online or offline selling or buying anything at all and want 
-      to ensure that the deal is completed securely, fairly and in time.",
+      "description": "A crypto escrow should be used anytime two parties are engaging in a transaction online or offline selling or buying anything at all and want to ensure that the deal is completed securely, fairly and in time.",
       "image": {
         "@type": "ImageObject",
         "url":
