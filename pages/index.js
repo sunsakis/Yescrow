@@ -17,7 +17,7 @@ export default function Home() {
 
       "@type": "WebSite",
       "name": "Blockchain Escrow",
-      "alternateName": "yescrow", "crypto escrow",
+      "alternateName": "crypto escrow",
       "url": "https://yescrow.io",
       
       "@type": "HowTo",
