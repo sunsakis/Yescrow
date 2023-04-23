@@ -4,7 +4,7 @@ import DepositForm from '../../components/ethDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Support from '../../components/support';
-import HowToUse from '../../components/howto';
+import HowToUse from '../../components/howTo';
 
 
 export default function Eth() {
