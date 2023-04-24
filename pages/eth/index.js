@@ -13,11 +13,6 @@ export default function Eth() {
     return {
       __html: `{
       "@context": "https://schema.org/",
-
-      "@type": "WebPage",
-      "name": "Ethereum Escrow",
-      "alternateName": "yescrow",
-      "url": "https://yescrow.io/eth",
       
       "@type": "HowTo",
       "name": "How to escrow Ethereum",

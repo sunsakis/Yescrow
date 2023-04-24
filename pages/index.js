@@ -14,11 +14,6 @@ export default function Home() {
     return {
       __html: `{
       "@context": "https://schema.org/",
-
-      "@type": "WebSite",
-      "name": "Blockchain Escrow",
-      "alternateName": "crypto escrow",
-      "url": "https://yescrow.io",
       
       "@type": "HowTo",
       "name": "How to escrow crypto",

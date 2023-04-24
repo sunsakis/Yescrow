@@ -13,11 +13,6 @@ export default function Escrow() {
     return {
       __html: `{
       "@context": "https://schema.org/",
-
-      "@type": "WebPage",
-      "name": "ERC20 Escrow",
-      "alternateName": "yescrow",
-      "url": "https://yescrow.io/erc20",
       
       "@type": "HowTo",
       "name": "How to escrow ERC20 tokens",

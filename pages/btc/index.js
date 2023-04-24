@@ -13,16 +13,11 @@ export default function Btc() {
     return {
       __html: `{
       "@context": "https://schema.org/",
-
-      "@type": "WebPage",
-      "name": "Bitcoin Escrow",
-      "alternateName": "yescrow",
-      "url": "https://yescrow.io/btc",
       
       "@type": "HowTo",
       "name": "How to escrow bitcoin",
-      "description": "WBTC is a tokenized version of bitcoin on Ethereum. 
-      This is a workaround for escrowing bitcoin on Ethereum's smart contract system.",
+      "description": 
+      "This is a workaround for escrowing bitcoin on Ethereum's smart contract system.",
       "image": {
         "@type": "ImageObject",
         "url":

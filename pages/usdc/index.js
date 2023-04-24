@@ -13,11 +13,6 @@ export default function Escrow() {
     return {
       __html: `{
       "@context": "https://schema.org/",
-
-      "@type": "WebPage",
-      "name": "USDC Escrow",
-      "alternateName": "yescrow",
-      "url": "https://yescrow.io/usdc",
       
       "@type": "HowTo",
       "name": "How to escrow USDC",

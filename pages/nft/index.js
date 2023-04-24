@@ -20,11 +20,6 @@ export default function Nft() {
     return {
       __html: `{
       "@context": "https://schema.org/",
-
-      "@type": "WebPage",
-      "name": "NFT Escrow",
-      "alternateName": "yescrow",
-      "url": "https://yescrow.io/nft",
       
       "@type": "HowTo",
       "name": "How to escrow NFT",
