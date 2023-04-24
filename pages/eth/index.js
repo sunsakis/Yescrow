@@ -17,7 +17,7 @@ export default function Eth() {
       "@type": "WebPage",
       "name": "Ethereum Escrow",
       "alternateName": "yescrow",
-      "url": "https://yescrow.io",
+      "url": "https://yescrow.io/eth",
       
       "@type": "HowTo",
       "name": "How to escrow Ethereum",
@@ -33,31 +33,31 @@ export default function Eth() {
       step: [
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/eth",
           "name": "Parties negotiate their exclusive terms in private.",
           "position": 1
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/eth",
           "name": "Payer provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/eth",
           "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/eth",
           "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/eth",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }

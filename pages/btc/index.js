@@ -33,31 +33,31 @@ export default function Btc() {
       "step": [
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/btc",
           "name": "Parties negotiate their exclusive terms in private.",
           "position": 1
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/btc",
           "name": "Depositor provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/btc",
           "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/btc",
           "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/btc",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }

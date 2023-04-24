@@ -17,7 +17,7 @@ export default function Escrow() {
       "@type": "WebPage",
       "name": "USDC Escrow",
       "alternateName": "yescrow",
-      "url": "https://yescrow.io",
+      "url": "https://yescrow.io/usdc",
       
       "@type": "HowTo",
       "name": "How to escrow USDC",
@@ -33,31 +33,31 @@ export default function Escrow() {
       step: [
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdc",
           "name": "Parties negotiate their exclusive terms in private.",
           "position": 1
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdc",
           "name": "Payer provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdc",
           "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdc",
           "name": "When satisfied, the depositor can use it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdc",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }

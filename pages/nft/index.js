@@ -24,7 +24,7 @@ export default function Nft() {
       "@type": "WebPage",
       "name": "NFT Escrow",
       "alternateName": "yescrow",
-      "url": "https://yescrow.io",
+      "url": "https://yescrow.io/nft",
       
       "@type": "HowTo",
       "name": "How to escrow NFT",
@@ -40,31 +40,31 @@ export default function Nft() {
       step: [
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/nft",
           "name": "Parties negotiate their exclusive terms in private.",
           "position": 1
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/nft",
           "name": "Seller provides the required details and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/nft",
           "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/nft",
           "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/nft",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }

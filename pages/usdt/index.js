@@ -17,7 +17,7 @@ export default function Escrow() {
       "@type": "WebPage",
       "name": "USDT Escrow",
       "alternateName": "yescrow",
-      "url": "https://yescrow.io",
+      "url": "https://yescrow.io/usdt",
       
       "@type": "HowTo",
       "name": "How to escrow USDT",
@@ -33,31 +33,31 @@ export default function Escrow() {
       step: [
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdt",
           "name": "Parties negotiate their exclusive terms in private.",
           "position": 1
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdt",
           "name": "Payer provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdt",
           "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdt",
           "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/usdt",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }
@@ -79,7 +79,7 @@ export default function Escrow() {
         <title>USDT Escrow Services - yescrow</title>
         <meta name="description" content="A smart contract for escrowing USDT simply and safely. No need to register - just stake and release crypto to the seller when you receive your end of the deal." />
         <link rel="icon" href="/favicon.png" />
-        <link rel="canonical" href="https://yescrow.xyz/usdt" />
+        <link rel="canonical" href="https://yescrow.io/usdt" />
       </Head>
       <main className={styles.main}>
         <Header />  

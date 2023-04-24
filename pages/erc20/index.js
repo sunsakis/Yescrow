@@ -17,7 +17,7 @@ export default function Escrow() {
       "@type": "WebPage",
       "name": "ERC20 Escrow",
       "alternateName": "yescrow",
-      "url": "https://yescrow.io",
+      "url": "https://yescrow.io/erc20",
       
       "@type": "HowTo",
       "name": "How to escrow ERC20 tokens",
@@ -33,31 +33,31 @@ export default function Escrow() {
       step: [
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/erc20",
           "name": "Parties negotiate their exclusive terms in private.",
           "position": 1
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/erc20",
           "name": "Payer provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/erc20",
           "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/erc20",
           "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io/erc20",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }
