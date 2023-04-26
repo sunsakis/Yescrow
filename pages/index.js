@@ -20,39 +20,39 @@ export default function Home() {
       "description": "A crypto escrow should be used anytime two parties are engaging in a transaction online or offline selling or buying anything at all and want to ensure that the deal is completed securely, fairly and in time.",
       "image": {
         "@type": "ImageObject",
-        "url":
+        "url": "https://yescrow.io",
         "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
           "width": 400,
           "height": 400
       },
-      step: [
+      "step": [
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io#how-to-escrow",
           "name": "Parties negotiate their exclusive terms in private.",
           "position": 1
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io#how-to-escrow",
           "name": "Payer provides the wallet of the payee and deposits.",
           "position": 2
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io#how-to-escrow",
           "name": "A smart contract assigns the escrow a unique ID.",
           "position": 3
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io#how-to-escrow",
           "name": "When satisfied, the depositor uses it to release the escrow.",
           "position": 4
         },
         {
           "@type": "HowToStep",
-          "url": "https://yescrow.io",
+          "url": "https://yescrow.io#how-to-escrow",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
         }
