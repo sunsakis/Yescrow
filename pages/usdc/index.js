@@ -20,8 +20,7 @@ export default function Escrow() {
       the only way to trust a stranger online is to use an escrow.",
       "image": {
         "@type": "ImageObject",
-        "url": "https://yescrow.io/usdc",
-        "/usdc.png",
+        "url": "https://yescrow.io/usdc.webp",
           "width": 400,
           "height": 400
       },

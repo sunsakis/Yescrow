@@ -20,8 +20,7 @@ export default function Btc() {
       "This is a workaround for escrowing bitcoin on Ethereum's smart contract system.",
       "image": {
         "@type": "ImageObject",
-        "url": "https://yescrow.io/btc",
-        "https://en.wikipedia.org/wiki/Bitcoin#/media/File:Bitcoin.svg",
+        "url": "https://en.wikipedia.org/wiki/Bitcoin#/media/File:Bitcoin.svg",
           "width": 400,
           "height": 400
       },

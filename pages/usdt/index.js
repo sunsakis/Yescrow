@@ -20,8 +20,7 @@ export default function Escrow() {
       ",
       "image": {
         "@type": "ImageObject",
-        "url": "https://yescrow.io/usdt",
-        "/usdt.png",
+        "url": "https://yescrow.io/usdt.jpeg",
           "width": 400,
           "height": 400
       },

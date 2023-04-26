@@ -20,8 +20,7 @@ export default function Home() {
       "description": "A crypto escrow should be used anytime two parties are engaging in a transaction online or offline selling or buying anything at all and want to ensure that the deal is completed securely, fairly and in time.",
       "image": {
         "@type": "ImageObject",
-        "url": "https://yescrow.io",
-        "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
+        "url": "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
           "width": 400,
           "height": 400
       },

@@ -27,8 +27,7 @@ export default function Nft() {
       the only way to trust anonymously is to use an escrow.",
       "image": {
         "@type": "ImageObject",
-        "url": "https://yescrow.io/nft",
-        "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
+        "url": "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
           "width": 400,
           "height": 400
       },
