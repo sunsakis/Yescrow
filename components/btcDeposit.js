@@ -164,14 +164,14 @@ export default function EscrowForm() {
   }
 
   function alerter() {
-    alert("Send bitcoin to address bc1qd0mr7dekwdk08rrppthee40yfp2uuxwgh7fkxp and email the transaction hash to crow@yescrow.io to initiate.");
+    alert("Send bitcoin to escrow address bc1qd0mr7dekwdk08rrppthee40yfp2uuxwgh7fkxp and email the transaction hash to crow@yescrow.io to initiate.");
   }
 
   return (
     <div>
       <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}><span className={styles.symbol}>♦</span> Escrow WBTC (or BTC)</h1>
+        <h1 className={styles.title}><span className={styles.symbol}>♦</span> Bitcoin Escrow</h1>
         <br />
         <h2>
           WBTC is a tokenized version of bitcoin on Ethereum. This is
