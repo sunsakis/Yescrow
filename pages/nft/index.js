@@ -77,7 +77,7 @@ export default function Nft() {
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-          <title>NFT Escrow Smart Contract - yescrow</title>
+          <title>NFT Escrow Service - yescrow</title>
           <meta name="description" content="A smart contract to help you sell your NFTs safely. No need to register, no fee (just pay for gas)." />
           <link rel="canonical" href="https://yescrow.io/nft" />
           <link rel="icon" href="/favicon.png" />

@@ -19,7 +19,7 @@ export default function Eth() {
       "description": "When transacting on the internet - use protection: 
       the only way to trust a stranger online is to use an escrow.",
       "image": {
-        @type": "ImageObject",
+        "@type": "ImageObject",
         "url": "https://en.wikipedia.org/wiki/File:Ethereum_Background.jpg",
           "width": 400,
           "height": 400
@@ -69,7 +69,7 @@ export default function Eth() {
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-        <title>Ethereum Smart Contract Escrow Service - yescrow</title>
+        <title>Ethereum Escrow Service - yescrow</title>
         <meta name="description" content="A smart contract to help you buy with Ether safely. No need to register - just stake and release ETH to seller when you receive your end of the deal." />
         <link rel="canonical" href="https://yescrow.io/eth" />
         <link rel="icon" href="/favicon.png" />

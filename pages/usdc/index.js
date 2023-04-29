@@ -70,7 +70,7 @@ export default function Escrow() {
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-        <title>USDC Escrow Services - yescrow</title>
+        <title>USDC Escrow Service - yescrow</title>
         <meta name="description" content="A smart contract for escrowing USDC simply and safely. No need to register - just stake and release crypto to the seller when you receive your end of the deal." />
         <link rel="icon" href="/favicon.png" />
         <link rel="canonical" href="https://yescrow.io/usdc" />

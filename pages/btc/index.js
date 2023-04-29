@@ -69,7 +69,7 @@ export default function Btc() {
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-        <title>Bitcoin Escrow Services - yescrow</title>
+        <title>Bitcoin Escrow Service - yescrow</title>
         <meta name="description" content="Escrow bitcoin safely. No need to register - just deposit crypto and release it when you receive your end of the deal." />
         <link rel="icon" href="/favicon.png" />
         <link rel="canonical" href="https://yescrow.io/btc" />
