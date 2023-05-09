@@ -19,7 +19,6 @@ export default function Header() {
                     <li><Link href="/usdc" className="block px-2 py-2 transition hover:text-teal-500">USDC</Link></li>
                     <li><Link href="/usdt" className="block px-2 py-2 transition hover:text-teal-500">USDT</Link></li>
                     <li><Link href="/erc20" className="block px-2 py-2 transition hover:text-teal-500">ERC20</Link></li>
-                    <li><Link href="/btc" className="block px-2 py-2 transition hover:text-teal-500">Bitcoin</Link></li>
                 </ul>
             </div>
             </nav>
