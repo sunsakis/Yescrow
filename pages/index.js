@@ -6,6 +6,7 @@ import About from '../components/about';
 import Support from '../components/support';
 import HowTo from '../components/howTo';
 import EthEscrowForm from '../components/ethDeposit';
+import Request from '../components/request';
 
 
 export default function Home() {
@@ -82,9 +83,10 @@ export default function Home() {
         <Header /> 
         <h1 className={styles.title}><code style={{color: '#03A062'}}>yescrow:</code> blockchain escrow services</h1>
         <br/>
-        <About />
+        <Request />
         <HowTo />
         <EthEscrowForm />
+        <About />
         <Support />
       </main>
       <Footer />

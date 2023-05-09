@@ -49,7 +49,7 @@ export default function ReleaseForm() {
         await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else
-        setAccounts("Your Ethereum account "+accounts+" is now connected. You may escrow now.")
+        setAccounts("Your Ethereum account "+accounts+" is connected.")
       } catch (e) {
         console.log(e);
       }
@@ -95,7 +95,7 @@ export default function ReleaseForm() {
               </div>
             </form>
             <Link href='./' fontSize="100px" className="center">Go back</Link><br/><br/><br/>
-            <small><p className="col center mt-3">Questions / bug reports - crow@yescrow.xyz</p>
+            <small><p className="col center mt-3">Questions / bug reports - crow@yescrow.io</p>
         </small>
     </div>
         

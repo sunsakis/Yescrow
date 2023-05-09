@@ -135,7 +135,8 @@
   align-items: center;
 }
 
-.form input {
+.form input,
+.form textarea {
   background-color: #63666A;
   margin: 0 0 1rem 0;
   font-size: 1.25rem;

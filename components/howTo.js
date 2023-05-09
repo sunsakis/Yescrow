@@ -2,7 +2,9 @@ import styles from '../styles/Home.module.css'
 
 export default function HowToUse() {
     return (
-        <div><br/>
+      
+        <div>
+              <h3 className={styles.title}>How to escrow crypto?</h3>
               <ul className={styles.card} id="how-to-escrow">
                 <code>
                 <b>1!</b> Parties negotiate their exclusive terms in <u>private</u>.<br/><br/>

@@ -46,20 +46,20 @@ export default function EthEscrowForm() {
     e.preventDefault(); 
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: 'eth_chainId' });
-      if (chainId !== '0x1') {
-        console.log(chainId)
-        alert('Please select the Ethereum mainnet on your MetaMask.')
-      }
-      if (chainId == '0x1') {try {
-        await activate(injected);
-        const accounts = await ethereum.request({ method: 'eth_accounts' });
-        if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else 
-        { if (isConnected == false) {
-          alert("Your Ethereum account "+accounts+" is now connected. You may escrow now.")
-          setIsConnected(true) }}
-      } catch (e) {
-        console.log(e);
-      }
+      if (chainId == "0x1") {
+        try {
+          await activate(injected);
+          const accounts = await ethereum.request({ method: "eth_accounts" });
+          if (accounts.length == 0) {
+            alert("Connect your Metamask account"); } else {
+            setAccounts("Your Ethereum account "+accounts+" is connected. You may escrow now.")  
+            if (isConnected == false) {
+              setIsConnected(true);
+            }
+          }
+        } catch (e) {
+          console.log(e);
+        }
       }
       try {
       if (active) {
@@ -114,6 +114,7 @@ export default function EthEscrowForm() {
                 <code>0.5% fee + gas</code>
                 <br /><br />
                 <button type="submit">♦ Escrow</button>
+                <br/><code><small>{accounts}</small></code><br/><br/>
               </div>
             </form>
             <h3>

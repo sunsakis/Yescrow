@@ -59,14 +59,9 @@ export default function EscrowForm() {
           await activate(injected);
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts.length == 0) {
-            setAccounts("Connect your Metamask account");
-          } else {
+            alert("Connect your Metamask account"); } else {
+            setAccounts("Your Ethereum account "+accounts+" is connected. You may escrow now.")  
             if (isConnected == false) {
-              alert(
-                "Your Ethereum account " +
-                  accounts +
-                  " is now connected. You may escrow now."
-              );
               setIsConnected(true);
             }
           }
@@ -199,6 +194,7 @@ export default function EscrowForm() {
                 <code>0.5% fee + gas</code>
                 <br /><br />
           <button type="submit">♦ Escrow</button>
+          <br/><code><small>{accounts}</small></code><br/><br/>
         </div>
       </form>
       <h3>
