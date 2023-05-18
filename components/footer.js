@@ -1,8 +1,8 @@
 export default function Footer() {
     return (
-        <footer class="text-center">
+        <footer class="text-center mt-2">
             <div>
-            <p>2023 © Yescrow. All Rights Reserved.</p>
+            <p><code>2023 © Yescrow. All Rights Reserved.</code></p>
             </div>
         </footer>
 
