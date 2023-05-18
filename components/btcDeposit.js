@@ -1,9 +1,6 @@
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import { InjectedConnector } from "@web3-react/injected-connector";
 
 const ESCROW_ABI = [
   "function createDepositERC20(address _seller, address _token, uint256 _amount) external",
@@ -13,10 +10,6 @@ const ESCROW_ABI = [
 const ERC20_ABI = [
   "function approve(address _spender, uint256 _value) external"
 ];
-
-export const injected = new InjectedConnector({
-  supportedChainIds: [1, 11155111],
-});
 
 export default function EscrowForm() {
   const [_tokenAmount, setAmount] = useState("");
@@ -39,14 +32,6 @@ export default function EscrowForm() {
     }
   }, []);
 
-  const {
-    active,
-    activate,
-    chainId,
-    account,
-    library: provider,
-  } = useWeb3React();
-
   async function blockchainTalk(e) {
     e.preventDefault();
     if (hasMetaMask == true) {
@@ -56,7 +41,6 @@ export default function EscrowForm() {
       }
       if (chainId == "0x1") {
         try {
-          await activate(injected);
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts.length == 0) {
             alert("Connect your Metamask account"); } else {
@@ -164,9 +148,9 @@ export default function EscrowForm() {
 
   return (
     <div>
-      <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
+      <form onSubmit={blockchainTalk}>
         {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}><span className={styles.symbol}>♦</span> Bitcoin Escrow</h1>
+        <h1><span>♦</span> Bitcoin Escrow</h1>
         <br />
         <h2>
           WBTC is a tokenized version of bitcoin on Ethereum. This is
@@ -178,11 +162,10 @@ export default function EscrowForm() {
           <br /><br />
           Otherwise:</i>
         </h2>
-        <div className={styles.description}>
+        <div>
           <label>Receiver`s Ethereum address</label>
           <br />
           <input
-            className={styles.input}
             type="text"
             placeholder="0x..."
             required
@@ -194,7 +177,6 @@ export default function EscrowForm() {
           <label>WBTC amount</label>
           <br />
           <input
-            className={styles.input}
             type="number"
             placeholder="₿"
             step="any"

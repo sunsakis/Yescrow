@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css';
 import DepositForm from '../../components/nftDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
@@ -70,7 +69,7 @@ export default function Nft() {
   
 
     return (
-      <div className={styles.container}>
+      <div>
         <Head>
         <script
           type="application/ld+json"
@@ -80,12 +79,12 @@ export default function Nft() {
           <title>NFT Escrow Service - yescrow</title>
           <meta name="description" content="A smart contract to help you sell your NFTs safely. No need to register, no fee (just pay for gas)." />
           <link rel="canonical" href="https://yescrow.io/nft" />
-          <link rel="icon" href="/favicon.png" />
+          <link rel="icon" href="/white_vector_crow.svg" />
         </Head>
-        <main className={styles.main}>
+        <main>
           <Header />  
           <DepositForm />
-          <br/><h3 className={styles.title}>How to escrow NFT?</h3>
+          <br/><h3>How to escrow NFT?</h3>
           <HowToUse />
           <Support />
         </main>

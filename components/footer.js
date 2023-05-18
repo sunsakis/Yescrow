@@ -1,10 +1,8 @@
-import styles from '../styles/Home.module.css'
-
 export default function Footer() {
     return (
-        <footer className={styles.footer}>
+        <footer class="text-center">
             <div>
-            <p className={styles.flex}>2023 © yescrow. All Rights Reserved.</p>
+            <p>2023 © Yescrow. All Rights Reserved.</p>
             </div>
         </footer>
 

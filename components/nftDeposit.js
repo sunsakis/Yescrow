@@ -1,9 +1,8 @@
-import styles from "../styles/Home.module.css";
-import React, { useState, useEffect } from "react";
-import { useWeb3React } from "@web3-react/core";
+import React, { useState } from "react";
 import { ethers } from "ethers";
-import { InjectedConnector } from "@web3-react/injected-connector";
-import Link from "next/link";
+import Image from "next/image";
+import { Web3Button } from "@thirdweb-dev/react";
+import { Interface, FormatTypes } from "@ethersproject/abi";
 
 const ESCROW_ABI = [
   "function createDepositERC721(address _seller, address _token, uint256[] calldata _tokenIds) external",
@@ -14,17 +13,14 @@ const ERC721_ABI = [
   "function approve(address to, uint256 tokenId) external"
 ];
 
-export const injected = new InjectedConnector({
-  supportedChainIds: [1, 11155111],
-});
+const iface = new Interface(ESCROW_ABI);
+const jsonABI = iface.format(FormatTypes.json);
+
 
 export default function EscrowForm() {
   const [_tokenIds, setIDValue] = useState("");
   const [_seller, setSellerAddress] = useState("");
-  const [_nftAddress, setNftAddress] = useState("");
-  const [hasMetaMask, setHasMetaMask] = useState(false);
-  const [accounts, setAccounts] = useState("");
-  const [isConnected, setIsConnected] = useState(false);
+  const [_NFTAddress, setNFTAddress] = useState("");
 
   function handleIDChange(e) {
     setIDValue(e.target.value);
@@ -34,183 +30,95 @@ export default function EscrowForm() {
     setSellerAddress(e.target.value);
   }
 
-  function handleNftAddressChange(e) {
-    setNftAddress(e.target.value);
+  function handleNFTAddressChange(e) {
+    setNFTAddress(e.target.value);
   }
 
-  useEffect(() => {
-    if (typeof window.ethereum !== "undefined") {
-      setHasMetaMask(true);
-    }
-  }, []);
-
-  const {
-    active,
-    activate,
-    chainId,
-    account,
-    library: provider,
-  } = useWeb3React();
-
-  async function blockchainTalk(e) {
-    e.preventDefault();
-    if (hasMetaMask == true) {
-      const chainId = await ethereum.request({ method: "eth_chainId" });
-      if (chainId == "0x1") {
-        try {
-          await activate(injected);
-          const accounts = await ethereum.request({ method: "eth_accounts" });
-          if (accounts.length == 0) {
-            alert("Connect your Metamask account"); } else {
-            setAccounts("Your Ethereum account "+accounts+" is connected. You may escrow now.")  
-            if (isConnected == false) {
-              setIsConnected(true);
-            }
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-      try {
-        if (active) {
-          const signer = provider.getSigner();
-          const contract = new ethers.Contract(
-            process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
-            ESCROW_ABI,
-            signer
-          );
-
-          const nftContract = new ethers.Contract(
-            _nftAddress,
-            ERC721_ABI,
-            signer
-          );
-
-          try { 
-              const approveTx = await nftContract.approve(contract.address, _tokenIds, {
-                gasLimit: 100000,
-              });
-              alert("Approving spending of NFTs...")
-              await approveTx.wait()
-              alert("Approved spending of NFTs. You can escrow now.");
-            
-            const createDepositTx =  await contract.createDepositERC721(_seller, _nftAddress, [_tokenIds], {
-              gasLimit: 300000,
-            });
-            await createDepositTx.wait();
-          
-          } catch (error) {
-            console.log(error),
-              alert(
-                "The transaction failed. Please make sure you approve escrowing the NFTs in your Metamask account and try again."
-              );
-          }
-        
-          try {
-            contract.on(
-              "NewDepositERC721",
-              (
-                counter,
-                buyerAddress,
-                sellerAddress,
-                _nftAddress,
-                _tokenIds,
-                event
-              ) => {
-
-                  console.log(
-                    "Buyer address: " + buyerAddress,
-                    "Seller address: " + sellerAddress,
-                    "Escrow amount: " + _tokenIds,
-                    "Escrow ID: " + counter,
-                    "Buyer's NFT address: " + _nftAddress,
-                    "Transaction hash: " + event.transactionHash
-                  );
-
-                  alert(
-                    "Appreciate the patience. Your escrow has been created. Save your ID#: " +counter+ "." 
-                  );
-              }
-            );
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      } catch {
-        alert(
-          "Fix the error and please make sure to fill in the form correctly."
-        );
-      }
-    } else {
-      alert("Please install MetaMask browser extension.");
-    }
+  async function blockchainTalk() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      _NFTAddress,
+      ERC721_ABI,
+      signer
+    );
+    const approveTx = await contract.approve(
+      process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
+      ethers.utils.parseUnits(_tokenIds)
+    );
+    await approveTx.wait();
+    const escrowContract = new ethers.Contract(
+      process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
+      ESCROW_ABI,
+      signer
+    );
+    const escrowTx = await escrowContract.createDepositERC20(
+      _seller,
+      _NFTAddress,
+      _tokenIds
+    );
+    await escrowTx.wait();
+    alert("Escrow created!");
   }
 
   return (
-    <div>
-      <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
-        {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}><span className={styles.symbol}>♦</span> NFT Escrow</h1>
-        <br />
-        <h2>
-          When selling your non-fungible token, safety matters - the only way to trust
-          anonymously is to use an escrow.
-        </h2>
-        <div className={styles.description}>
-          <label>Buyer`s Ethereum address</label>
-          <br />
-          <input
-            className={styles.input}
-            type="text"
+    <div class="m-5">
+        <div>
+          <label>Stranger`s Ethereum address:</label>
+          <br/>
+          <input class="text-center rounded-xl mt-2 mb-2 max-w-xs"
+            type="text" 
             placeholder="0x..."
             required
             minLength="42"
             maxLength="42"
-            onChange={handleAddressChange}
+            size="50"
+            onChange={handleAddressChange} 
           />
-          <br />
-          <label>NFT address</label>
-          <br />
-          <input
-            className={styles.input}
-            type="text"
+          <br/>
+          <label>Your NFT address:</label>
+          <br/>
+          <input class="text-center rounded-xl mt-2 mb-2 max-w-xs"
+            type="text" 
             placeholder="0x..."
+            required
             minLength="42"
             maxLength="42"
-            onChange={handleNftAddressChange}
-            required
+            size="50"
+            onChange={handleNFTAddressChange} 
           />
-          <br />
-          <label>NFT ID</label>
-          <br />
+          <br/>
+          <label>Your NFT ID:</label>
+          <br/>
+          <div class="text-center">
           <input
-            className={styles.input}
-            type="number"
-            placeholder="#"
-            step="1"
-            onChange={handleIDChange}
+            class="rounded-xl mt-2 mb-1 px-32 text-center max-w-xs"
+            type="number" 
+            placeholder="#" 
+            step="any"
             required
-          />
-                <br />
-                <code>no fee (just pay the gas)</code>
-                <br /><br />
-          <button type="submit">♦ Escrow</button>
-          <br/><code><small>{accounts}</small></code><br/><br/>
+            onChange={handleIDChange} 
+            />
+            <br/>
+            <code class="text-xs text-center">no fee (just pay the gas)</code>
+          </div>
+          <br />
+          <Web3Button 
+                contractAddress={process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
+                contractAbi={jsonABI}
+                action={() => {
+                  blockchainTalk()}}
+                >
+                <li class="flex items-center">
+                <Image
+                  src="/lock_icon.png" 
+                  class="fill-current h-6 w-6 mr-1" 
+                  width="48" 
+                  height="48" 
+                  alt="lock icon">
+                </Image> Escrow</li>
+                </Web3Button>
         </div>
-      </form>
-      <h3>
-      Share your transaction hash to prove you have escrowed the NFT.<br />
-        <br />
-        Then let the other party do their part.
-      </h3><br/>
-      <h4>
-      <Link href="/nft/escrow">
-      Release the escrow
-      </Link> 
-      {" "}when you are happy.</h4><br/>
-      <p>It`s that simple.</p>
-      <br />
-      <br />
-    </div>
+  </div>
   );
 }

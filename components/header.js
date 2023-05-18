@@ -1,28 +1,31 @@
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
+import { ConnectWallet } from '@thirdweb-dev/react';
 
 export default function Header() {
     return (
-        <header className={styles.header}>
-            <nav>
-            <div>
-                <Link href="/">
-                <Image src="/logo.png" className={styles.logo} alt="yescrow logo" width={100} height={100} />
-                </Link>
-                <Link href="/" className="block px-3 py-2 transition hover:text-teal-500">
-                    <code>yescrow:</code>
-                </Link>
-                <ul className="block px-3 py-2 flex">
-                    <li><Link href="/eth" className="block px-2 py-2 transition hover:text-teal-500">Ethereum</Link></li>
-                    <li><Link href="/nft" className="block px-2 py-2 transition hover:text-teal-500">NFT</Link></li>
-                    <li><Link href="/usdc" className="block px-2 py-2 transition hover:text-teal-500">USDC</Link></li>
-                    <li><Link href="/usdt" className="block px-2 py-2 transition hover:text-teal-500">USDT</Link></li>
-                    <li><Link href="/erc20" className="block px-2 py-2 transition hover:text-teal-500">ERC20</Link></li>
-                </ul>
-            </div>
-            </nav>
-        </header>
-
+      <nav class="flex items-center justify-between p-6">
+        <Link href="/">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <Image
+        src="/white_vector_crow.svg" 
+        class="fill-current h-8 w-8 mr-2" 
+        width="54" 
+        height="54" 
+        viewBox="0 0 54 54" 
+        xmlns="http://www.w3.org/2000/svg">
+      </Image>
+    <span class="font-semibold text-xl tracking-tight">Yescrow</span>
+    </div>
+    </Link>
+    <div class="flex-grow flex items-center">
+      <div class="text-sm flex-grow"></div>
+    <div>
+      <ConnectWallet 
+        id="connectWallet"
+      />
+    </div>
+  </div>
+</nav>
     )
 }

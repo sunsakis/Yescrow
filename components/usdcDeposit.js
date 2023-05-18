@@ -1,29 +1,26 @@
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { useWeb3React } from "@web3-react/core";
+import Image from "next/image";
+import React, { useState } from "react";
 import { ethers } from "ethers";
-import { InjectedConnector } from "@web3-react/injected-connector";
+import { Web3Button } from "@thirdweb-dev/react";
+import { Interface, FormatTypes } from "@ethersproject/abi";
 
-const ESCROW_ABI = [
+const humanReadableABI = [
   "function createDepositERC20(address _seller, address _token, uint256 _amount) external",
   "event NewDepositERC20(uint256 indexed currentId, address indexed buyer, address indexed seller, address token, uint256 amount)",
 ];
 
-const ERC20_ABI = [
+const humanReadableERC20_ABI = [
   "function approve(address _spender, uint256 _value) external"
 ];
 
-export const injected = new InjectedConnector({
-  supportedChainIds: [1, 11155111],
-});
+const ERC20Address = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+
+const iface = new Interface(humanReadableABI);
+const jsonABI = iface.format(FormatTypes.json);
 
 export default function EscrowForm() {
   const [_tokenAmount, setAmount] = useState("");
   const [_seller, setSellerAddress] = useState("");
-  const [hasMetaMask, setHasMetaMask] = useState(false);
-  const [accounts, setAccounts] = useState("");
-  const [isConnected, setIsConnected] = useState(false);
 
   function handleAmountChange(e) {
     setAmount(e.target.value);
@@ -33,183 +30,84 @@ export default function EscrowForm() {
     setSellerAddress(e.target.value);
   }
 
-  useEffect(() => {
-    if (typeof window.ethereum !== "undefined") {
-      setHasMetaMask(true);
-    }
-  }, []);
-
-  const {
-    active,
-    activate,
-    chainId,
-    account,
-    library: provider,
-  } = useWeb3React();
-
-  async function blockchainTalk(e) {
-    e.preventDefault();
-    if (hasMetaMask == true) {
-      const chainId = await ethereum.request({ method: "eth_chainId" });
-      if (chainId !== "0x1") {
-        alert("Please select the Ethereum mainnet on your MetaMask.");
-      }
-      if (chainId == "0x1") {
-        try {
-          await activate(injected);
-          const accounts = await ethereum.request({ method: "eth_accounts" });
-          if (accounts.length == 0) {
-            alert("Connect your Metamask account"); } else {
-            setAccounts("Your Ethereum account "+accounts+" is connected. You may escrow now.")  
-            if (isConnected == false) {
-              setIsConnected(true);
-            }
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
-      try {
-        if (active) {
-          const signer = provider.getSigner();
-          const ERC20Address = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
-
-          const contract = new ethers.Contract(
-            process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
-            ESCROW_ABI,
-            signer
-          );
-
-          const ERC20Contract = new ethers.Contract(
-            ERC20Address,
-            ERC20_ABI,
-            signer
-          );
-
-          try {
-            const approveTx = await ERC20Contract.approve(
-              contract.address,
-              ethers.utils.parseUnits(_tokenAmount, 6),
-              {
-                gasLimit: 100000,
-              }
-            );
-
-            alert("Approving spending of USDC tokens...");
-            await approveTx.wait();
-
-            alert("Approved spending of USDC. You can escrow now.");
-            const createDepositTx = await contract.createDepositERC20(
-              _seller,
-              ERC20Address,
-              _tokenAmount,
-              {
-                gasLimit: 300000,
-              }
-            );
-            await createDepositTx.wait();
-          } catch (error) {
-            console.log(error),
-              alert(
-                "The transaction failed. Please make sure you approve escrowing the tokens in your Metamask account and try again."
-              );
-          }
-
-          try {
-            contract.on(
-              "NewDepositERC20",
-              (
-                counter,
-                buyerAddress,
-                sellerAddress,
-                tokenAddress,
-                _tokenAmount,
-                event
-              ) => {
-                console.log(
-                  "Buyer address: " + buyerAddress,
-                  "Seller address: " + sellerAddress,
-                  "Escrow amount: " + _tokenAmount,
-                  "Escrow ID: " + counter,
-                  "Token address: " + tokenAddress,
-                  "Transaction hash: " + event.transactionHash
-                );
-
-                alert(
-                  "Appreciate the patience. Your escrow has been created. Save your ID#: " +
-                    counter +
-                    "."
-                );
-              }
-            );
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      } catch (e) {
-        console.log(e);
-
-        alert(
-          "Fix the error and please make sure to fill in the form correctly."
-        );
-      }
-    } else {
-      alert("Please install MetaMask browser extension.");
+  async function blockchainTalk() {
+    try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      ERC20Address,
+      humanReadableERC20_ABI,
+      signer
+    );
+    const approveTx = await contract.approve(
+      process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
+      ethers.utils.parseUnits(_tokenAmount, 6)
+    );
+    await approveTx.wait();
+    const escrowContract = new ethers.Contract(
+      process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
+      humanReadableABI,
+      signer
+    );
+    const escrowTx = await escrowContract.createDepositERC20(
+      _seller,
+      ERC20Address,
+      ethers.utils.parseUnits(_tokenAmount, 6)
+    );
+    await escrowTx.wait();
+    alert("Escrow created!");
+    } catch (e) {
+      console.log(e);
     }
   }
 
   return (
-    <div>
-      <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
-        {/* Should alert if user clicks button but is not connected to mainnet */}
-        <h1 className={styles.title}><span className={styles.symbol}>♦</span>USDC Escrow</h1>
-        <br />
-        <h2>
-        When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow.
-        </h2>
-        <div className={styles.description}>
-          <label>Receiver`s Ethereum address</label>
-          <br />
-          <input
-            className={styles.input}
-            type="text"
-            placeholder="0x..."
-            required
-            minLength="42"
-            maxLength="42"
-            onChange={handleAddressChange}
-          />
-          <br />
-          <label>USDC amount</label>
-          <br />
-          <input
-            className={styles.input}
-            type="number"
-            placeholder="$"
-            step="any"
-            onChange={handleAmountChange}
-            required
-          />
+          <div class="m-5">
+              <div>
+                <label>Stranger`s Ethereum address:</label>
+                <br/>
+                <input class="text-center rounded-xl mt-2 max-w-xs"
+                  type="text" 
+                  placeholder="0x..."
+                  required
+                  minLength="42"
+                  maxLength="42"
+                  size="50"
+                  onChange={handleAddressChange} 
+                />
+                <br/>
+                <br/>
+                <label>USDC amount:</label>
+                <br/>
+                <div class="text-center">
+                <input
+                  class="rounded-xl mt-2 mb-1 px-32 text-center max-w-xs"
+                  type="number" 
+                  placeholder="$0.00" 
+                  step="any"
+                  required
+                  onChange={handleAmountChange} 
+                  />
+                  <br/>
+                  <code class="text-xs text-center">0.5% fee + gas</code>
+                </div>
                 <br />
-                <code>0.5% fee + gas</code>
-                <br /><br />
-          <button type="submit">♦ Escrow</button>
-          <br/><code><small>{accounts}</small></code><br/><br/>
+                <Web3Button 
+                contractAddress={process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
+                contractAbi={jsonABI}
+                action={() => {
+                  blockchainTalk()}}
+                >
+                <li class="flex items-center">
+                <Image
+                  src="/lock_icon.png" 
+                  class="fill-current h-6 w-6 mr-1" 
+                  width="48" 
+                  height="48" 
+                  alt="lock icon">
+                </Image> Escrow</li>
+                </Web3Button>
+              </div>
         </div>
-      </form>
-      <h3>
-      Share your transaction hash to prove you have escrowed the funds.<br />
-        <br />
-        Then let the other party do their part.
-      </h3><br/>
-      <h4>
-      <Link href="/usdc/escrow">
-      Release the escrow
-      </Link> 
-      {" "}when you are happy.</h4><br/>
-      <p>It`s that simple.</p>
-      <br />
-      <br />
-    </div>
   );
 }

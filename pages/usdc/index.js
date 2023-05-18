@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css';
 import DepositForm from '../../components/usdcDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
@@ -63,7 +62,7 @@ export default function Escrow() {
   
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <script
           type="application/ld+json"
@@ -72,13 +71,13 @@ export default function Escrow() {
         />
         <title>USDC Escrow Service - yescrow</title>
         <meta name="description" content="A smart contract for escrowing USDC simply and safely. No need to register - just stake and release crypto to the seller when you receive your end of the deal." />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/white_vector_crow.svg" />
         <link rel="canonical" href="https://yescrow.io/usdc" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <Header />  
         <DepositForm />
-        <br/><h3 className={styles.title}>How to escrow USDC?</h3>
+        <br/><h3>How to escrow USDC?</h3>
         <HowToUse />
         <Support />
       </main>

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css';
 import DepositForm from '../../components/ethDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
@@ -62,7 +61,7 @@ export default function Eth() {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
       <script
           type="application/ld+json"
@@ -72,12 +71,12 @@ export default function Eth() {
         <title>Ethereum Escrow Service - yescrow</title>
         <meta name="description" content="A smart contract to help you buy with Ether safely. No need to register - just stake and release ETH to seller when you receive your end of the deal." />
         <link rel="canonical" href="https://yescrow.io/eth" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/white_vector_crow.svg" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <Header />  
         <DepositForm />
-        <br/><h3 className={styles.title}>How to escrow Ethereum?</h3>
+        <br/><h3>How to escrow Ethereum?</h3>
         <HowToUse />
         <Support />
       </main>

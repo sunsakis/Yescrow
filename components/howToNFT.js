@@ -1,9 +1,7 @@
-import styles from '../styles/Home.module.css'
-
 export default function HowToUse() {
     return (
         <div><br/>
-              <ul className={styles.card} id="how-to-escrow">
+              <ul id="how-to-escrow">
                 <code>
                 <b>1!</b> Parties negotiate their exclusive terms in <u>private</u>.<br/><br/>
                 <b>2@</b> Seller provides the NFT details and deposits in yescrow.<br/><br/>

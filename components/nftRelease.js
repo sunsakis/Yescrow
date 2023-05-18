@@ -1,9 +1,6 @@
 import { ethers } from "ethers";
 import Link from "next/link";
-import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
-import { useWeb3React } from "@web3-react/core";
-import { injected } from "./ethDeposit";
 
 const ABI = [
   "function releaseDeposit(uint256 _id) external",
@@ -17,15 +14,6 @@ export default function ReleaseForm() {
           setHasMetaMask(true);
         }
       },[]);
-
-    const {
-        active,
-        activate,
-        chainId,
-        account,
-        library: provider,
-      } = useWeb3React();
-
 
     const [_id, setID] = useState('')
     const [hasMetaMask, setHasMetaMask] = useState(false);
@@ -46,7 +34,6 @@ export default function ReleaseForm() {
       alert("Please select the Ethereum mainnet on your MetaMask.");
     }
     if (chainId == '0x1') {try {
-        await activate(injected);
         const accounts = await ethereum.request({ method: 'eth_accounts' });
         if (accounts.length == 0) { setAccounts("Connect your Metamask account") } else
         setAccounts("Your Ethereum account "+accounts+" is connected.")
@@ -78,13 +65,13 @@ export default function ReleaseForm() {
 
   return (
     <div>
-          <form className={styles.form} onSubmit={releaseEscrow}>
-                <h1 className={styles.title}>Release NFT <span className={styles.symbol}>♦</span></h1><br/><br/>
+          <form onSubmit={releaseEscrow}>
+                <h1>Release NFT <span>♦</span></h1><br/><br/>
                 <h2>A depositor can release the escrow <b>anytime</b> by submitting the ID using the original Ethereum address.</h2>
               <br/><br/>
-              <div className={styles.form}>
-            <label htmlFor="id" className={styles.description}>Escrow ID number</label><br/>
-              <input className={styles.input}
+              <div>
+            <label>Escrow ID number</label><br/>
+              <input
                 type="number" 
                 placeholder="#"
                 required

@@ -1,12 +1,9 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import About from '../components/about';
 import Support from '../components/support';
-import HowTo from '../components/howTo';
-import EthEscrowForm from '../components/ethDeposit';
-import Request from '../components/request';
+import Image from 'next/image';
+import EscrowForm from '../components/deposit';
 
 
 export default function Home() {
@@ -63,34 +60,41 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.container}>
+    <div class="container max-w-2xl mx-auto justify-center">
       <Head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-        <title>yescrow - Blockchain Escrow Services: Trust Anonymously</title>
+        <title>Yescrow - Blockchain Escrow Services: Trust Anonymously</title>
         <meta 
           name="description" 
           content="Blockchain escrow services to facilitate online trust. No need to register, simply deposit and release when you are satisfied." 
           key="desc"
           />
         <link rel="canonical" href="https://yescrow.io" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/white_vector_crow.svg" />
       </Head>
-      <main className={styles.main}>
-        <Header /> 
-        <h1 className={styles.title}><code style={{color: '#03A062'}}>yescrow:</code> blockchain escrow services</h1>
+        <Header />
+        <main>
+        <div> 
+          <h1 class="m-4 text-4xl text-center font-bold">Trust a stranger with your crypto.</h1>
+          <p class="m-4 font-medium">Lock tokens in a smart contract and release them only when you get what you wanted.</p>
+          <br/>
+        <EscrowForm />
+        <Image 
+        class="mx-auto"
+        src="/yescrow_trinity.png" 
+        alt="a scheme of how yescrow works" 
+        width={400} 
+        height={340} />
+        </div>
         <br/>
-        <Request />
-        <h3 className={styles.title}>How to escrow crypto?</h3>
-        <HowTo />
-        <EthEscrowForm />
-        <About />
+        </main>
         <Support />
-      </main>
       <Footer />
     </div>
+    
   )
 }

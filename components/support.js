@@ -1,6 +1,6 @@
 export default function Support() {
     return (
-        <div><br/>
+        <div class="text-center"><br/>
         <h4 className='text-xl'><strong>Any questions?</strong></h4><br /><br /> Ask <br /><u>crow@yescrow.io</u><br/>
         <br/> OR 
         <br/><br/><code>ask

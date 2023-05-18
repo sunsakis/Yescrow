@@ -1,11 +1,9 @@
-import styles from '../styles/Home.module.css'
-
 export default function Usecases() {
     return (
         <div>
             <br/>
             <br/>
-            <h3 className={styles.title}>Blockchain escrow usecases:</h3>
+            <h3>Blockchain escrow usecases:</h3>
             <br/><br/>
             <li>
                 <b>Freelance work:</b> When hiring a freelancer, an escrow service can be used to hold the payment until the work is completed to the satisfaction of the employer. This provides a level of security for both parties and can help avoid disputes.</li>

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css';
 import DepositForm from '../../components/btcDeposit';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
@@ -62,7 +61,7 @@ export default function Btc() {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
       <script
           type="application/ld+json"
@@ -74,10 +73,10 @@ export default function Btc() {
         <link rel="icon" href="/favicon.png" />
         <link rel="canonical" href="https://yescrow.io/btc" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <Header />  
         <DepositForm />
-        <br/><h3 className={styles.title}>How to escrow bitcoin?</h3>
+        <br/><h3>How to escrow bitcoin?</h3>
         <HowToUse />
         <Support />
       </main>

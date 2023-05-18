@@ -1,14 +1,9 @@
-import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
-import { useWeb3React } from "@web3-react/core";
-import { InjectedConnector } from "@web3-react/injected-connector";
 
 const ABI = [
   "function createDepositETH(address _seller) external payable",
   "event NewDepositETH(uint256 indexed currentId, address indexed buyer, address indexed seller, uint256 amount)"
   ];
-
-export const injected = new InjectedConnector({ supportedChainIds: [1, 11155111] });
 
 export default function Request() {
 
@@ -39,21 +34,12 @@ export default function Request() {
     }
   },[]);
 
-  const {
-    active,
-    activate,
-    chainId,
-    account,
-    library: provider,
-  } = useWeb3React();
-
   async function blockchainTalk(e) {
     e.preventDefault(); 
     if (hasMetaMask == true) {
       const chainId = await ethereum.request({ method: 'eth_chainId' });
       if (chainId == "0x1") {
         try {
-          await activate(injected);
           const accounts = await ethereum.request({ method: "eth_accounts" });
           if (accounts.length == 0) {
             alert("Connect your Metamask account"); } else {
@@ -107,9 +93,9 @@ export default function Request() {
 
   return (
           <div>
-          <form id="formId" className={styles.form} onSubmit={blockchainTalk}>
+          <form onSubmit={blockchainTalk}>
               {/* Should alert if user clicks button but is not connected to mainnet */}
-                <h2 className={styles.title}><span className={styles.symbol}>♦</span> Request A Deposit</h2>
+                <h2><span>♦</span> Request A Deposit</h2>
               <br/>
               <h3> Use this form to request a payment be put in escrow.</h3><br/>
               <p>
@@ -118,16 +104,16 @@ export default function Request() {
         This way you don`t have to bother solving captchas.
       </p><br/>
       <p>Easy.</p>
-              <div className={styles.description}>
+              <div>
                 <label htmlFor="target">Payer`s email</label><br/>
-                <input className={styles.input}
+                <input
                   type="text" 
                   placeholder="onewho@needsto.pay" 
                   required
                   onChange={handleRequestTargetChange}
                 /><br/>
                 <label htmlFor="amount">Payment size</label><br/>
-                <input className={styles.input}
+                <input
                   type="text" 
                   placeholder="BTC, ETH or any ERC20"
                   required
@@ -135,7 +121,7 @@ export default function Request() {
                   />
                 <br />
                 <label htmlFor="message">Message</label><br/>
-                <textarea className={styles.input}
+                <textarea
                     type="text"
                     placeholder="Message to the payer (optional)"
                     rows="4"
