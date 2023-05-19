@@ -79,8 +79,8 @@ export default function Home() {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Trust a stranger with your crypto.</h1>
-          <p class="m-4 font-medium">Lock tokens in a smart contract and release them only when you get what you wanted.</p>
+          <h1 class="m-4 text-4xl text-center font-bold">Never get scammed again.</h1>
+          <p class="m-4 font-medium text-center">Lock payments in a smart contract, release them only when you get what you wanted.</p>
           <br/>
         <EscrowForm />
         <Image 
