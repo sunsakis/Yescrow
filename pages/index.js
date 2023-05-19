@@ -67,7 +67,7 @@ export default function Home() {
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-        <title>Yescrow - Blockchain Escrow Services: Trust Anonymously</title>
+        <title>Yescrow - Ethereum Escrow Services: Trust Anonymously</title>
         <meta 
           name="description" 
           content="Blockchain escrow services to facilitate online trust. No need to register, simply deposit and release when you are satisfied." 
@@ -80,7 +80,7 @@ export default function Home() {
         <main>
         <div> 
           <h1 class="m-4 text-4xl text-center font-bold">Never get scammed again.</h1>
-          <p class="m-4 font-medium text-center">Lock payments in a smart contract, release them only when you get what you wanted.</p>
+          <p class="m-4 font-medium text-center">Lock payments in a smart contract, release them after you get what you wanted.</p>
           <br/>
         <EscrowForm />
         <Image 
