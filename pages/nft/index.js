@@ -60,7 +60,7 @@ export default function Nft() {
           "url": "https://yescrow.io/nft#how-to-escrow",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
-        }
+        }]
 
     }
   `,

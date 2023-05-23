@@ -400,7 +400,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Not yet, but here is our contract address on Ethereum`s mainnet: {process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
+                                Not yet, but here is our contract address on Ethereum`s Mainnet: {process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
                                 </p>
                             </div>
                         </div>

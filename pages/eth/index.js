@@ -53,7 +53,7 @@ export default function Eth() {
           "url": "https://yescrow.io/eth#how-to-escrow",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
-        }
+        }]
 
     }
   `,

@@ -71,7 +71,7 @@ export default function Home() {
               "name": "Is Yescrow decentralized?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Not yet, but here is our contract address on Ethereum's mainnet: 0x450082ADE010fE62EB12c08350f0bA3CE55f46eF"
+                "text": "Not yet, but here is our contract address on Ethereum's Mainnet: 0x450082ADE010fE62EB12c08350f0bA3CE55f46eF"
               }]
     }
   `,

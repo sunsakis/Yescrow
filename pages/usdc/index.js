@@ -53,7 +53,7 @@ export default function Escrow() {
           "url": "https://yescrow.io/usdc#how-to-escrow",
           "name": "If any party does not uphold their end of the deal, crow@yescrow.io helps.",
           "position": 5
-        }
+        }]
 
     }
   `,
