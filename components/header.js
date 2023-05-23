@@ -13,7 +13,9 @@ export default function Header() {
         width="54" 
         height="54" 
         viewBox="0 0 54 54" 
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+        alt="Yescrow logo"
+        >
       </Image>
     <span class="font-semibold text-xl tracking-tight">Yescrow</span>
     </div>
