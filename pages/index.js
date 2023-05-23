@@ -48,24 +48,27 @@ export default function Home() {
           "@type": "Answer",
           "text": "Yes, Yescrow smart contract allows to escrow NFTs. The depositor deposits the NFT in escrow and can release it to the wallet of the other party when satisfied."
         }
-      }, {
+      },{
         "@type": "Question",
         "name": "What if someone does not release the escrow?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "If any side does not uphold their end of the deal, crow@yescrow.io will interfere to make sure that the money goes to the right hands."
+        }
         }, {
           "@type": "Question",
           "name": "Is Yescrow decentralized?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "No, Yescrow is not decentralized. Yescrow is a centralized service that uses smart contracts to ensure that the buyer and seller each fulfill their obligations."
+          }
           }, {
             "@type": "Question",
             "name": "Is Yescrow safe?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "100% safe. Our smart contracts have been audited by the best in the industry - 0Xmacro, a leading blockchain security firm. Funds are stored in an encrypted cold wallet."
+            }
             }, {
               "@type": "Question",
               "name": "Is Yescrow decentralized?",
