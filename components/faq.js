@@ -364,7 +364,7 @@ export default function Faq() {
                                         target="_blank"
                                         class="text-matrix"
                                     > Karolis Ramanauskas
-                                    </Link>, who works at 0Xmacro - a leading blockchain security firm. The funds are stored in an encrypted cold wallet.
+                                    </Link>, who works at Macro - a leading blockchain security firm. The funds are stored in an encrypted cold wallet.
                                 </p>
                             </div>
                         </div>
