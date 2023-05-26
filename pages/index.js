@@ -60,21 +60,21 @@ export default function Home() {
           "name": "Is Yescrow decentralized?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No, Yescrow is not decentralized. Yescrow is a centralized service that uses smart contracts to ensure that the buyer and seller each fulfill their obligations."
+            "text": "No, Yescrow is not decentralized, yet. Yescrow is a centralized service that uses smart contracts to ensure that the buyer and seller each fulfill their obligations."
           }
           }, {
             "@type": "Question",
             "name": "Is Yescrow safe?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "100% safe. Our smart contracts have been audited by the best in the industry - 0Xmacro, a leading blockchain security firm. Funds are stored in an encrypted cold wallet."
+              "text": "Absolutely. Our smart contracts have been indepenently audited by <a href="https://github.com/sunsakis/yescrow">Karolis Ramanauskas</a>, who works at 0Xmacro - a leading blockchain security firm. The funds are stored in an encrypted cold wallet."
             }
             }, {
               "@type": "Question",
-              "name": "Is Yescrow decentralized?",
+              "name": "Is Yescrow open-source?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Not yet, but here is our contract address on Ethereum's Mainnet: 0x450082ADE010fE62EB12c08350f0bA3CE55f46eF"
+                "text": "Yescrow is open-source. You can find the code on <a href="https://github.com/sunsakis/yescrow">Github</a>."
               }]
     }
   `,

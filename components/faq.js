@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Faq() {
     return (
         <section class="text-white">
@@ -310,7 +312,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                No, Yescrow is not decentralized. Yescrow is a centralized service that uses smart contracts to ensure that the buyer and seller each fulfill their obligations.
+                                No, Yescrow is not decentralized, yet. Yescrow is a centralized service that uses smart contracts to ensure that the buyer and seller each fulfill their obligations.
                                 </p>
                             </div>
                         </div>
@@ -355,7 +357,14 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                100% safe. Our smart contracts have been audited by the best in the industry - 0Xmacro, a leading blockchain security firm. Funds are stored in an encrypted cold wallet.
+                                    Absolutely. Our smart contracts have been indepenently audited by  
+                                    <Link 
+                                        href="https://twitter.com/karooolis"
+                                        rel="nofollow"
+                                        target="_blank"
+                                        class="text-matrix"
+                                    > Karolis Ramanauskas
+                                    </Link>, who works at 0Xmacro - a leading blockchain security firm. The funds are stored in an encrypted cold wallet.
                                 </p>
                             </div>
                         </div>
@@ -400,7 +409,12 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Not yet, but here is our contract address on Ethereum`s Mainnet: {process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
+                                Yescrow is open-source, you can find the code on <Link 
+                                    href="https://github.com/sunsakis/yescrow"
+                                    rel="nofollow"
+                                    target="_blank"
+                                    class="text-matrix"
+                                    >Github</Link>.
                                 </p>
                             </div>
                         </div>
