@@ -28,7 +28,9 @@ function intervene( uint256 _id, address _to ) onlyOwner
 
 # Contact, requests and feedback
 
-crow@yescrow.io
+Email: crow@yescrow.io
+
+Telegram: t.me/sunsakis
 
 twitter.com/yescrowio
 
