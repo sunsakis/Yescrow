@@ -19,7 +19,7 @@ export default function Footer() {
                         >
                             <Image src=
                             "/telegram.png" 
-                            class=" h-7 w-7" 
+                            class=" h-5 w-5" 
                             width="54" 
                             height="54" 
                             viewBox="0 0 54 54" 
@@ -34,12 +34,26 @@ export default function Footer() {
                         >
                             <Image src=
                             "/twitter.png"
-                            class=" h-7 w-7 ml-2"
+                            class=" h-5 w-5 ml-2"
                             width="54"
                             height="54"
                             viewBox="0 0 54 54"
                             xmlns="http://www.w3.org/2000/svg"
                             alt="Twitter logo" />
+                    </Link>
+                    <Link 
+                        href="https://github.com/sunsakis/Yescrow"
+                        rel="nofollow"
+                        target="_blank"
+                        >
+                            <Image src=
+                            "/github.png"
+                            class=" h-5 w-5 ml-2 bg-white rounded-full"
+                            width="54"
+                            height="54"
+                            viewBox="0 0 54 54"
+                            xmlns="http://www.w3.org/2000/svg"
+                            alt="GitHub logo" />
                     </Link>
                     </div>
             </div>

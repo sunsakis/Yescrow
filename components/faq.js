@@ -15,6 +15,7 @@ export default function Faq() {
                 />
                     <div class="
                         rounded-xl peer-checked:rounded-b-none
+                        peer-checked:bg-matrix
                         bg-[#161618]
                         h-12 w-fill pl-5
                         flex items-center
@@ -43,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yescrow is an Ethereum Virtual Machine compatible escrow agent that allows users to transact with each other without having to trust each other. Yescrow uses smart contracts to ensure that the buyer and seller each fulfill their obligations.                            </p>
+                            Yescrow is an open-source Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
                         </div>
                     </div>
             </div>
@@ -60,11 +61,12 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                How does a crypto escrow work?
+                                How does Yescrow work?
                             </h2>
                         </div>
                         <div class="
@@ -87,7 +89,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                The depositor can release the funds to the payee only using the same wallet which deposited them. The terms of the deal can remain private or shared on-chain.
+                                After depositing, the depositor can release the funds to the payee using the same wallet which deposited them. 
                                 </p>
                             </div>
                         </div>
@@ -105,11 +107,12 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                What are the smart contract escrow fees?
+                                What are the fees?
                             </h2>
                         </div>
                         <div class="
@@ -132,7 +135,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yescrow charges a petite 0.5% fee of the token escrowed (NFTs are escrowed for free). Gas fees can range from $0.01 to $10 depending on network congestion and blockchain used (Ethereum is more expensive than Polygon).
+                                Yescrow keeps half a percent of the deposit (NFTs are escrowed for free).
                                 </p>
                             </div>
                         </div>
@@ -150,6 +153,7 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
@@ -177,7 +181,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Negotiate your terms in private. You can share the details of the agreement on-chain if you want. Provide the wallet to which you want to transfer your crypto and deposit the agreed amount in escrow. You can then release the crypto to the payee anytime.
+                                Negotiate your terms. Provide the stranger`s address and deposit the agreed amount. You can release the crypto anytime.
                                 </p>
                             </div>
                         </div>
@@ -195,6 +199,7 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
@@ -222,7 +227,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yes, Yescrow smart contract allows to escrow NFTs. The depositor deposits the NFT in escrow and can release it to the wallet of the other party when satisfied.
+                                Yes, the depositor can deposit the NFT in escrow and can release it to the wallet of the other party when satisfied.
                                 </p>
                             </div>
                         </div>
@@ -240,6 +245,7 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
@@ -267,7 +273,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                If any side does not uphold their end of the deal, crow@yescrow.io will interfere to make sure that the money goes to the right hands.
+                                If any side does not uphold their end of the deal, <span class="text-white">crow@yescrow.io</span> will interfere to make sure that the money goes to the right hands (for a 1% judgement fee).
                                 </p>
                             </div>
                         </div>
@@ -285,6 +291,7 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
@@ -330,6 +337,7 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
@@ -357,14 +365,20 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                    Absolutely. Our smart contracts have been indepenently audited by  
+                                    Absolutely. Our smart contracts have been independently audited by  
                                     <Link 
                                         href="https://twitter.com/karooolis"
                                         rel="nofollow"
                                         target="_blank"
                                         class="text-matrix"
                                     > Karolis Ramanauskas
-                                    </Link>, who works at Macro - a leading blockchain security firm. The funds are stored in an encrypted cold wallet.
+                                    </Link>, who works at  
+                                    <Link 
+                                        href="https://0xmacro.com"
+                                        rel="nofollow"
+                                        target="_blank"
+                                        class="text-matrix"> Macro
+                                    </Link> - a leading blockchain security firm. The funds are stored in an encrypted cold wallet.
                                 </p>
                             </div>
                         </div>
@@ -382,6 +396,7 @@ export default function Faq() {
                         <div class="
                             rounded-xl peer-checked:rounded-b-none
                             bg-[#161618]
+                            peer-checked:bg-matrix
                             h-12 w-fill pl-5
                             flex items-center
                         ">
@@ -409,7 +424,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yescrow is open-source, you can find the code on <Link 
+                                Yes, you can find the code on <Link 
                                     href="https://github.com/sunsakis/yescrow"
                                     rel="nofollow"
                                     target="_blank"

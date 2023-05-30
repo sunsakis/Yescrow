@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import Image from "next/image";
 import { Web3Button } from "@thirdweb-dev/react";
 import { Interface, FormatTypes } from "@ethersproject/abi";
+import styles from "../styles/Home.module.css";
 
 const ESCROW_ABI = [
   "function createDepositERC721(address _seller, address _token, uint256[] calldata _tokenIds) external",
@@ -35,6 +36,7 @@ export default function EscrowForm() {
   }
 
   async function blockchainTalk() {
+    try {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
@@ -52,13 +54,32 @@ export default function EscrowForm() {
       ESCROW_ABI,
       signer
     );
-    const escrowTx = await escrowContract.createDepositERC20(
+    const escrowTx = await escrowContract.createDepositERC721(
       _seller,
       _NFTAddress,
       _tokenIds
     );
     await escrowTx.wait();
-    alert("Escrow created!");
+  } catch (e) { 
+      console.log(e);
+    }
+  }
+
+  async function eventListener () {
+    await ethereum.request({ method: 'eth_requestAccounts' })
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, humanReadableABI, signer);
+    alert("Escrow created! Wait for the transaction to be mined. You are one of our first customers and will receive an airdrop.");
+    try {
+      contract.once("NewDepositERC721", (counter, buyerAddress, sellerAddress, event) => {
+          alert(
+            "Buyer address: "+buyerAddress,
+            "Seller address: "+sellerAddress,
+            "Escrow ID: "+counter,
+            "Transaction hash: "+event.transactionHash);   
+      })
+    } catch (error) {console.log(error)};
   }
 
   return (
@@ -108,6 +129,9 @@ export default function EscrowForm() {
                 contractAbi={jsonABI}
                 action={() => {
                   blockchainTalk()}}
+                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Talk with crow@yescrow.io if you need guidance.")}
+                onSuccess={() => eventListener()}
+                className={styles.btn}
                 >
                 <li class="flex items-center">
                 <Image

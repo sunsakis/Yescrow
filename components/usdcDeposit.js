@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import { Web3Button } from "@thirdweb-dev/react";
 import { Interface, FormatTypes } from "@ethersproject/abi";
+import styles from "../styles/Home.module.css";
 
 const humanReadableABI = [
   "function createDepositERC20(address _seller, address _token, uint256 _amount) external",
@@ -55,10 +56,27 @@ export default function EscrowForm() {
       ethers.utils.parseUnits(_tokenAmount, 6)
     );
     await escrowTx.wait();
-    alert("Escrow created!");
     } catch (e) {
       console.log(e);
     }
+  }
+
+  async function eventListener () {
+    await ethereum.request({ method: 'eth_requestAccounts' })
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, humanReadableABI, signer);
+    alert("Escrow created! Wait for the transaction to be mined. You are one of our first customers and will receive an airdrop.");
+    try {
+      contract.once("NewDepositERC20", (counter, buyerAddress, sellerAddress, depositAmount, event) => {
+          alert(
+            "Buyer address: "+buyerAddress,
+            "Seller address: "+sellerAddress,
+            "Escrow amount: "+JSON.stringify(depositAmount.toString()),
+            "Escrow ID: "+counter,
+            "Transaction hash: "+event.transactionHash);   
+      })
+    } catch (error) {console.log(error)};
   }
 
   return (
@@ -89,7 +107,7 @@ export default function EscrowForm() {
                   onChange={handleAmountChange} 
                   />
                   <br/>
-                  <code class="text-xs text-center">0.5% fee + gas</code>
+                  <code class="text-xs text-center">0.5% fee</code>
                 </div>
                 <br />
                 <Web3Button 
@@ -97,6 +115,9 @@ export default function EscrowForm() {
                 contractAbi={jsonABI}
                 action={() => {
                   blockchainTalk()}}
+                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Talk with crow@yescrow.io if you need guidance.")}
+                onSuccess={() => eventListener()}
+                className={styles.btn}
                 >
                 <li class="flex items-center">
                 <Image
