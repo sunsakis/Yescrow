@@ -1,13 +1,19 @@
-# Sample Hardhat Project
+## Smart contract functions
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
 ```
+function createDepositETH( address _seller )
+```
+```
+ function createDepositERC20( address _seller, address _token, uint256 _amount )
+```
+```
+ function createDepositERC721( address _seller, address _token, uint256[] calldata _tokenIds )
+```
+```
+function releaseDeposit( uint256 _id )
+```
+```
+function intervene( uint256 _id, address _to ) onlyOwner
+```
+
+crow@yescrow.io for requests and questions
