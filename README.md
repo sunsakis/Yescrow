@@ -1,4 +1,4 @@
-## Yescrow - a smart contract escrow agent. 
+# Yescrow - a smart contract escrow agent. 
 
 Yescrow is a smart contract to build trust between online strangers. 
 
@@ -6,7 +6,15 @@ We are a centralized middleman - Yescrow will start its decentralization after e
 
 All addresses that interacted with the contract before that will be airdropped DAO governance tokens.
 
-Less scams = More fun
+**Less scams = More fun**
+
+## Contact, requests and feedback
+
+crow@yescrow.io
+
+<a href="t.me/sunsakis">Telegram</a>
+
+<a href="twitter.com/yescrowio">Twitter</a>
 
 ## Smart contract functions
 
@@ -25,14 +33,6 @@ function releaseDeposit( uint256 _id )
 ```
 function intervene( uint256 _id, address _to ) onlyOwner
 ```
-
-# Contact, requests and feedback
-
-Email: crow@yescrow.io
-
-Telegram: t.me/sunsakis
-
-twitter.com/yescrowio
 
 ## Getting Started
 
