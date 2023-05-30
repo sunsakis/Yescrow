@@ -1,4 +1,4 @@
-# Yescrow - a smart contract escrow agent. 
+# Yescrow - your smart contract escrow agent. 
 
 Yescrow is a smart contract to build trust between online strangers. 
 
