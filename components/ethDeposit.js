@@ -31,7 +31,7 @@ export default function EthEscrowForm() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, humanReadableABI, signer);
-    alert("Escrow created! Wait for the transaction to be mined. You are one of our first customers and will receive an airdrop.")
+    alert("Escrow created! Wait for the transaction to be mined. You are one of our first customers and will receive an airdrop.");
     try {
       contract.once("NewDepositETH", (counter, buyerAddress, sellerAddress, depositAmount, event) => {
           alert(
@@ -79,7 +79,7 @@ export default function EthEscrowForm() {
                 contractAddress={process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
                 contractAbi={jsonABI}
                 action={async (contract) => { await contract.call("createDepositETH", [_seller], { value: ethers.utils.parseEther(_amount) })}}
-                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Talk with crow@yescrow.io if you need guidance.")}
+                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message crow@yescrow.io for guidance.")}
                 onSuccess={() => eventListener()}
                 className={styles.btn}
                 >

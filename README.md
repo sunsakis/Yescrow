@@ -4,7 +4,7 @@ Yescrow is a smart contract to build trust between online strangers.
 
 We are a centralized middleman - Yescrow will start its decentralization after escrowing 1,000 ETH.
 
-All addresses that interacted with the contract before that will be airdropped DAO governance tokens.
+All addresses that interacted with the contract until then will become part of the DAO.
 
 **Less scams = More fun**
 

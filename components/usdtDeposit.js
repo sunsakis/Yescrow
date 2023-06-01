@@ -117,7 +117,7 @@ export default function EscrowForm() {
                 contractAbi={jsonABI}
                 action={() => {
                   blockchainTalk()}}
-                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Talk with crow@yescrow.io if you need guidance.")}
+                onError={() => alert("Make sure to fill out the fields properly and have enough ETH and USDT in the wallet. Message crow@yescrow.io for guidance.")}
                 onSuccess={() => eventListener()}
                 className={styles.btn}
                 >
