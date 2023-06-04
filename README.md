@@ -1,10 +1,8 @@
-# Yescrow - crypto calmly. 
+# Yescrow - your decentralized escrow agent
 
-Yescrow is a decentralized escrow agent to transact with strangers online. 
+Yescrow is an open-source escrow to transact with strangers online. 
 
-Designate an Ethereum address, 
-
-deposit to the smart contract using our <a href="https://yescrow.io">UI</a>,
+Designate an Ethereum address, deposit to the smart contract using our <a href="https://yescrow.io">UI</a> and
 
 release the payment when you are satisfied.
 
