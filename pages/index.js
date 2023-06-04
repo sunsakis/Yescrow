@@ -89,10 +89,10 @@ export default function Home() {
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-        <title>Yescrow - Ethereum Escrow Services: Trust Anonymously</title>
+        <title>Yescrow - crypto calmly. A decentralized escrow agent, finally.</title>
         <meta 
           name="description" 
-          content="Blockchain escrow services to facilitate online trust. No need to register, simply deposit and release when you are satisfied." 
+          content="Transact with strangers online without worries. Release the payment when you got what you wanted." 
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />

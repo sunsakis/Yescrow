@@ -1,18 +1,34 @@
-# Yescrow - your smart contract escrow agent. 
+# Yescrow - crypto calmly. 
 
-Yescrow is a decentralized escrow agent to build trust between online strangers. 
+Yescrow is a decentralized escrow agent to transact with strangers online. 
+
+Designate an Ethereum address, 
+
+deposit to the smart contract using our <a href="https://yescrow.io">UI</a>,
+
+release the payment when you are satisfied.
+
+It is free to use.
 
 **Less scams = More fun**
 
 ## Contact, requests and feedback
 
-crow@yescrow.io
+In case of a quarrel,
+
+The Crow acts as an arbitre.
+
+Contact crow@yescrow.io to summon.
+
+The Crow takes 5% per dispute.
 
 <a href="t.me/sunsakis">Telegram</a>
 
 <a href="twitter.com/yescrowio">Twitter</a>
 
 ## Smart contract functions
+
+Deployed on Ethereum's mainnet. 
 
 Contract address: <a href="https://etherscan.io/address/0x450082ADE010fE62EB12c08350f0bA3CE55f46eF">0x450082ADE010fE62EB12c08350f0bA3CE55f46eF</a>
 
