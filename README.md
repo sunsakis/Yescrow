@@ -1,10 +1,6 @@
 # Yescrow - your smart contract escrow agent. 
 
-Yescrow is a smart contract to build trust between online strangers. 
-
-We are a centralized middleman - Yescrow will start its decentralization after escrowing 1,000 ETH.
-
-All addresses that interacted with the contract until then will become part of the DAO.
+Yescrow is a decentralized escrow agent to build trust between online strangers. 
 
 **Less scams = More fun**
 
@@ -52,5 +48,5 @@ Run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
