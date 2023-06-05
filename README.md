@@ -1,22 +1,18 @@
-# Yescrow - a decentralized escrow agent.
+# Yes Crow - your decentralized escrow agent.
+
+A free crypto escrow. Why charge for what runs on code? Yes Crow always on stand-by in case of dispute.
 
 Transact with strangers online without worries. 
 
-Designate an Ethereum address, deposit to the smart contract using our <a href="https://yescrow.io">UI</a> and
-
-release the payment when you are satisfied.
-
-It is free to use.
+Read more: <a href="https://yescrow.io">yescrow.io</a>
 
 **Less scams = More fun**
 
 ## Contact, requests and feedback
 
-In case of a quarrel,
+In case of a quarrel, Yes Crow acts as an arbitre. 
 
-The Crow acts as an arbitre.
-
-Contact crow@yescrow.io to summon.
+Contact escrow@yescrow.io to summon.
 
 The Crow takes 5% per dispute.
 
