@@ -27,10 +27,6 @@ export default function EscrowForm() {
     var borderUsdc = "border text-matrix"
   }
 
-  if (active === "NFT") {
-    var borderNft = "border text-matrix"
-  }
-
   if (active === "ERC20") {
     var borderErc20 = "border text-matrix"
   }
@@ -83,25 +79,13 @@ export default function EscrowForm() {
                   width="48" 
                   height="48" 
                   alt="Ethereum logo">
-                </Image> ERC20</li></button>
-                <button 
-              class={`${borderNft} m-3 border-matrix bg-[#3B3B3B] rounded-xl py-3 px-3 font-bold hover:text-green-500 hover:border-green-500`} 
-              onClick={() => setActive("NFT")}>
-                <li class="flex items-center">
-                <Image
-                  src="/nft_logo.png" 
-                  class="fill-current h-6 w-6 mr-1" 
-                  width="48" 
-                  height="48" 
-                  alt="NFT logo">
-                </Image> NFT</li></button>
+                </Image> Any ERC20</li></button>
           </ul>
         </div>
       <div>
         {active === "ETH" && <EthEscrowForm />}
         {active === "USDT" && <UsdtEscrowForm />}
         {active === "USDC" && <UsdcEscrowForm />}
-        {active === "NFT" && <NftEscrowForm />}
         {active === "ERC20" && <Erc20EscrowForm />}
       </div>   
     </div>    

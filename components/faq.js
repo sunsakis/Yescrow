@@ -44,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yescrow is an open-source Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
+                            Yescrow is an open-source decentralized Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
                         </div>
                     </div>
             </div>
@@ -89,7 +89,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                By designating a receiver and depositing a cryptocurrency to the smart contract. You can release the deposit to the receiver anytime from your wallet. 
+                                By sending a cryptocurrency with the receiver`s address to the smart contract. You can release the deposit to the receiver as soon as you get what you wanted. 
                                 </p>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                What is the dispute fee?
+                            What if the depositor does not release the funds?
                             </h2>
                         </div>
                         <div class="
@@ -135,7 +135,8 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                In case of a dispute, Yescrow will charge a 1% arbitration fee.
+                                If the designated receiver does not email us within 90 days to claim the funds, the depositor can then withdraw them to any other Ethereum address. 
+                                If the receiver contacts us to claim the funds and provides evidence supporting their claim, The Crow will make sure that the money goes to the right hands.
                                 </p>
                             </div>
                         </div>
@@ -158,7 +159,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                What if the deposit is never released?
+                                Is Yescrow free to use? 
                             </h2>
                         </div>
                         <div class="
@@ -181,7 +182,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                If any side does not uphold their end of the deal, <span class="text-white">crow@yescrow.io</span> will act as an arbiter to make sure that the money goes to the right hands.
+                                Yescrow is completely free to use, as long as there is no conflict between the 2 escrowing parties. In case of a dispute, The Crow will charge a 5% arbitration fee. 
                                 </p>
                             </div>
                         </div>
@@ -227,7 +228,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                No, Yescrow is not decentralized, yet. Yescrow is a centralized service that uses the blockchain to build trust between online strangers.
+                                Yescrow is a decentralized service. 2 out of 3 signatures are needed to alter the escrow details. The depositor, the receiver and The Crow each have one signature.
                                 </p>
                             </div>
                         </div>

@@ -111,7 +111,7 @@ export default function EscrowForm() {
             onChange={handleTokenAddressChange} 
           />
           <br/>
-          <label>Escrow amount:</label>
+          <label>Token amount:</label>
           <br/>
           <div class="text-center">
           <input
@@ -122,8 +122,6 @@ export default function EscrowForm() {
             required
             onChange={handleAmountChange} 
             />
-            <br/>
-            <code class="text-xs text-center">0.5% fee</code>
           </div>
           <br />
           <Web3Button 

@@ -71,8 +71,6 @@ export default function EthEscrowForm() {
                   required
                   onChange={handleDepositChange} 
                   />
-                  <br/>
-                  <code class="text-xs text-center">0.5% fee</code>
                 </div>
                 <br />
                 <Web3Button 

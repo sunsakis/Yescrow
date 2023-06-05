@@ -96,7 +96,7 @@ export default function EscrowForm() {
             onChange={handleAddressChange} 
           />
           <br/>
-          <br/>
+          <br />
           <label>USDT amount:</label>
           <br/>
           <div class="text-center">
@@ -108,8 +108,6 @@ export default function EscrowForm() {
             required
             onChange={handleAmountChange} 
             />
-            <br/>
-            <code class="text-xs text-center">0.5% fee</code>
           </div>
           <br />
                 <Web3Button 

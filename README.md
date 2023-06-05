@@ -1,6 +1,6 @@
-# Yescrow - your decentralized escrow agent
+# Yescrow - a decentralized escrow agent.
 
-Yescrow is an open-source escrow to transact with strangers online. 
+Transact with strangers online without worries. 
 
 Designate an Ethereum address, deposit to the smart contract using our <a href="https://yescrow.io">UI</a> and
 
