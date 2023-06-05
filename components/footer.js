@@ -7,8 +7,8 @@ export default function Footer() {
             <div>
                 <p class="flex justify-center text-gray-500 text-xs">
                     <code class="text-gray-500 text-xs">
-                        2023 © Yescrow. All Rights Reserved. 
-                        <span class="text-white"> crow@yescrow.io</span>
+                        2023 © yescrow. All Rights Reserved. 
+                        <span class="text-white"> escrow@yescrow.io</span>
                     </code>
                 </p>
                 <div class="flex justify-center m-3">

@@ -21,7 +21,7 @@ export default function Faq() {
                         flex items-center
                     ">
                         <h2 class="text-white">
-                            What is Yescrow?
+                            What is Yes Crow?
                         </h2>
                     </div>
                     <div class="
@@ -44,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yescrow is an open-source decentralized Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
+                            Yes Crow is an open-source decentralized Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
                         </div>
                     </div>
             </div>
@@ -66,7 +66,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                How does Yescrow work?
+                                How does Yes Crow work?
                             </h2>
                         </div>
                         <div class="
@@ -112,6 +112,98 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
+                                Is this escrow free to use? 
+                            </h2>
+                        </div>
+                        <div class="
+                            absolute top-3 right-3
+                            text-red
+                            transition-transform duration-500
+                            rotate-0 peer-checked:rotate-180
+                            ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                        <div class="
+                        rounded-b-xl
+                        bg-[#161618]
+                        overflow-hidden
+                        transition-all duration-500
+                        max-h-0 peer-checked:max-h-80
+                        p-0 peer-checked:p-2
+                        ">
+                            <div class="p-4  text-gray-400">
+                                <p>
+                                Yes, it can be free - if the depositor releases the funds to the original recipient. In case of conflict, Yes Crow will act as arbitre and charge 5% for a signature. 
+                                </p>
+                            </div>
+                        </div>
+            </div>
+            <div class="relative overflow-hidden m-3">
+                    <input 
+                        type="checkbox" 
+                        class="
+                            peer
+                            absolute top-0 inset-x-0
+                            w-full h-12
+                            opacity-0 z-10 cursor-pointer
+                            "
+                    />
+                    <div class="
+                            rounded-xl peer-checked:rounded-b-none
+                            bg-[#161618]
+                            peer-checked:bg-matrix
+                            h-12 w-fill pl-5
+                            flex items-center
+                        ">
+                            <h2 class="text-white">
+                                How is Yes Crow decentralized?
+                            </h2>
+                        </div>
+                        <div class="
+                            absolute top-3 right-3
+                            text-red
+                            transition-transform duration-500
+                            rotate-0 peer-checked:rotate-180
+                            ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                        <div class="
+                        rounded-b-xl
+                        bg-[#161618]
+                        overflow-hidden
+                        transition-all duration-500
+                        max-h-0 peer-checked:max-h-80
+                        p-0 peer-checked:p-2
+                        ">
+                            <div class="p-4  text-gray-400">
+                                <p>
+                                Yes Crow is a decentralized service - 2 out of 3 signatures are needed to change the receiver. The depositor, the receiver and Yes Crow each have one signature.
+                                </p>
+                            </div>
+                        </div>
+            </div>
+            <div class="relative overflow-hidden m-3">
+                    <input 
+                        type="checkbox" 
+                        class="
+                            peer
+                            absolute top-0 inset-x-0
+                            w-full h-12
+                            opacity-0 z-10 cursor-pointer
+                            "
+                    />
+                        <div class="
+                            rounded-xl peer-checked:rounded-b-none
+                            bg-[#161618]
+                            peer-checked:bg-matrix
+                            h-12 w-fill pl-5
+                            flex items-center
+                        ">
+                            <h2 class="text-white">
                             What if the depositor does not release the funds?
                             </h2>
                         </div>
@@ -135,8 +227,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                If the designated receiver does not email us within 90 days to claim the funds, the depositor can then withdraw them to any other Ethereum address. 
-                                If the receiver contacts us to claim the funds and provides evidence supporting their claim, The Crow will make sure that the money goes to the right hands.
+                                If the designated receiver does not contact us within 90 days to claim the funds, the depositor is then allowed to withdraw them to any other Ethereum address. 
                                 </p>
                             </div>
                         </div>
@@ -159,7 +250,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                Is Yescrow free to use? 
+                                How can I know that I can trust Yes Crow, though?
                             </h2>
                         </div>
                         <div class="
@@ -182,99 +273,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yescrow is completely free to use, as long as there is no conflict between the 2 escrowing parties. In case of a dispute, The Crow will charge a 5% arbitration fee. 
-                                </p>
-                            </div>
-                        </div>
-            </div>
-            <div class="relative overflow-hidden m-3">
-                    <input 
-                        type="checkbox" 
-                        class="
-                            peer
-                            absolute top-0 inset-x-0
-                            w-full h-12
-                            opacity-0 z-10 cursor-pointer
-                            "
-                    />
-                        <div class="
-                            rounded-xl peer-checked:rounded-b-none
-                            bg-[#161618]
-                            peer-checked:bg-matrix
-                            h-12 w-fill pl-5
-                            flex items-center
-                        ">
-                            <h2 class="text-white">
-                                Is Yescrow decentralized?
-                            </h2>
-                        </div>
-                        <div class="
-                            absolute top-3 right-3
-                            text-red
-                            transition-transform duration-500
-                            rotate-0 peer-checked:rotate-180
-                            ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </div>
-                        <div class="
-                        rounded-b-xl
-                        bg-[#161618]
-                        overflow-hidden
-                        transition-all duration-500
-                        max-h-0 peer-checked:max-h-80
-                        p-0 peer-checked:p-2
-                        ">
-                            <div class="p-4  text-gray-400">
-                                <p>
-                                Yescrow is a decentralized service. 2 out of 3 signatures are needed to alter the escrow details. The depositor, the receiver and The Crow each have one signature.
-                                </p>
-                            </div>
-                        </div>
-            </div>
-            <div class="relative overflow-hidden m-3">
-                    <input 
-                        type="checkbox" 
-                        class="
-                            peer
-                            absolute top-0 inset-x-0
-                            w-full h-12
-                            opacity-0 z-10 cursor-pointer
-                            "
-                    />
-                        <div class="
-                            rounded-xl peer-checked:rounded-b-none
-                            bg-[#161618]
-                            peer-checked:bg-matrix
-                            h-12 w-fill pl-5
-                            flex items-center
-                        ">
-                            <h2 class="text-white">
-                                Is Yescrow safe?
-                            </h2>
-                        </div>
-                        <div class="
-                            absolute top-3 right-3
-                            text-red
-                            transition-transform duration-500
-                            rotate-0 peer-checked:rotate-180
-                            ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </div>
-                        <div class="
-                        rounded-b-xl
-                        bg-[#161618]
-                        overflow-hidden
-                        transition-all duration-500
-                        max-h-0 peer-checked:max-h-80
-                        p-0 peer-checked:p-2
-                        ">
-                            <div class="p-4  text-gray-400">
-                                <p>
-                                    Absolutely. The code was audited by  
+                                    The smart contract is public. Audited by
                                     <Link 
                                         href="https://twitter.com/karooolis"
                                         rel="nofollow"
@@ -287,7 +286,7 @@ export default function Faq() {
                                         rel="nofollow"
                                         target="_blank"
                                         class="text-matrix"> Macro
-                                    </Link> - a leading blockchain security firm. All data (emails included) is encrypted and stored in Switzerland.
+                                    </Link> - a leading blockchain security firm. Emails are encrypted and data is stored in Switzerland.
                                 </p>
                             </div>
                         </div>
@@ -310,7 +309,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                Is Yescrow open-source?
+                                So, Yes Crow is the best open-source crypto escrow?
                             </h2>
                         </div>
                         <div class="
@@ -338,7 +337,7 @@ export default function Faq() {
                                     rel="nofollow"
                                     target="_blank"
                                     class="text-matrix"
-                                    >Github</Link>.
+                                    >Github</Link>. 
                                 </p>
                             </div>
                         </div>

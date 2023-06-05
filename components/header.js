@@ -17,7 +17,7 @@ export default function Header() {
         alt="Yescrow logo"
         >
       </Image>
-    <span class="font-semibold text-xl tracking-tight">Yescrow</span>
+    <span class="font-semibold text-xl tracking-tight">Yes Crow</span>
     </div>
     </Link>
     <div class="flex-grow flex items-center">
