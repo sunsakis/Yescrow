@@ -1,50 +1,18 @@
-# Yes Crow - your decentralized escrow agent.
+# Yes Crow - your decentralized escrow agent
 
-A free crypto escrow. Why charge for what runs on code? Yes Crow always on stand-by in case of dispute.
+Transact with strangers online without worries. In case of a quarrel, Yes Crow acts as an arbitre. 
 
-Transact with strangers online without worries. 
-
-Read more: <a href="https://yescrow.io">yescrow.io</a>
+<a href="https://yescrow.io/#FAQ">More info</a>
 
 **Less scams = More fun**
 
-## Contact, requests and feedback
+## Interface
 
-In case of a quarrel, Yes Crow acts as an arbitre. 
+Use our website <a href="https://yescrow.io">yescrow.io</a> to communicate with the <a href="https://etherscan.io/address/0x450082ADE010fE62EB12c08350f0bA3CE55f46eF">smart contract.</a>
 
-Contact escrow@yescrow.io to summon.
+Or boot the interface locally:
 
-The Crow takes 5% per dispute.
-
-<a href="t.me/sunsakis">Telegram</a>
-
-<a href="twitter.com/yescrowio">Twitter</a>
-
-## Smart contract functions
-
-Deployed on Ethereum's mainnet. 
-
-Contract address: <a href="https://etherscan.io/address/0x450082ADE010fE62EB12c08350f0bA3CE55f46eF">0x450082ADE010fE62EB12c08350f0bA3CE55f46eF</a>
-
-```
-function createDepositETH( address _seller )
-```
-```
- function createDepositERC20( address _seller, address _token, uint256 _amount )
-```
-```
- function createDepositERC721( address _seller, address _token, uint256[] calldata _tokenIds )
-```
-```
-function releaseDeposit( uint256 _id )
-```
-```
-function intervene( uint256 _id, address _to ) onlyOwner
-```
-
-## Getting Started
-
-This is a [Next.js](https://nextjs.org/) interface bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+this is a [Next.js](https://nextjs.org/) interface bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 Install the dependencies:
 
@@ -60,3 +28,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
 
+## Contact, requests and feedback
+
+escrow@yescrow.io
+
+<a href="t.me/sunsakis">Telegram</a>
+
+<a href="twitter.com/yescrowio">Twitter</a>

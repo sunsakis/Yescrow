@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function Faq() {
     return (
-        <section class="text-white">
+        <section class="text-white" id="FAQ">
             <div class="relative overflow-hidden m-3">
                 <input 
                     type="checkbox" 
