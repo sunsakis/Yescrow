@@ -1,6 +1,8 @@
-# Yes Crow - your decentralized escrow agent
+# Yes Crow - your decentralized escrow dApp
 
 Transact with strangers online without worries. In case of a quarrel, Yes Crow acts as an arbitre. 
+
+0 escrow fees. Self-released. Goodbye legacy escrow services.
 
 <a href="https://yescrow.io/#FAQ">More info</a>
 
