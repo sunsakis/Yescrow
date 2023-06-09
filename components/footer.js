@@ -13,7 +13,7 @@ export default function Footer() {
                 </p>
                 <div class="flex justify-center m-3">
                     <Link 
-                        href="https://t.me/sunsakis"
+                        href="https://t.me/yescrow"
                         rel="nofollow"
                         target="_blank"
                         >

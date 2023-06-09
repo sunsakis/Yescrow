@@ -1,12 +1,12 @@
-# Yes Crow - your decentralized escrow dApp
+# Yes Crow - your multisig escrow dApp
 
 Transact with strangers online without worries. In case of a quarrel, Yes Crow acts as an arbitre. 
 
 0 escrow fees. Self-released. Goodbye legacy escrow services.
 
-<a href="https://yescrow.io/#FAQ">More info</a>
-
 **Less scams = More fun**
+
+<a href="https://yescrow.io/#FAQ">More info</a>
 
 ## Interface
 

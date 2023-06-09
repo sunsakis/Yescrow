@@ -44,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yes Crow is an open-source decentralized Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
+                            Yes Crow is a multisig Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
                         </div>
                     </div>
             </div>
@@ -112,7 +112,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                Is this escrow free to use? 
+                                What are the escrow fees? 
                             </h2>
                         </div>
                         <div class="
@@ -135,7 +135,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yes, it can be free - if the depositor releases the funds to the original recipient. In case of conflict, Yes Crow will act as arbitre and charge 5% for a signature. 
+                                There are no escrow fees. it is free if the depositor releases the funds to the original recipient. In disputes, Yes Crow can act as the arbitre for a 5% fee. 
                                 </p>
                             </div>
                         </div>
@@ -158,7 +158,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                How is Yes Crow decentralized?
+                                Is Yes Crow truly decentralized?
                             </h2>
                         </div>
                         <div class="

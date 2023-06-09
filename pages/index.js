@@ -89,10 +89,10 @@ export default function Home() {
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
         />
-        <title>Yescrow - crypto calmly. A decentralized escrow agent, finally.</title>
+        <title>Yes Crow - people`s multisig crypto escrow, finally. Open source, decentralized, free.</title>
         <meta 
           name="description" 
-          content="Transact with strangers online without worries. Release the payment when you got what you wanted." 
+          content="Transact with strangers online without worries. Self-release the payment when you get what you wanted." 
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />
