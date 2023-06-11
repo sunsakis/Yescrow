@@ -4,8 +4,9 @@ pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract Escrow {
+contract Escrow is ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     /*==============================================================
@@ -34,12 +35,8 @@ contract Escrow {
         DepositType depositType;
         /// @notice Seller release request
         bool releaseRequested;
-        /// @notice Seller release approved
-        bool releaseApproved;
         /// @notice Depositor cancel request
         bool cancelRequested;
-        /// @notice Deposit cancellation approved
-        bool cancelApproved;
         /// @notice Whether the deposit has been cancelled
         bool cancelled;
         /// @notice Whether the deposit has been released
@@ -49,11 +46,11 @@ contract Escrow {
     /// @notice Contract owner
     address public owner;
 
-    /// @notice The current deposit ID
-    uint256 public currentId;
+    /// @notice Deposit ID counter
+    uint256 public depositId;
 
     /// @notice The arbitration fee
-    uint256 public arbitrationFee;
+    uint256 public fee;
 
     /// @notice Accrued fees in ETH
     uint256 public accruedFeesETH;
@@ -76,45 +73,22 @@ contract Escrow {
         _;
     }
 
-    /// @notice Only non-released deposits can be released
-    /// @param _id The deposit ID
-    // modifier releaseGuard(uint256 _id) {
-    //     Deposit storage deposit = deposits[_id];
-    //     if (deposit.buyer == address(0)) {
-    //         revert DepositDoesNotExist();
-    //     }
-
-    //     if (deposit.released == true) {
-    //         revert AlreadyReleased();
-    //     }
-
-    //     if (deposit.cancelled == true) {
-    //         revert DepositCancelled();
-    //     }
-    //     _;
-    // }
-
-    modifier nonEmptySeller(address _seller) {
-        if (_seller == address(0)) {
-            revert SellerAddressEmpty();
-        }
-        _;
-    }
-
     /*==============================================================
                             FUNCTIONS
     ==============================================================*/
 
     constructor() {
         owner = msg.sender;
-        arbitrationFee = 5_000;
+        fee = 5_000;
     }
 
     /// @notice Creates a new ETH deposit
     /// @param _seller The seller address
-    function createDepositETH(
-        address _seller
-    ) external payable nonEmptySeller(_seller) {
+    function createDepositETH(address _seller) external payable {
+        if (_seller == address(0)) {
+            revert SellerAddressEmpty();
+        }
+
         if (msg.value == 0) {
             revert DepositAmountZero();
         }
@@ -124,9 +98,9 @@ contract Escrow {
         deposit.seller = _seller;
         deposit.amount = msg.value;
         deposit.depositType = DepositType.ETH;
-        deposits[++currentId] = deposit;
+        deposits[++depositId] = deposit;
 
-        emit NewDepositETH(currentId, msg.sender, _seller, msg.value);
+        emit NewDepositETH(depositId, msg.sender, _seller, msg.value);
     }
 
     /// @notice Creates a new ERC20 deposit
@@ -137,7 +111,11 @@ contract Escrow {
         address _seller,
         address _token,
         uint256 _amount
-    ) external nonEmptySeller(_seller) {
+    ) external {
+        if (_seller == address(0)) {
+            revert SellerAddressEmpty();
+        }
+
         if (_token == address(0)) {
             revert TokenAddressEmpty();
         }
@@ -152,11 +130,11 @@ contract Escrow {
         deposit.amount = _amount;
         deposit.token = _token;
         deposit.depositType = DepositType.ERC20;
-        deposits[++currentId] = deposit;
+        deposits[++depositId] = deposit;
 
         IERC20(_token).safeTransferFrom(msg.sender, address(this), _amount);
 
-        emit NewDepositERC20(currentId, msg.sender, _seller, _token, _amount);
+        emit NewDepositERC20(depositId, msg.sender, _seller, _token, _amount);
     }
 
     /// @notice Creates a new ERC721 deposit
@@ -167,7 +145,11 @@ contract Escrow {
         address _seller,
         address _token,
         uint256[] calldata _tokenIds
-    ) external nonEmptySeller(_seller) {
+    ) external {
+        if (_seller == address(0)) {
+            revert SellerAddressEmpty();
+        }
+
         if (_token == address(0)) {
             revert TokenAddressEmpty();
         }
@@ -182,7 +164,7 @@ contract Escrow {
         deposit.token = _token;
         deposit.tokenIds = _tokenIds;
         deposit.depositType = DepositType.ERC721;
-        deposits[++currentId] = deposit;
+        deposits[++depositId] = deposit;
 
         uint256 length = _tokenIds.length;
         for (uint256 i = 0; i < length; ++i) {
@@ -194,7 +176,7 @@ contract Escrow {
         }
 
         emit NewDepositERC721(
-            currentId,
+            depositId,
             msg.sender,
             _seller,
             _token,
@@ -202,136 +184,183 @@ contract Escrow {
         );
     }
 
-    function releaseDeposit(uint256 _id) external {
+    /// @notice Approves the deposit release
+    /// @param _id The deposit ID
+    function release(uint256 _id) external {
         Deposit storage deposit = deposits[_id];
         if (deposit.buyer == address(0)) {
             revert DepositDoesNotExist();
-        }
-
-        if (deposit.released == true) {
-            revert AlreadyReleased();
-        }
-
-        if (deposit.cancelled == true) {
-            revert DepositCancelled();
         }
 
         if (deposit.buyer != msg.sender) {
             revert OnlyBuyer();
         }
 
-        deposit.releaseApproved = true;
+        deposit.released = true;
 
-        emit ReleaseApproved(_id);
+        emit Released(_id);
     }
 
-    function withdrawDeposit(uint256 _id) external {
+    /// @notice Approves the deposit cancellation
+    /// @param _id The deposit ID
+    function cancel(uint256 _id) external nonReentrant {
         Deposit storage deposit = deposits[_id];
+        if (deposit.buyer == address(0)) {
+            revert DepositDoesNotExist();
+        }
+
+        if (deposit.buyer != msg.sender) {
+            revert OnlyBuyer();
+        }
+
+        if (!deposit.cancelled) {
+            revert CancelNotApproved();
+        }
+
+        _transferDeposit(_id);
+
+        emit Cancelled(_id);
+    }
+
+    /// @notice Releases the deposit to the seller & sends ETH/ERC20/NFTs
+    /// @param _id The deposit ID
+    function withdraw(uint256 _id) external nonReentrant {
+        Deposit memory deposit = deposits[_id];
         if (deposit.seller == address(0)) {
             revert DepositDoesNotExist();
+        }
+
+        if (!deposit.released) {
+            revert ReleaseNotApproved();
         }
 
         if (deposit.seller != msg.sender) {
             revert OnlySeller();
         }
 
-        if (deposit.releaseApproved != true) {
-            revert ReleaseNotApproved();
-        }
-
-        if (deposit.depositType == DepositType.ETH) {
-            _releaseDepositETH(msg.sender, deposit.amount);
-        } else if (deposit.depositType == DepositType.ERC20) {
-            _releaseDepositERC20(msg.sender, deposit.token, deposit.amount);
-        } else if (deposit.depositType == DepositType.ERC721) {
-            _releaseDepositERC721(msg.sender, deposit.token, deposit.tokenIds);
-        }
-
-        delete deposits[_id];
+        _transferDeposit(_id);
     }
-
+    
+    /// @notice Requests the cancellation of the deposit
+    /// @param _id The deposit ID
     function requestCancel(uint256 _id) external {
         Deposit storage deposit = deposits[_id];
         if (deposit.buyer == address(0)) {
             revert DepositDoesNotExist();
         }
 
-        if (deposit.cancelled == true) {
-            revert AlreadyCancelled();
-        }
-
-        if (deposit.released == true) {
-            revert AlreadyReleased();
-        }
-
         if (deposit.buyer != msg.sender) {
             revert OnlyBuyer();
         }
 
-        deposit.cancelRequested = true;
-
-        // TODO: add event
-    }
-
-    function requestRelease(uint256 _id) external {
-        Deposit storage deposit = deposits[_id];
-        if (deposit.buyer == address(0)) {
-            revert DepositDoesNotExist();
-        }
-
         if (deposit.released == true) {
-            revert AlreadyReleased();
+            revert DepositReleased();
         }
 
         if (deposit.cancelled == true) {
             revert DepositCancelled();
         }
 
+        deposit.cancelRequested = true;
+
+        emit CancelRequested(_id);
+    }
+
+    /// @notice Requests the release of the deposit to the seller
+    /// @param _id The deposit ID
+    function requestRelease(uint256 _id) external {
+        Deposit storage deposit = deposits[_id];
+        if (deposit.buyer == address(0)) {
+            revert DepositDoesNotExist();
+        }
+
         if (deposit.seller != msg.sender) {
             revert OnlySeller();
         }
 
+        if (deposit.released) {
+            revert DepositReleased();
+        }
+
+        if (deposit.cancelled) {
+            revert DepositCancelled();
+        }
+
         deposit.releaseRequested = true;
+
+        emit ReleaseRequested(_id);
     }
 
+    /// @notice Approves the cancellation of the deposit to the buyer
+    /// @param _id The deposit ID
     function approveCancel(uint256 _id) external onlyOwner {
-        Deposit storage deposit = deposits[_id];
-        deposit.cancelled = true;
+        deposits[_id].cancelled = true;
     }
 
+    /// @notice Approves the release of the deposit to the seller
+    /// @param _id The deposit ID
     function approveRelease(uint256 _id) external onlyOwner {
-        Deposit storage deposit = deposits[_id];
-        deposit.releaseApproved = true;
+        deposits[_id].released = true;
+    }
+
+    /// @notice Transfers the deposit to the seller or buyer,
+    /// @notice depending whether it was released or cancelled.
+    /// @param _id The deposit ID
+    function _transferDeposit(uint256 _id) internal {
+        Deposit memory deposit = deposits[_id];
+
+        bool applyFee = (deposit.cancelled && deposit.cancelRequested) ||
+            (deposit.released && deposit.releaseRequested);
+
+        uint256 transferAmount = deposit.amount;
+        uint256 feeAmount = 0;
+        if (applyFee) {
+            feeAmount = (transferAmount * fee) / 100_000;
+        }
+
+        DepositType depositType = deposit.depositType;
+
+        if (depositType == DepositType.ETH) {
+            _transferDepositETH(transferAmount);
+
+            if (feeAmount > 0) {
+                accruedFeesETH += feeAmount;
+            }
+        } else if (depositType == DepositType.ERC20) {
+            _transferDepositERC20(deposit.token, transferAmount);
+
+            if (feeAmount > 0) {
+                accruedFeesERC20[deposit.token] += feeAmount;
+            }
+        } else if (depositType == DepositType.ERC721) {
+            _transferDepositERC721(deposit.token, deposit.tokenIds);
+        }
+
+        delete deposits[_id];
+
+        emit Released(_id);
     }
 
     /// @notice Allows the buyer to release the ETH deposit
-    /// @param _seller The seller address
     /// @param _amount The amount of ETH
-    function _releaseDepositETH(address _seller, uint256 _amount) internal {
-        (bool success, ) = payable(_seller).call{value: _amount}("");
+    function _transferDepositETH(uint256 _amount) internal {
+        (bool success, ) = payable(msg.sender).call{value: _amount}("");
         if (!success) {
-            revert FailedToSendReleasedETH();
+            revert FailedEthTransfer();
         }
     }
 
     /// @notice Allows the buyer to release the ERC20 deposit
-    /// @param _seller The seller address
     /// @param _token The token address
     /// @param _amount The amount of tokens
-    function _releaseDepositERC20(
-        address _seller,
-        address _token,
-        uint256 _amount
-    ) internal {
-        IERC20(_token).safeTransfer(_seller, _amount);
+    function _transferDepositERC20(address _token, uint256 _amount) internal {
+        IERC20(_token).safeTransfer(msg.sender, _amount);
     }
 
     /// @notice Allows the buyer to release the ERC721 deposit
-    /// @param _seller The seller address
     /// @param _token The token address
     /// @param _tokenIds The token IDs
-    function _releaseDepositERC721(
-        address _seller,
+    function _transferDepositERC721(
         address _token,
         uint256[] memory _tokenIds
     ) internal {
@@ -339,7 +368,7 @@ contract Escrow {
         for (uint256 i = 0; i < length; ++i) {
             IERC721(_token).safeTransferFrom(
                 address(this),
-                _seller,
+                msg.sender,
                 _tokenIds[i]
             );
         }
@@ -357,7 +386,7 @@ contract Escrow {
 
         (bool success, ) = payable(_to).call{value: feesToTransfer}("");
         if (!success) {
-            revert FailedToSendWithdrawnETH();
+            revert FailedEthTransfer();
         }
     }
 
@@ -379,6 +408,8 @@ contract Escrow {
     /// @param _newOwner The new owner address
     function changeOwner(address _newOwner) external onlyOwner {
         owner = _newOwner;
+
+        emit OwnerChanged(_newOwner);
     }
 
     /// @notice Allows the contract to receive ERC721 tokens
@@ -396,25 +427,25 @@ contract Escrow {
     ==============================================================*/
 
     /// @notice Emitted when a new deposit is created
-    /// @param currentId The current deposit id
+    /// @param depositId The current deposit id
     /// @param buyer The buyer address
     /// @param seller The seller address
     /// @param amount The amount of the deposit
     event NewDepositETH(
-        uint256 indexed currentId,
+        uint256 indexed depositId,
         address indexed buyer,
         address indexed seller,
         uint256 amount
     );
 
     /// @notice Emitted when a new deposit is created
-    /// @param currentId The current deposit id
+    /// @param depositId The current deposit id
     /// @param buyer The buyer address
     /// @param seller The seller address
     /// @param token The token address
     /// @param amount The amount of the deposit
     event NewDepositERC20(
-        uint256 indexed currentId,
+        uint256 indexed depositId,
         address indexed buyer,
         address indexed seller,
         address token,
@@ -422,13 +453,13 @@ contract Escrow {
     );
 
     /// @notice Emitted when a new deposit is created
-    /// @param currentId The current deposit id
+    /// @param depositId The current deposit id
     /// @param buyer The buyer address
     /// @param seller The seller address
     /// @param token The token address
     /// @param tokenIds The token ids
     event NewDepositERC721(
-        uint256 indexed currentId,
+        uint256 indexed depositId,
         address indexed buyer,
         address indexed seller,
         address token,
@@ -438,6 +469,26 @@ contract Escrow {
     /// @notice Emitted when a deposit is released
     /// @param id Deposit id
     event ReleaseApproved(uint256 indexed id);
+
+    /// @notice Emitted when a deposit release is requested
+    /// @param id Deposit id
+    event ReleaseRequested(uint256 indexed id);
+
+    /// @notice Emitted when a deposit is cancelled
+    /// @param id Deposit id
+    event CancelRequested(uint256 indexed id);
+
+    /// @notice Emitted when a deposit is released
+    /// @param id Deposit id
+    event Released(uint256 indexed id);
+
+    /// @notice Emitted when a deposit is cancelled
+    /// @param id Deposit id
+    event Cancelled(uint256 indexed id);
+
+    /// @notice Emitted when the owner is changed
+    /// @param newOwner The new owner address
+    event OwnerChanged(address indexed newOwner);
 
     /*==============================================================
                             ERRORS
@@ -455,11 +506,13 @@ contract Escrow {
 
     error DepositCancelled();
 
-    error AlreadyReleased();
+    error DepositReleased();
 
-    error FailedToSendReleasedETH();
+    error AlreadyCancelled();
 
-    error FailedToSendWithdrawnETH();
+    error CancelNotApproved();
+
+    error FailedEthTransfer();
 
     error NoFeesAccrued();
 
