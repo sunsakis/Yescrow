@@ -37,10 +37,6 @@ contract Escrow is ReentrancyGuard {
         bool releaseRequested;
         /// @notice Depositor cancel request
         bool cancelRequested;
-        /// @notice Whether the deposit has been cancelled
-        bool cancelled;
-        /// @notice Whether the deposit has been released
-        bool released;
     }
 
     /// @notice Contract owner
@@ -257,18 +253,15 @@ contract Escrow is ReentrancyGuard {
     /// @param _to The address to transfer the deposit to
     function _transferDeposit(uint256 _id, address _to) internal {
         Deposit memory deposit = deposits[_id];
-
-        bool applyFee = (deposit.cancelled && deposit.cancelRequested) ||
-            (deposit.released && deposit.releaseRequested);
-
+        bool applyFee = deposit.cancelRequested || deposit.releaseRequested;
         uint256 transferAmount = deposit.amount;
         uint256 feeAmount = 0;
+
         if (applyFee) {
             feeAmount = (transferAmount * fee) / 100_000;
         }
 
         DepositType depositType = deposit.depositType;
-
         if (depositType == DepositType.ETH) {
             _transferDepositETH(transferAmount, _to);
 
@@ -416,10 +409,6 @@ contract Escrow is ReentrancyGuard {
         address token,
         uint256[] tokenIds
     );
-
-    /// @notice Emitted when a deposit is released
-    /// @param id Deposit id
-    event ReleaseApproved(uint256 indexed id);
 
     /// @notice Emitted when a deposit release is requested
     /// @param id Deposit id
