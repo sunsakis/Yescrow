@@ -184,7 +184,7 @@ contract Escrow is ReentrancyGuard {
         );
     }
 
-    /// @notice Approves the deposit release
+    /// @notice Approves deposit release to the seller
     /// @param _id The deposit ID
     function release(uint256 _id) external {
         Deposit storage deposit = deposits[_id];
@@ -196,51 +196,11 @@ contract Escrow is ReentrancyGuard {
             revert OnlyBuyer();
         }
 
-        deposit.released = true;
+        _transferDeposit(_id, deposit.seller);
 
         emit Released(_id);
     }
 
-    /// @notice Approves the deposit cancellation
-    /// @param _id The deposit ID
-    function cancel(uint256 _id) external nonReentrant {
-        Deposit storage deposit = deposits[_id];
-        if (deposit.buyer == address(0)) {
-            revert DepositDoesNotExist();
-        }
-
-        if (deposit.buyer != msg.sender) {
-            revert OnlyBuyer();
-        }
-
-        if (!deposit.cancelled) {
-            revert CancelNotApproved();
-        }
-
-        _transferDeposit(_id);
-
-        emit Cancelled(_id);
-    }
-
-    /// @notice Releases the deposit to the seller & sends ETH/ERC20/NFTs
-    /// @param _id The deposit ID
-    function withdraw(uint256 _id) external nonReentrant {
-        Deposit memory deposit = deposits[_id];
-        if (deposit.seller == address(0)) {
-            revert DepositDoesNotExist();
-        }
-
-        if (!deposit.released) {
-            revert ReleaseNotApproved();
-        }
-
-        if (deposit.seller != msg.sender) {
-            revert OnlySeller();
-        }
-
-        _transferDeposit(_id);
-    }
-    
     /// @notice Requests the cancellation of the deposit
     /// @param _id The deposit ID
     function requestCancel(uint256 _id) external {
@@ -255,10 +215,6 @@ contract Escrow is ReentrancyGuard {
 
         if (deposit.released == true) {
             revert DepositReleased();
-        }
-
-        if (deposit.cancelled == true) {
-            revert DepositCancelled();
         }
 
         deposit.cancelRequested = true;
@@ -278,14 +234,6 @@ contract Escrow is ReentrancyGuard {
             revert OnlySeller();
         }
 
-        if (deposit.released) {
-            revert DepositReleased();
-        }
-
-        if (deposit.cancelled) {
-            revert DepositCancelled();
-        }
-
         deposit.releaseRequested = true;
 
         emit ReleaseRequested(_id);
@@ -294,19 +242,24 @@ contract Escrow is ReentrancyGuard {
     /// @notice Approves the cancellation of the deposit to the buyer
     /// @param _id The deposit ID
     function approveCancel(uint256 _id) external onlyOwner {
-        deposits[_id].cancelled = true;
+        _transferDeposit(_id, deposits[_id].buyer);
+
+        emit Cancelled(_id);
     }
 
     /// @notice Approves the release of the deposit to the seller
     /// @param _id The deposit ID
     function approveRelease(uint256 _id) external onlyOwner {
-        deposits[_id].released = true;
+        _transferDeposit(_id, deposits[_id].seller);
+
+        emit Released(_id);
     }
 
     /// @notice Transfers the deposit to the seller or buyer,
     /// @notice depending whether it was released or cancelled.
     /// @param _id The deposit ID
-    function _transferDeposit(uint256 _id) internal {
+    /// @param _to The address to transfer the deposit to
+    function _transferDeposit(uint256 _id, address _to) internal {
         Deposit memory deposit = deposits[_id];
 
         bool applyFee = (deposit.cancelled && deposit.cancelRequested) ||
@@ -321,30 +274,29 @@ contract Escrow is ReentrancyGuard {
         DepositType depositType = deposit.depositType;
 
         if (depositType == DepositType.ETH) {
-            _transferDepositETH(transferAmount);
+            _transferDepositETH(transferAmount, _to);
 
             if (feeAmount > 0) {
                 accruedFeesETH += feeAmount;
             }
         } else if (depositType == DepositType.ERC20) {
-            _transferDepositERC20(deposit.token, transferAmount);
+            _transferDepositERC20(deposit.token, transferAmount, _to);
 
             if (feeAmount > 0) {
                 accruedFeesERC20[deposit.token] += feeAmount;
             }
         } else if (depositType == DepositType.ERC721) {
-            _transferDepositERC721(deposit.token, deposit.tokenIds);
+            _transferDepositERC721(deposit.token, deposit.tokenIds, _to);
         }
 
         delete deposits[_id];
-
-        emit Released(_id);
     }
 
     /// @notice Allows the buyer to release the ETH deposit
     /// @param _amount The amount of ETH
-    function _transferDepositETH(uint256 _amount) internal {
-        (bool success, ) = payable(msg.sender).call{value: _amount}("");
+    /// @param _to The address to transfer the ETH to
+    function _transferDepositETH(uint256 _amount, address _to) internal {
+        (bool success, ) = payable(_to).call{value: _amount}("");
         if (!success) {
             revert FailedEthTransfer();
         }
@@ -353,24 +305,27 @@ contract Escrow is ReentrancyGuard {
     /// @notice Allows the buyer to release the ERC20 deposit
     /// @param _token The token address
     /// @param _amount The amount of tokens
-    function _transferDepositERC20(address _token, uint256 _amount) internal {
-        IERC20(_token).safeTransfer(msg.sender, _amount);
+    /// @param _to The address to transfer the tokens to
+    function _transferDepositERC20(
+        address _token,
+        uint256 _amount,
+        address _to
+    ) internal {
+        IERC20(_token).safeTransfer(_to, _amount);
     }
 
     /// @notice Allows the buyer to release the ERC721 deposit
     /// @param _token The token address
     /// @param _tokenIds The token IDs
+    /// @param _to The address to transfer the tokens to
     function _transferDepositERC721(
         address _token,
-        uint256[] memory _tokenIds
+        uint256[] memory _tokenIds,
+        address _to
     ) internal {
         uint256 length = _tokenIds.length;
         for (uint256 i = 0; i < length; ++i) {
-            IERC721(_token).safeTransferFrom(
-                address(this),
-                msg.sender,
-                _tokenIds[i]
-            );
+            IERC721(_token).safeTransferFrom(address(this), _to, _tokenIds[i]);
         }
     }
 
