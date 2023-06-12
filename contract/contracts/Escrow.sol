@@ -213,10 +213,6 @@ contract Escrow is ReentrancyGuard {
             revert OnlyBuyer();
         }
 
-        if (deposit.released == true) {
-            revert DepositReleased();
-        }
-
         deposit.cancelRequested = true;
 
         emit CancelRequested(_id);
@@ -455,17 +451,7 @@ contract Escrow is ReentrancyGuard {
 
     error OnlySeller();
 
-    error ReleaseNotApproved();
-
     error DepositDoesNotExist();
-
-    error DepositCancelled();
-
-    error DepositReleased();
-
-    error AlreadyCancelled();
-
-    error CancelNotApproved();
 
     error FailedEthTransfer();
 
@@ -478,12 +464,4 @@ contract Escrow is ReentrancyGuard {
     error TokenAddressEmpty();
 
     error SellerAddressEmpty();
-
-    error FailedToTransferERC20();
-
-    error FailedToTransferERC721();
-
-    error FailedToSendReleasedERC20();
-
-    error FailedToSendReleasedERC721();
 }
