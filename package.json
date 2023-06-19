@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
+    "@socialgouv/matomo-next": "^1.6.1",
     "@thirdweb-dev/react": "^3.11.11",
     "@thirdweb-dev/sdk": "^3.10.14",
     "babel-plugin-macros": "^3.1.0",
