@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Web3Button } from '@thirdweb-dev/react';
 import { Interface, FormatTypes } from 'ethers/lib/utils';
 import styles from '../styles/Home.module.css';
+import SendEmail from './sendEmail';
+
 
 const humanReadableABI = [
   "function createDepositETH(address _seller) external payable",
@@ -31,15 +33,28 @@ export default function EthEscrowForm() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, humanReadableABI, signer);
-    alert("Escrow created! Wait for the transaction to be mined. You are one of our first customers and will receive an airdrop.");
+    var _email = prompt("Escrow created! Wait for the transaction to be mined. Congratulations, you are one of the first users of the protocol. ;) \n If you write down your email, you can get all the details sent there. \n Otherwise, wait a minute for a pop-up with your relevant info.");
     try {
-      contract.once("NewDepositETH", (counter, buyerAddress, sellerAddress, depositAmount, event) => {
+      await fetch("/api/sendgrid", {
+        body: JSON.stringify({
+          message: _email,
+          amount: _amount,
+          seller: _seller,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
+    } catch (error) {console.log(error);
+    }
+    try {
+      contract.once("NewDepositETH", (counter, depositor, receiver, depositAmount, event) => {
           alert(
-            "Buyer address: "+buyerAddress,
-            "Seller address: "+sellerAddress,
-            "Escrow amount: "+JSON.stringify(depositAmount.toString()),
-            "Escrow ID: "+counter,
-            "Transaction hash: "+event.transactionHash);   
+            "Your escrow ID which you will need to release the escrow is "+counter+
+            "Escrow amount: "+JSON.stringify(depositAmount.toString())+
+            "Transaction hash: "+event.transactionHash); 
+            
       })
     } catch (error) {console.log(error)};
   }
@@ -49,7 +64,7 @@ export default function EthEscrowForm() {
               <div>
                 <label>Stranger`s Ethereum address:</label>
                 <br/>
-                <input class="text-center rounded-xl mt-2 max-w-xs"
+                <input class="text-center rounded-xl mt-2 max-w-xs sm:max-w-md"
                   type="text" 
                   placeholder="0x..."
                   required
@@ -64,7 +79,7 @@ export default function EthEscrowForm() {
                 <br/>
                 <div class="text-center">
                 <input
-                  class="rounded-xl mt-2 mb-1 px-32 text-center max-w-xs"
+                  class="rounded-xl mt-2 mb-2 text-center max-w-xs sm:max-w-md"
                   type="number" 
                   placeholder="Ξ0.00" 
                   step="any"
@@ -77,7 +92,7 @@ export default function EthEscrowForm() {
                 contractAddress={process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
                 contractAbi={jsonABI}
                 action={async (contract) => { await contract.call("createDepositETH", [_seller], { value: ethers.utils.parseEther(_amount) })}}
-                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message crow@yescrow.io for guidance.")}
+                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message escrow@yescrow.io for guidance.")}
                 onSuccess={() => eventListener()}
                 className={styles.btn}
                 >

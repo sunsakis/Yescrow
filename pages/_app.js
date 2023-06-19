@@ -4,7 +4,10 @@ import { Ethereum, Sepolia } from "@thirdweb-dev/chains";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThirdwebProvider activeChain={Ethereum}>
+    <ThirdwebProvider 
+      activeChain={Ethereum}
+      supportedChains={[Ethereum, Sepolia]}
+    >
       <Component {...pageProps} />
     </ThirdwebProvider>
   );

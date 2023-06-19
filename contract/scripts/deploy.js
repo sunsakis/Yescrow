@@ -18,6 +18,7 @@ main()
     process.exit(1);
   });
 
+// DEPLOYMENT WITHOUT LEDGER
 // const { ethers } = require("hardhat");
 
 // async function main() {

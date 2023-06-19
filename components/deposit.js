@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import EthEscrowForm from './ethDeposit';
 import UsdtEscrowForm from './usdtDeposit';
 import UsdcEscrowForm from './usdcDeposit';
-import NftEscrowForm from './nftDeposit';
 import Erc20EscrowForm from './erc20Deposit';
 import Image from 'next/image';
 

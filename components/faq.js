@@ -181,7 +181,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yes Crow is a decentralized service - 2 out of 3 signatures are needed to change the receiver. The depositor, the receiver and Yes Crow each have one signature.
+                                Yes, it is a decentralized service - 2 out of 3 signatures are needed to change the receiver. The depositor, the receiver and Yes Crow each have one signature.
                                 </p>
                             </div>
                         </div>
@@ -286,7 +286,7 @@ export default function Faq() {
                                         rel="nofollow"
                                         target="_blank"
                                         class="text-matrix"> Macro
-                                    </Link> - a leading blockchain security firm. Emails are encrypted and data is stored in Switzerland.
+                                    </Link> - a leading blockchain security firm. Emails are encrypted, data is stored in Western Europe.
                                 </p>
                             </div>
                         </div>

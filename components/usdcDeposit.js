@@ -84,7 +84,7 @@ export default function EscrowForm() {
               <div>
                 <label>Stranger`s Ethereum address:</label>
                 <br/>
-                <input class="text-center rounded-xl mt-2 max-w-xs"
+                <input class="text-center rounded-xl mt-2 max-w-xs sm:max-w-md"
                   type="text" 
                   placeholder="0x..."
                   required
@@ -99,7 +99,7 @@ export default function EscrowForm() {
                 <br/>
                 <div class="text-center">
                 <input
-                  class="rounded-xl mt-2 mb-1 px-32 text-center max-w-xs"
+                  class="rounded-xl mt-2 mb-2 text-center max-w-xs sm:max-w-md"
                   type="number" 
                   placeholder="$0.00" 
                   step="any"
@@ -113,7 +113,7 @@ export default function EscrowForm() {
                 contractAbi={jsonABI}
                 action={() => {
                   blockchainTalk()}}
-                onError={() => alert("Make sure to fill out the fields properly and have enough ETH and USDC in the wallet. Message crow@yescrow.io for guidance.")}
+                onError={() => alert("Make sure to fill out the fields properly and have enough ETH and USDC in the wallet. Message escrow@yescrow.io for guidance.")}
                 onSuccess={() => eventListener()}
                 className={styles.btn}
                 >

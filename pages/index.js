@@ -8,6 +8,20 @@ import Faq from '../components/faq';
 
 export default function Home() {
 
+  function addMatomo() {
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://yescrow.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/yescrow.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  }
+
   function addWebsiteJsonLd() {
     return {
       __html: `{
@@ -88,8 +102,9 @@ export default function Home() {
           type="application/ld+json"
           dangerouslySetInnerHTML={addWebsiteJsonLd()}
           key="website-jsonld"
+          extremelyPrivateMatomo={addMatomo()}
         />
-        <title>Yes Crow - people`s multisig crypto escrow, finally. Open source, decentralized, free.</title>
+        <title>Yes Crow - a blockchain-native escrow agent. Open source, decentralized, free.</title>
         <meta 
           name="description" 
           content="Transact with strangers online without worries. Self-release the payment when you get what you wanted." 
@@ -98,6 +113,7 @@ export default function Home() {
           />
         <link rel="canonical" href="https://yescrow.io" />
         <link rel="icon" href="/white_vector_crow.svg" />
+        
       </Head>
         <Header />
         <main>
