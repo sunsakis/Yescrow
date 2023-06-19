@@ -11,8 +11,6 @@ export default function Home() {
   function addMatomo() {
     return {
       __html: `
-      <!-- Matomo -->
-      <script type="text/javascript">
         var _paq = window._paq = window._paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
         _paq.push(["setCookieDomain", "*.yescrow.io"]);
@@ -25,8 +23,6 @@ export default function Home() {
           var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
           g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
         })();
-      </script>
-      <!-- End Matomo Code -->
       `,
     };
   }
@@ -108,7 +104,7 @@ export default function Home() {
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
         <script
-          type="application/ld+json"
+          type="text/javascript"
           dangerouslySetInnerHTML={addMatomo()}
           key="website-jsonld"
         />
