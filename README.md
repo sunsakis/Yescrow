@@ -1,8 +1,10 @@
-# Yes Crow - your multisig escrow dApp
+# Yes Crow - Ethereum's Escrow Agent
 
-Transact with strangers online without worries. In case of a quarrel, Yes Crow acts as an arbitre. 
+Transact with strangers online without worries.
 
 0 escrow fees. Self-released. Goodbye legacy escrow services.
+
+In case of a quarrel, Yes Crow acts as an arbitre. 
 
 **Less scams = More fun**
 
@@ -34,6 +36,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 escrow@yescrow.io
 
-<a href="t.me/sunsakis">Telegram</a>
-
-<a href="twitter.com/yescrowio">Twitter</a>
+<a href="twitter.com/theyescrow">Twitter</a>
