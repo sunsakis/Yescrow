@@ -4,6 +4,7 @@ import Header from '../components/header';
 import Image from 'next/image';
 import EscrowForm from '../components/deposit';
 import Faq from '../components/faq';
+import Script from 'next/script';
 
 
 export default function Home() {
@@ -100,15 +101,15 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <script
+        <Script
           type="text/javascript"
           dangerouslySetInnerHTML={addMatomo()}
           key="website-jsonld"
         />
-        <title>Yes Crow - a blockchain-native escrow agent. Open source, decentralized, free.</title>
+        <title>Deal with online strangers | Ethereum escrow dApp</title>
         <meta 
           name="description" 
-          content="Transact with strangers online without worries. Self-release the payment when you get what you wanted." 
+          content="Trust internet strangers without worries. Self-release the payment when you get what you wanted. Get your money back if you are unhappy with the transaction." 
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />

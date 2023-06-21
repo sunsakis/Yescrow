@@ -20,7 +20,7 @@ const iface = new Interface(humanReadableABI);
 const jsonABI = iface.format(FormatTypes.json);
 
 export default function EscrowForm() {
-  const [_tokenAmount, setAmount] = useState("");
+  const [_amount, setAmount] = useState("");
   const [_seller, setSellerAddress] = useState("");
 
   function handleAmountChange(e) {
@@ -42,7 +42,7 @@ export default function EscrowForm() {
     );
     const approveTx = await contract.approve(
       process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
-      ethers.utils.parseUnits(_tokenAmount, 6)
+      ethers.utils.parseUnits(_amount)
     );
     await approveTx.wait();
     const escrowContract = new ethers.Contract(
@@ -53,9 +53,10 @@ export default function EscrowForm() {
     const escrowTx = await escrowContract.createDepositERC20(
       _seller,
       ERC20Address,
-      ethers.utils.parseUnits(_tokenAmount, 6)
+      ethers.utils.parseUnits(_amount, 6)
     );
     await escrowTx.wait();
+
     } catch (e) {
       console.log(e);
     }
@@ -66,7 +67,6 @@ export default function EscrowForm() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, humanReadableABI, signer);
-    alert("Escrow created! Wait for the transaction to be mined. You are one of our first customers and will receive an airdrop.");
     try {
       contract.once("NewDepositERC20", (counter, buyerAddress, sellerAddress, depositAmount, event) => {
           alert(
@@ -111,8 +111,10 @@ export default function EscrowForm() {
                 <Web3Button 
                 contractAddress={process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
                 contractAbi={jsonABI}
-                action={() => {
-                  blockchainTalk()}}
+                action={async () => {
+                  await blockchainTalk()
+                }
+                }
                 onError={() => alert("Make sure to fill out the fields properly and have enough ETH and USDC in the wallet. Message escrow@yescrow.io for guidance.")}
                 onSuccess={() => eventListener()}
                 className={styles.btn}

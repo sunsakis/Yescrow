@@ -227,7 +227,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                If the designated receiver does not contact us within 90 days to claim the funds, the depositor is then allowed to withdraw them to any other Ethereum address. 
+                                If the designated receiver does not contact us within 90 days to claim the funds, the depositor is then allowed to withdraw them. 
                                 </p>
                             </div>
                         </div>

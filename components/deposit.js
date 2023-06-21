@@ -32,7 +32,7 @@ export default function EscrowForm() {
 
   return (
     <div class="rounded-3xl pt-3 pb-2 text-center bg-[#161618]">
-        <h2 class="font-bold text-xl">Which crypto would you like to send?</h2>
+        <h2 class="font-bold text-xl">Which Ethereum token would you like to send?</h2>
         <br />
         <div>
           <ul>
@@ -44,7 +44,7 @@ export default function EscrowForm() {
                   width="48" 
                   height="48" 
                   alt="Ethereum logo">
-                </Image> Ethereum
+                </Image> Ether
               </li></button>
             <button 
               class={`${borderUsdt} m-3 border-matrix bg-[#3B3B3B] rounded-xl py-3 px-3 font-bold hover:text-green-500 hover:border-green-500`} 
