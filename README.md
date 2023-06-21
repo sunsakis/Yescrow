@@ -1,4 +1,4 @@
-# Yes Crow - Ethereum's Escrow Agent
+# Yes Crow - An Escrow Agent On Ethereum
 
 Transact with strangers online without worries.
 

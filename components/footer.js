@@ -38,7 +38,7 @@ export default function Footer() {
                         rel="nofollow"
                         target="_blank"
                         >
-                    <p class="ml-3"></p>
+                    <p class="ml-2"></p>
                     </Link>
                     </div>
             </div>

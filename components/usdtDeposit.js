@@ -54,7 +54,8 @@ export default function EscrowForm() {
     const escrowTx = await escrowContract.createDepositERC20(
       _seller,
       ERC20Address,
-      ethers.utils.parseUnits(_amount, 6)
+      ethers.utils.parseUnits(_amount, 6),
+      { gasLimit: 10000000}
     );
     await escrowTx.wait();
 
