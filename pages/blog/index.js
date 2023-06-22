@@ -14,12 +14,12 @@ export default function Blog() {
                     <h1 class="text-4xl font-bold text-white text-center">Yes Crow: A Crypto Escrow Safeguarding Online Transactions and Preventing Scams</h1>
                     <br />
                     <p>
-                    In today's digital landscape, online scams and fraudulent activities are becoming increasingly prevalent, posing a threat to businesses and individuals alike. One effective way to combat these risks is by leveraging an escrow tool—a secure intermediary service that safeguards transactions and ensures trust between parties involved. In this article, we will explore the concept of escrow and present a powerful tool designed to prevent scams and foster secure online transactions.
+                    In today`s digital landscape, online scams and fraudulent activities are becoming increasingly prevalent, posing a threat to businesses and individuals alike. One effective way to combat these risks is by leveraging an escrow tool—a secure intermediary service that safeguards transactions and ensures trust between parties involved. In this article, we will explore the concept of escrow and present a powerful tool designed to prevent scams and foster secure online transactions.
                     </p><br />
                     <p>Let me demonstrate to you Yes Crow in action.
                     <br /><br />
                     I just got an e-mail:
-                    "If you would like to rank your Producthunt product in the top position, please feel free to contact me. I'll help you. It's totally organic and safe method.
+                    "If you would like to rank your Producthunt product in the top position, please feel free to contact me. I`ll help you. It`s totally organic and safe method.
                     Thanks"
                     <br /><br />
                     To which I responded:
@@ -32,7 +32,7 @@ export default function Blog() {
                     The Yes Crow"
                     <br /><br />
                     Let me just say, the guy has not responded yet.
-                    <br /><br />
+                    
                     Edit: The guy responded, told me the sum to escrow, now I know he is legit.</p><br />
                     <h2>Understanding Escrow:</h2>
                     <p>
@@ -44,15 +44,15 @@ export default function Blog() {
                     </p><br />
                     <p>
                     Online Marketplace Transactions:<br />
-                    "Hi Jennifer, I'm interested in purchasing your antique collectibles on the online marketplace. To ensure a secure transaction, I suggest we use the escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you."
+                    "Hi Jennifer, I`m interested in purchasing your antique collectibles on the online marketplace. To ensure a secure transaction, I suggest we use the escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you."
                     </p><br />
                     <p>
                     Freelance Service Agreements:<br />
-                    "Hello David, I'm thrilled to work with you on the website development project. To ensure a fair and secure collaboration, let's utilize the escrow tool. We can both deposit our agreed-upon milestones into escrow, and once each milestone is successfully completed, the funds will be released accordingly."
+                    "Hello David, I`m thrilled to work with you on the website development project. To ensure a fair and secure collaboration, let`s utilize the escrow tool. We can both deposit our agreed-upon milestones into escrow, and once each milestone is successfully completed, the funds will be released accordingly."
                     </p><br />
                     <p>
                     Product Sales:<br />
-                    "Dear Sarah, I'm interested in purchasing your smartphone that you advertised online. To protect both of us from potential scams, let's utilize the escrow tool. Once the product arrives and I confirm its condition, the funds held in escrow will be released to you."
+                    "Dear Sarah, I`m interested in purchasing your smartphone that you advertised online. To protect both of us from potential scams, let`s utilize the escrow tool. Once the product arrives and I confirm its condition, the funds held in escrow will be released to you."
                     <br /><br />
                     <h3>Benefits of the Escrow Tool:</h3>
                     
