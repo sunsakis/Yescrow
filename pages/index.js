@@ -101,11 +101,6 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <Script
-          type="text/javascript"
-          dangerouslySetInnerHTML={addMatomo()}
-          key="website-jsonld"
-        />
         <title>Deal with online strangers | Ethereum escrow dApp</title>
         <meta 
           name="description" 
@@ -115,8 +110,13 @@ export default function Home() {
           />
         <link rel="canonical" href="https://yescrow.io" />
         <link rel="icon" href="/white_vector_crow.svg" />
-        
       </Head>
+      <Script
+          id="matomo"
+          type="text/javascript"
+          dangerouslySetInnerHTML={addMatomo()}
+          key="website-jsonld"
+        />
         <Header />
         <main>
         <div> 
