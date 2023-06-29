@@ -7,7 +7,7 @@ const { expect } = require("chai");
 
 const ONE_ETHER = ethers.utils.parseEther("1");
 
-describe("Escrow", function () {
+describe("Yescrow", function () {
   // We define a fixture to reuse the same setup in every test.
   // We use loadFixture to run this setup once, snapshot that state,
   // and reset Hardhat Network to that snapshot in every test.
@@ -16,7 +16,7 @@ describe("Escrow", function () {
     const [owner, depositor, receiver, otherAccount] =
       await ethers.getSigners();
 
-    const Escrow = await ethers.getContractFactory("Escrow");
+    const Escrow = await ethers.getContractFactory("Yescrow");
     const escrow = await Escrow.deploy();
 
     const ERC20 = await ethers.getContractFactory("TestERC20");
