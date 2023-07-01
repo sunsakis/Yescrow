@@ -23,9 +23,6 @@ const humanReadableERC20_ABI = [
   const iface = new Interface(humanReadableABI);
   const jsonABI = iface.format(FormatTypes.json);
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
-
 export default function EscrowForm() {
 
   const [_amount, setAmount] = useState("");
@@ -44,19 +41,22 @@ export default function EscrowForm() {
     setTokenAddress(e.target.value);
   }
 
-  const tokenContract = new ethers.Contract(
-    _tokenAddress,
-    humanReadableERC20_ABI,
-    signer
-  );
-
-  const escrowContract = new ethers.Contract(
-    process.env.NEXT_PUBLIC_MAINNET_V2,
-    humanReadableABI,
-    signer
-  );
-
   async function blockchainTalk() {
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    const tokenContract = new ethers.Contract(
+      _tokenAddress,
+      humanReadableERC20_ABI,
+      signer
+    );
+  
+    const escrowContract = new ethers.Contract(
+      process.env.NEXT_PUBLIC_MAINNET_V2,
+      humanReadableABI,
+      signer
+    );
 
     const ticker = await tokenContract.symbol();
     console.log(ticker);
@@ -70,7 +70,8 @@ export default function EscrowForm() {
         escrowContract.createDepositERC20(
         _seller,
         _tokenAddress,
-        ethers.utils.parseUnits(_amount)
+        ethers.utils.parseUnits(_amount),
+        {gasLimit: 250000}
         );
 
       escrowContract.on("NewDepositERC20", (counter, depositor, receiver, token, amount, event) => {

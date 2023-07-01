@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { Web3Button } from "@thirdweb-dev/react";
 import { Interface, FormatTypes } from "@ethersproject/abi";
@@ -25,14 +25,10 @@ const humanReadableERC20_ABI = [
   const iface = new Interface(humanReadableABI);
   const jsonABI = iface.format(FormatTypes.json);
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
-
 export default function EscrowForm() {
 
   const [_amount, setAmount] = useState("");
   const [_seller, setSellerAddress] = useState("");
-
 
   function handleAmountChange(e) {
     setAmount(e.target.value);
@@ -42,19 +38,22 @@ export default function EscrowForm() {
     setSellerAddress(e.target.value);
   }
 
-  const tokenContract = new ethers.Contract(
-    ERC20Address,
-    humanReadableERC20_ABI,
-    signer
-  );
-
-  const escrowContract = new ethers.Contract(
-    process.env.NEXT_PUBLIC_MAINNET_V2,
-    humanReadableABI,
-    signer
-  );
-
   async function blockchainTalk() {
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    const tokenContract = new ethers.Contract(
+      ERC20Address,
+      humanReadableERC20_ABI,
+      signer
+    );
+  
+    const escrowContract = new ethers.Contract(
+      process.env.NEXT_PUBLIC_MAINNET_V2,
+      humanReadableABI,
+      signer
+    );
 
     const ticker = await tokenContract.symbol();
     console.log(ticker);
@@ -68,7 +67,8 @@ export default function EscrowForm() {
         escrowContract.createDepositERC20(
         _seller,
         ERC20Address,
-        ethers.utils.parseUnits(_amount)
+        ethers.utils.parseUnits(_amount),
+        {gasLimit: 250000}
         );
 
       escrowContract.on("NewDepositERC20", (counter, depositor, receiver, token, amount, event) => {

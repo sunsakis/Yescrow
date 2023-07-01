@@ -33,6 +33,7 @@ export default function Table() {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_V2, humanReadableABI, signer);
+        
         const fetchData = async () => {
 
             const newDepositETH = await contract.queryFilter("NewDepositETH", 0, "latest");
