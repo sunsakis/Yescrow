@@ -36,4 +36,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 escrow@yescrow.io
 
-<a href="twitter.com/theyescrow">Twitter</a>
+<a href="https://twitter.com/theyescrow">Twitter</a>

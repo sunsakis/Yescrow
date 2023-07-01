@@ -12,13 +12,6 @@ export default function Footer() {
                     </code>
                 </p>
                 <div class="flex justify-center m-3">
-                    <Link
-                        href="https://twitter.com/theyescrow"
-                        rel="nofollow"
-                        target="_blank"
-                        >
-                    <p>Twitter</p>
-                    </Link>
                 <Link 
                         href="https://github.com/sunsakis/Yescrow"
                         rel="nofollow"
@@ -26,7 +19,7 @@ export default function Footer() {
                         >
                             <Image src=
                             "/github.png"
-                            class=" h-5 w-5 ml-2 bg-white rounded-full"
+                            class=" h-5 w-5 ml-3 rounded-lg bg-white"
                             width="54"
                             height="54"
                             viewBox="0 0 54 54"
@@ -34,11 +27,11 @@ export default function Footer() {
                             alt="GitHub logo" />
                     </Link>
                     <Link
-                        href="https://yescrow.io/blog"
+                        href="https://yescrow.io/tips"
                         rel="nofollow"
                         target="_blank"
                         >
-                    <p class="ml-2"></p>
+                    <p class="ml-3">Tips</p>
                     </Link>
                     </div>
             </div>

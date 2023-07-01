@@ -1,28 +1,35 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { ethers } from "ethers";
-import { Web3Button } from '@thirdweb-dev/react';
+import { Web3Button } from "@thirdweb-dev/react";
 import { Interface, FormatTypes } from "@ethersproject/abi";
 import styles from "../styles/Home.module.css";
+import Router from "next/router";
 
 const humanReadableABI = [
-  "function createDepositERC20(address _seller, address _token, uint256 _amount) external",
-  "event NewDepositERC20(uint256 indexed currentId, address indexed buyer, address indexed seller, address token, uint256 amount)",
-];
+  "function createDepositETH(address _receiver) external payable",
+  "function createDepositERC20(address _receiver, address _token, uint256 _amount) external",
+  "function releaseDeposit(uint256 _id) external",
+  "event NewDepositETH(uint256 indexed depositId, address indexed depositor, address indexed receiver, uint256 amount)",
+  "event NewDepositERC20(uint256 indexed depositId, address indexed depositor, address indexed receiver, address token, uint256 amount)",
+  "event DepositReleased(uint256 indexed id)"
+  ];
 
 const humanReadableERC20_ABI = [
-  "function approve(address _spender, uint256 _value) external"
-];
+  "function approve(address _spender, uint256 _value) external",
+  "function symbol() external view returns (string)"
+  ];
 
-const ERC20Address = "0xdac17f958d2ee523a2206206994597c13d831ec7";
+  const ERC20Address = "0xdac17f958d2ee523a2206206994597c13d831ec7";
 
-
-const iface = new Interface(humanReadableABI);
-const jsonABI = iface.format(FormatTypes.json);
+  const iface = new Interface(humanReadableABI);
+  const jsonABI = iface.format(FormatTypes.json);
 
 export default function EscrowForm() {
+
   const [_amount, setAmount] = useState("");
   const [_seller, setSellerAddress] = useState("");
+
 
   function handleAmountChange(e) {
     setAmount(e.target.value);
@@ -32,62 +39,57 @@ export default function EscrowForm() {
     setSellerAddress(e.target.value);
   }
 
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+
+  const tokenContract = new ethers.Contract(
+    ERC20Address,
+    humanReadableERC20_ABI,
+    signer
+  );
+
+  const escrowContract = new ethers.Contract(
+    process.env.NEXT_PUBLIC_MAINNET_V2,
+    humanReadableABI,
+    signer
+  );
+
   async function blockchainTalk() {
-    try {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(
-      ERC20Address,
-      humanReadableERC20_ABI,
-      signer
-    );
-    const approveTx = await contract.approve(
-      process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
-      ethers.utils.parseUnits(_amount)
-    );
-    await approveTx.wait();
-    const escrowContract = new ethers.Contract(
-      process.env.NEXT_PUBLIC_MAINNET_ADDRESS,
-      humanReadableABI,
-      signer
-    );
-    const escrowTx = await escrowContract.createDepositERC20(
-      _seller,
-      ERC20Address,
-      ethers.utils.parseUnits(_amount, 6),
-      { gasLimit: 10000000}
-    );
-    await escrowTx.wait();
+
+    const ticker = await tokenContract.symbol();
+    console.log(ticker);
+    
+    try{
+      const approveTx = await tokenContract.approve(
+        process.env.NEXT_PUBLIC_MAINNET_V2,
+        ethers.utils.parseUnits(_amount)
+      );
+      await approveTx.wait().then(() => {
+        escrowContract.createDepositERC20(
+        _seller,
+        ERC20Address,
+        ethers.utils.parseUnits(_amount)
+        );
+
+      escrowContract.on("NewDepositERC20", (counter, depositor, receiver, token, amount, event) => {
+        Router.reload(window.location.pathname);
+      }
+      )
+    });
+
 
     } catch (e) {
+      alert(`Make sure to fill out the fields properly and have enough ETH and ${ticker} in the wallet. Contact escrow@yescrow.io for guidance.`);
       console.log(e);
     }
   }
-
-  async function eventListener () {
-    await ethereum.request({ method: 'eth_requestAccounts' })
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, humanReadableABI, signer);
-    try {
-      contract.once("NewDepositERC20", (counter, buyerAddress, sellerAddress, depositAmount, event) => {
-          alert(
-            "Buyer address: "+buyerAddress,
-            "Seller address: "+sellerAddress,
-            "Escrow amount: "+JSON.stringify(depositAmount.toString()),
-            "Escrow ID: "+counter,
-            "Transaction hash: "+event.transactionHash);   
-      })
-    } catch (error) {console.log(error)};
-  }
-
 
   return (
     <div class="m-5">
         <div>
           <label>Stranger`s Ethereum address:</label>
           <br/>
-          <input class="text-center rounded-xl mt-2 max-w-xs sm:max-w-md"
+          <input class="text-center rounded-xl mt-2 mb-2 max-w-xs sm:max-w-md"
             type="text" 
             placeholder="0x..."
             required
@@ -97,7 +99,6 @@ export default function EscrowForm() {
             onChange={handleAddressChange} 
           />
           <br/>
-          <br />
           <label>USDT amount:</label>
           <br/>
           <div class="text-center">
@@ -111,15 +112,13 @@ export default function EscrowForm() {
             />
           </div>
           <br />
-                <Web3Button 
-                contractAddress={process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
+          <Web3Button 
+                contractAddress={process.env.NEXT_PUBLIC_MAINNET_V2}
                 contractAbi={jsonABI}
                 action={async () => {
                   await blockchainTalk()
                 }
                 }
-                onError={() => alert("Make sure to fill out the fields properly and have enough ETH and USDT in the wallet. Message escrow@yescrow.io for guidance.")}
-                onSuccess={() => eventListener()}
                 className={styles.btn}
                 >
                 <li class="flex items-center">

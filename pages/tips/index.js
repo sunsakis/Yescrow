@@ -1,16 +1,21 @@
+import Head from "next/head";
 import Header from "../../components/header";
-import Image from "next/image";
 
 export default function Blog() {
     return (
+        <div>
+        <Head>
+            <title>Tips - yescrow</title>
+            <meta name="description" content="A simple interface to one-click release your escrowed USDT."/>
+            <link rel="icon" href="/favicon.png" />
+            <link rel="canonical" href="https://yescrow.io/usdt/escrow" />
+        </Head>
         <div class="container max-w-4xl mx-auto justify-center">
             <Header />
             <div class="justify-center text-center pl-10 pr-10">
-                <div class="flex flex-col justify-center items-center">
-                    <p class="text-4xl font-bold text-white">Blog</p>
-                </div>
                 <br />
                 <span class="pl-10 pr-10 text-left">
+                    <main>
                     <h1 class="text-4xl font-bold text-white text-center">Yes Crow: A Crypto Escrow Safeguarding Online Transactions and Preventing Scams</h1>
                     <br />
                     <p>
@@ -69,8 +74,10 @@ export default function Blog() {
                     
                     In an increasingly interconnected digital world, scams and fraudulent activities pose significant risks. Leveraging an escrow tool offers a reliable solution to combat these risks, providing a secure platform for online transactions. By incorporating the escrow tool into your online interactions, you can safeguard your transactions, promote trust, and minimize the potential for scams. Protect yourself and your business by embracing this powerful tool and enjoy peace of mind in your online dealings.
                     </p><br />
+                    </main>
                 </span>
             </div>
+        </div>
         </div>
     )
 }

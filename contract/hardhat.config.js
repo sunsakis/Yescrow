@@ -3,25 +3,21 @@ require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-chai-matchers");
 require("@nomiclabs/hardhat-ethers");
 
-let ETHERSCAN_API="ZG8HYDPFRM2ME4TZVXC8QXYS3ZIYVR785S"
-let ALCHEMY_MAINNET_API="DBafIhXNspbkZ1SQfKfStrX1qMh5gCq6"
-let ALCHEMY_SEPOLIA_API="Jn5RGissfHwDWXDuwti5zQeVkDhPX8zE"
-
 module.exports = 
 {
   solidity: "0.8.17",
   networks: {
     sepolia: 
     {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_SEPOLIA_API}`,
-      gasLimit: 2100000,
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`,
+      gasLimit: 15000000,
     },
       mainnet: {
-        url: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_MAINNET_API}`,
+        url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`,
+        gasLimit: 15000000,
       }
   },
   etherscan: {
-    apiKey: ETHERSCAN_API,
+    apiKey: process.env.ETHERSCAN_KEY,
   }
 };
-

@@ -5,9 +5,12 @@ import Image from 'next/image';
 import EscrowForm from '../components/deposit';
 import Faq from '../components/faq';
 import Script from 'next/script';
+import Table from '../components/table';
 
 
 export default function Home() {
+
+  
 
   function addMatomo() {
     return {
@@ -124,6 +127,7 @@ export default function Home() {
           <p class="m-4 font-medium text-center">Lock payments in a smart contract, release them after you get what you wanted.</p>
           <br/>
         <EscrowForm />
+        <Table />
         <Image 
         class="mx-auto"
         src="/yescrow_trinity.png" 

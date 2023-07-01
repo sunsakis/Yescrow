@@ -273,7 +273,13 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                    The smart contract is public. Audited by
+                                    The smart contract is 
+                                    <Link 
+                                        href="https://etherscan.io/address/0x20eb13f9457b37a4daae2d1fd218293fdc94c72b"
+                                        rel="nofollow"
+                                        target="_blank"
+                                        class="text-matrix"
+                                    > public</Link>. Audited by
                                     <Link 
                                         href="https://twitter.com/karooolis"
                                         rel="nofollow"
