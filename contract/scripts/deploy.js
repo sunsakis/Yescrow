@@ -1,10 +1,10 @@
+//DEPLOYMENT WITH LEDGER
 const hre = require("hardhat");
 const { LedgerSigner } = require("@anders-t/ethers-ledger");  
-
 async function main () {
   
   const ledger = new LedgerSigner(hre.ethers.provider);                                                                                                                              
-  const Escrow = await hre.ethers.getContractFactory('Escrow');
+  const Escrow = await hre.ethers.getContractFactory('Yescrow');
   console.log('Deploying Escrow...');
   let contractFactory = Escrow.connect(ledger);
   const escrow = await contractFactory.deploy();
@@ -18,11 +18,11 @@ main()
     process.exit(1);
   });
 
-// DEPLOYMENT WITHOUT LEDGER
+//DEPLOYMENT WITHOUT LEDGER
 // const { ethers } = require("hardhat");
 
 // async function main() {
-//   const ContractFactory = await ethers.getContractFactory("Escrow");
+//   const ContractFactory = await ethers.getContractFactory("Yescrow");
 //   console.log(`🏗  Get Escrow contract factory`);
 
 //   const contractInstance = await ContractFactory.deploy();
