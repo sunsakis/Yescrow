@@ -26,13 +26,6 @@ export default function Footer() {
                             xmlns="http://www.w3.org/2000/svg"
                             alt="GitHub logo" />
                     </Link>
-                    <Link
-                        href="https://yescrow.io/tips"
-                        rel="nofollow"
-                        target="_blank"
-                        >
-                    <p class="ml-3">Tips</p>
-                    </Link>
                     </div>
             </div>
         </footer>
