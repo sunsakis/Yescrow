@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 export default function Blog() {
     return (
@@ -70,7 +71,6 @@ export default function Blog() {
                     Enhanced Security: The tool employs robust security measures, including encryption and authentication protocols, to protect sensitive information and financial transactions.
                     </p>
                     <p><br/>
-                    In conclusion:<br />
                     
                     In an increasingly interconnected digital world, scams and fraudulent activities pose significant risks. Leveraging an escrow tool offers a reliable solution to combat these risks, providing a secure platform for online transactions. By incorporating the escrow tool into your online interactions, you can safeguard your transactions, promote trust, and minimize the potential for scams. Protect yourself and your business by embracing this powerful tool and enjoy peace of mind in your online dealings.
                     </p><br />
@@ -78,7 +78,9 @@ export default function Blog() {
                 </span>
             </div>
         </div>
+        <Footer />
         </div>
+        
     )
 }
     
