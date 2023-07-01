@@ -23,6 +23,9 @@ const humanReadableERC20_ABI = [
   const iface = new Interface(humanReadableABI);
   const jsonABI = iface.format(FormatTypes.json);
 
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+
 export default function EscrowForm() {
 
   const [_amount, setAmount] = useState("");
@@ -40,9 +43,6 @@ export default function EscrowForm() {
   function handleTokenAddressChange(e) {
     setTokenAddress(e.target.value);
   }
-
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
 
   const tokenContract = new ethers.Contract(
     _tokenAddress,
