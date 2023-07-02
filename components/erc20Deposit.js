@@ -57,34 +57,28 @@ export default function EscrowForm() {
       humanReadableABI,
       signer
     );
-
-    const ticker = await tokenContract.symbol();
-    console.log(ticker);
     
-    try{
+    try {
       const approveTx = await tokenContract.approve(
-        process.env.NEXT_PUBLIC_MAINNET_V2,
-        ethers.utils.parseUnits(_amount)
+          process.env.NEXT_PUBLIC_MAINNET_V2,
+          ethers.utils.parseUnits(_amount)
       );
-      await approveTx.wait().then(() => {
-        escrowContract.createDepositERC20(
-        _seller,
-        _tokenAddress,
-        ethers.utils.parseUnits(_amount),
-        {gasLimit: 250000}
-        );
+      await approveTx.wait();
+
+      const depositTx = await escrowContract.createDepositERC20(
+          _seller,
+          _tokenAddress,
+          ethers.utils.parseUnits(_amount)
+      );
+      await depositTx.wait();
 
       escrowContract.on("NewDepositERC20", (counter, depositor, receiver, token, amount, event) => {
-        Router.reload(window.location.pathname);
-      }
-      )
-    });
-
-
-    } catch (e) {
-      alert(`Make sure to fill out the fields properly and have enough ETH and ${ticker} in the wallet. Contact escrow@yescrow.io for guidance.`);
-      console.log(e);
-    }
+          Router.reload(window.location.pathname);
+      });
+  } catch (error) {
+      console.error(error);
+      alert("Make sure you have enough funds to cover the transaction cost. Message escrow@yescrow.io for guidance.");
+  }
   }
 
   return (
