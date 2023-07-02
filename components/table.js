@@ -30,6 +30,10 @@ const jsonABI = iface.format(FormatTypes.json);
 export default function Table() {
 
     useEffect(() => {
+        if (!window.ethereum) {
+            return;
+        }
+        
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_V2, humanReadableABI, signer);
