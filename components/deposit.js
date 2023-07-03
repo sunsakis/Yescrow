@@ -78,7 +78,7 @@ export default function EscrowForm() {
                   width="48" 
                   height="48" 
                   alt="Ethereum logo">
-                </Image> Any ERC20</li></button>
+                </Image> ERC20</li></button>
           </ul>
         </div>
       <div>

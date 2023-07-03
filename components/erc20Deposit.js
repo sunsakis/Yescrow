@@ -96,7 +96,7 @@ export default function EscrowForm() {
             onChange={handleAddressChange} 
           />
           <br/>
-          <label>ERC20 contract address:</label>
+          <label>ERC20 token address:</label>
           <br/>
           <input class="text-center rounded-xl mt-2 mb-2 max-w-xs sm:max-w-md"
             type="text" 
@@ -108,7 +108,7 @@ export default function EscrowForm() {
             onChange={handleTokenAddressChange} 
           />
           <br/>
-          <label>Token amount:</label>
+          <label>Amount:</label>
           <br/>
           <div class="text-center">
           <input

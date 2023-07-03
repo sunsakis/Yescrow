@@ -197,7 +197,7 @@ export default function Table() {
 
         return (
         <div class="flex flex-col">
-            <h3 class="text-2xl font-bold m-4 mb-1 text-white text-center">Your assets in escrow:</h3>
+            <h3 class="text-2xl font-bold m-4 mb-1 text-white text-center">Assets in escrow:</h3>
           <div class="my-2 overflow-x-auto sm:mx-6 lg:mx-2">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-3">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
