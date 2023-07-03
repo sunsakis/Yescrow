@@ -66,6 +66,52 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
+                                Can Yes Crow rug pull?
+                            </h2>
+                        </div>
+                        <div class="
+                            absolute top-3 right-3
+                            text-red
+                            transition-transform duration-500
+                            rotate-0 peer-checked:rotate-180
+                            ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                        <div class="
+                        rounded-b-xl
+                        bg-[#161618]
+                        overflow-hidden
+                        transition-all duration-500
+                        max-h-0 peer-checked:max-h-80
+                        p-0 peer-checked:p-2
+                        ">
+                            <div class="p-4  text-gray-400">
+                                <p>
+                                As much as crows love all things shiny, it is impossible for Yes Crow to steal customer funds due to the decentralized nature of the smart contract. 
+                                </p>
+                            </div>
+                        </div>
+            </div>
+            <div class="relative overflow-hidden m-3">
+                    <input 
+                        type="checkbox" 
+                        class="
+                            peer
+                            absolute top-0 inset-x-0
+                            w-full h-12
+                            opacity-0 z-10 cursor-pointer
+                            "
+                    />
+                        <div class="
+                            rounded-xl peer-checked:rounded-b-none
+                            bg-[#161618]
+                            peer-checked:bg-matrix
+                            h-12 w-fill pl-5
+                            flex items-center
+                        ">
+                            <h2 class="text-white">
                                 How does Yes Crow work?
                             </h2>
                         </div>
@@ -158,7 +204,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                Is Yes Crow truly decentralized?
+                                Is Yes Crow decentralized?
                             </h2>
                         </div>
                         <div class="
