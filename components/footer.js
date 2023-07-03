@@ -27,7 +27,7 @@ export default function Footer() {
                             alt="GitHub logo" />
                     </Link>
                     <Link 
-                        href="https://github.com/sunsakis/Yescrow"
+                        href="https://twitter.com/theyescrow"
                         rel="nofollow"
                         target="_blank"
                         >
