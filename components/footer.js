@@ -11,6 +11,14 @@ export default function Footer() {
                         <span class="text-white"> escrow@yescrow.io</span>
                     </code>
                 </p>
+                <Link 
+                    href="/tips/how-to-not-get-scammed">
+                    <button 
+                        class="mt-3 bg-red-500 hover:bg-matrix text-white font-bold py-2 px-4 rounded"
+                        >
+                    SAFETY TIPS
+                    </button>
+                </Link>
                 <div class="flex justify-center m-3">
                 <Link 
                         href="https://github.com/sunsakis/Yescrow"
@@ -19,7 +27,7 @@ export default function Footer() {
                         >
                             <Image src=
                             "/github.png"
-                            class=" h-5 w-5 ml-3 rounded-xl bg-white hover:opacity-50"
+                            class=" h-5 w-5 mr-2 rounded-xl bg-white hover:opacity-50"
                             width="54"
                             height="54"
                             viewBox="0 0 54 54"
@@ -33,7 +41,7 @@ export default function Footer() {
                         >
                             <Image src=
                             "/twitter-icon-white-22.png"
-                            class=" h-5 w-6 ml-3 rounded-xl hover:opacity-50"
+                            class=" h-5 w-6 ml-2 rounded-xl hover:opacity-50"
                             width="54"
                             height="54"
                             viewBox="0 0 54 54"
