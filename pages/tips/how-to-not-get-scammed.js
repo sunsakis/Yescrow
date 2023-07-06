@@ -50,6 +50,7 @@ export default function Tips() {
         <link rel="icon" href="/white_vector_crow_icon.png" />
       </Head>
       <Script
+            id="schema"
             type="application/ld+json"
             dangerouslySetInnerHTML={addWebsiteJsonLd()}
             key="website-jsonld"
@@ -170,7 +171,7 @@ export default function Tips() {
                 </li>
                 <br/>
                 <p>
-                    &quot;Hi there, to build trust and ensure transparency in our agreement, let's incorporate an escrow service. By depositing the funds into an escrow account, we establish a transparent and verifiable payment process. This way, both parties can track the progress of the transaction and have peace of mind knowing that the funds are protected until all the obligations are fulfilled.&quot;
+                    &quot;Hi there, to build trust and ensure transparency in our agreement, let`s incorporate an escrow service. By depositing the funds into an escrow account, we establish a transparent and verifiable payment process. This way, both parties can track the progress of the transaction and have peace of mind knowing that the funds are protected until all the obligations are fulfilled.&quot;
                 </p><br/>
             </ul>
             <br/>
