@@ -6,6 +6,7 @@ import EscrowForm from '../components/deposit';
 import Faq from '../components/faq';
 import Script from 'next/script';
 import Table from '../components/table';
+import TipsButton from '../components/tipsButton';
 
 
 export default function Home() {
@@ -138,7 +139,9 @@ export default function Home() {
         <br/>
         </main>
         <Faq />
+        <TipsButton />
       <Footer />
+      
     </div>
     
   )

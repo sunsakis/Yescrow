@@ -11,14 +11,6 @@ export default function Footer() {
                         <span class="text-white"> escrow@yescrow.io</span>
                     </code>
                 </p>
-                <Link 
-                    href="/tips/how-to-not-get-scammed">
-                    <button 
-                        class="mt-3 bg-red-500 hover:bg-matrix text-white font-bold py-2 px-4 rounded"
-                        >
-                    SAFETY TIPS
-                    </button>
-                </Link>
                 <div class="flex justify-center m-3">
                 <Link 
                         href="https://github.com/sunsakis/Yescrow"

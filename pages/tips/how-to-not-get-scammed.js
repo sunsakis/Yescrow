@@ -4,8 +4,54 @@ import Script from 'next/script';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import Image from 'next/image';
+import EscrowButton from '../../components/escrowButton';
 
 export default function Tips() {
+
+    function addMatomo() {
+        return {
+          __html: `
+          var _paq = window._paq || [];
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            _paq.push(['setTrackerUrl', 'https://yescrow.matomo.cloud/piwik.php']);
+            _paq.push(['setSiteId', 1]);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://yescrow.matomo.cloud/piwik.js'; s.parentNode.insertBefore(g,s);
+          })();
+          `,
+        };
+      }
+
+      function addWebsiteJsonLd() {
+        return {
+          __html: `{
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "A fool-proof way to avoid getting scammed by online strangers that want to sell you their services or goods.",
+            "datePublished": "2023-07-07",
+            "dateModified": "2023-07-07",
+            "description": "Learn how to protect yourself from online scams by using an escrow service.",
+            "articleBody": "Let me show you that it is completely possible to protect yourself from an online scammer by using an escrow as if it were your scam shield. For free. Absolutely for free. Can't believe it? Yes, this trick is that mighty. So bear with me as I show you how to navigate the matrix.\n\nI just received an e-mail...",
+            "author": {
+              "@type": "Person",
+              "name": "Sun Sakis"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Yes Crow",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://yescrow.io/metamask_fees.png",
+                "width": 600,
+                "height": 600
+              }
+            }
+      `,
+        };
+      }
+
     return (
         <div class="container max-w-2xl mx-auto justify-center">
       <Head>
@@ -18,11 +64,22 @@ export default function Tips() {
           />
         <link rel="canonical" href="https://yescrow.io/tips/how-to-not-get-scammed" />
         <link rel="icon" href="/white_vector_crow_icon.png" />
+        <Script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={addWebsiteJsonLd()}
+            key="website-jsonld"
+            />
       </Head>
+      <Script
+          id="matomo"
+          type="text/javascript"
+          dangerouslySetInnerHTML={addMatomo()}
+          key="website-jsonld"
+        />
         <Header />
         <main>
-            <h1 class="m-4 text-4xl text-center font-bold">Foolproof way to avoid getting scammed by online strangers that want to sell you their services or goods.</h1>
-            <p>
+            <h1 class="m-4 text-4xl text-center font-bold">A fool-proof way to avoid getting scammed by online strangers that want to sell you their services or goods.</h1>
+            <br/><p>
             Let me show you that it is completely possible to protect yourself from an online scammer by using an escrow as if it were your scam shield. For free. Absolutely for free. Can`t believe it? Yes, this trick is that mighty. So bear with me as I show you how to navigate the matrix.
             </p>
             <br/>
@@ -47,7 +104,7 @@ export default function Tips() {
             In case he would not have gotten back to me after I mentioned I am ready to escrow him the payment, I would have know the guy to be a sham. Also, if he were to start yapping about how he does not want to use an escrow - scam alert!
             </p>
             <br/>
-            <h2>
+            <h2 class="m-4 text-3xl text-center font-bold">
             Understanding Yes Crow - A Powerful Crypto Escrow Tool Living On Ethereum
             </h2>
             <br/>
@@ -69,19 +126,17 @@ export default function Tips() {
                 width={500}
                 height={500}
             />
-            <br/>
-            <Image 
+            <label>Above are escrow fees on the popular online platform escrow.com</label>
+            <br/><br/>
+            <Image
                 src="/metamask_fees.png"
                 alt="Yes Crow fees"
                 width={500}
                 height={500}
             />
-            <br/>
-            <p>
-                Here are the fees for using Escrow.com. As you can see, they are quite high. And here are the fees for using Yes Crow. As you can see, they are quite low.
-            </p>
-            <br/>
-            <h3>So what is escrow, exactly?</h3>
+            <label>Above was the fee for using Yes Crow. The difference is clear.</label>
+            <br/><br/>
+            <h3 class="m-4 text-2xl text-center font-bold">So what is escrow, exactly?</h3>
             <br/>
             <p>
             Escrow is a financial arrangement where a third party holds and regulates the funds until a transaction between two parties is completed. Acting as a neutral intermediary, the escrow service ensures that both parties fulfill their obligations, mitigating the risks associated with fraudulent activities.
@@ -99,51 +154,57 @@ export default function Tips() {
             We thought it would be cool for you to see some real life examples how a crypto escrow might be used, so we collected a bunch of stories.
             </p>
             <br/>
-            <h3>How to use escrow in real life?</h3>
+            <h3 class="m-4 text-2xl text-center font-bold">How to use a crypto escrow in real life?</h3>
             <br/> 
-            <ul>
+            <ul class="list-disc">
                 <li>
-                An Online Marketplace Transaction: 
+                <b>An online transaction</b>: 
                 </li>
                 <br/>
                 <p>
-                &quot;Hi Jennifer, I`m interested in purchasing your antique collectibles on the online marketplace. To ensure a secure transaction, I suggest we use Yes Crow, a crypto escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you.&quot;
+                &quot;Hi Jennifer, I`m interested in purchasing your antique collectibles that you wrote about in the forum. To ensure a secure transaction, I suggest we use Yes Crow, a crypto escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you.&quot;
                 </p>
                 <br/>
                 <li>
-                    Freelance service agreement:
+                    <b>Freelance service agreement</b>:
                 </li>
                 <br/>
                 <p>
-                &quot;Hello David, I`m thrilled to work with you on the website development project. To ensure a fair and secure collaboration, let`s utilize the escrow tool. You can deposit our agreed upon milestone payments into escrow, and once each milestone is successfully complete, the funds will be released accordingly.&quot;
+                &quot;Hi Sarah, I`m considering hiring your software development company for a project. In order to protect both parties and ensure timely delivery, I suggest using an escrow arrangement. We can establish an escrow account where I will deposit the project`s funds. As we reach specific milestones or deliverables, you can request the release of a portion of the funds from the escrow account. This way, we can ensure that the project progresses smoothly, and both parties are satisfied with the results.&quot;
                 </p>
                 <br/>
+                <li>
+                    <b>Product acquisition</b>:
+                </li>
+                <br/>
+                <p>
+                &quot;Dear Mr. Rodriguez, I am interested in acquiring your company. To ensure a fair and secure transaction, I propose using an escrow service. We can agree on a purchase price, and the buyer will deposit the funds into an escrow account. The funds will be held until the necessary due diligence is completed, including legal, financial, and operational assessments. If everything checks out, the funds will be released to you, and the ownership of the company will be transferred to me.&quot;
+                </p><br/>
+                <li>
+                <b>Crowdfunding campaign</b>:
+                </li>
+                <br/>
+                <p>
+                    &quot;Hey everyone, I am launching a crowdfunding campaign to bring my innovative product to market. To establish trust and transparency, I will be using an escrow service. Once the campaign reaches its funding goal, the funds will be deposited into an escrow account. This way, backers can be confident that their contributions are protected, and I can proceed with manufacturing and delivering the product. If the campaign fails to reach its goal, the funds will be returned to the backers.&quot;
+                </p><br/>
+                <li>
+                    <b>Dispute resolution</b>:
+                </li>
+                <br/>
+                <p>
+                    &quot;Hi there, to build trust and ensure transparency in our agreement, let's incorporate an escrow service. By depositing the funds into an escrow account, we establish a transparent and verifiable payment process. This way, both parties can track the progress of the transaction and have peace of mind knowing that the funds are protected until all the obligations are fulfilled.&quot;
+                </p><br/>
             </ul>
             <br/>
             <p>
-            <h4>I think you get the idea. You were smart enough to find this article, I believe you are a smart person. So to sum it up:</h4>
+            <h4>I think you get the idea. You were smart enough to find this article, I believe you are a smart person. Assess the risk and do the calculated thing.</h4>
             </p>
-            <br/>
-            <p>Using an escrow helps in:</p>
-            <ul>
-                <li>
-                Fraud prevention: Escrow acts as a safeguard against fraudulent activities, ensuring that funds are held securely until the agreed terms are met.
-                    </li>  
-                <li>
-                Trust and Transparency: Utilizing an escrow service instills confidence and transparency between parties, facilitating smoother transactions.
-                    </li>    
-                <li>
-                Dispute Resolution: In the event of a dispute, the escrow tool provides a mechanism for fair resolution, minimizing conflicts and promoting resolutions.
-                    </li>  
-                <li>
-                Enhanced Security: The tool employs robust security measures, including encryption and authentication protocols, to protect sensitive information and financial transactions. 
-                    </li>
-            </ul>
-            <br/>
-            <p>
-            By incorporating the escrow tool into your online interactions, you can safeguard your transactions, promote trust, encourage truth and minimize the potential to fall victim for scams. Protect yourself and your business by embracing this powerful tool and enjoy peace of mind in your online dealings.
-            </p>
+            <br/><br/>
+            <h4 class="text-xl mb-2">
+            By incorporating the escrow tool into your online interactions, you can safeguard your transactions, promote trust, encourage truth and minimize the potential to fall victim for scams. Protect yourself and your business by embracing this powerful tool and enjoy peace of mind in online dealings.
+            </h4>
         </main>
+        <EscrowButton/>
         <Footer />
         </div>
     )
