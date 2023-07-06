@@ -8,22 +8,6 @@ import EscrowButton from '../../components/escrowButton';
 
 export default function Tips() {
 
-    function addMatomo() {
-        return {
-          __html: `
-          var _paq = window._paq || [];
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            _paq.push(['setTrackerUrl', 'https://yescrow.matomo.cloud/piwik.php']);
-            _paq.push(['setSiteId', 1]);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://yescrow.matomo.cloud/piwik.js'; s.parentNode.insertBefore(g,s);
-          })();
-          `,
-        };
-      }
-
       function addWebsiteJsonLd() {
         return {
           __html: `{
@@ -64,18 +48,12 @@ export default function Tips() {
           />
         <link rel="canonical" href="https://yescrow.io/tips/how-to-not-get-scammed" />
         <link rel="icon" href="/white_vector_crow_icon.png" />
-        <Script
+      </Head>
+      <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={addWebsiteJsonLd()}
             key="website-jsonld"
             />
-      </Head>
-      <Script
-          id="matomo"
-          type="text/javascript"
-          dangerouslySetInnerHTML={addMatomo()}
-          key="website-jsonld"
-        />
         <Header />
         <main>
             <h1 class="m-4 text-4xl text-center font-bold">A fool-proof way to avoid getting scammed by online strangers that want to sell you their services or goods.</h1>
