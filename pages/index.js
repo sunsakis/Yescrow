@@ -104,15 +104,15 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Yes Crow - Trusting a stranger can be free - Ethereum escrow</title>
+        <title>Yes Crow - Build Online Trust For Cents - Ethereum Escrow</title>
         <meta 
           name="description" 
-          content="Trust internet strangers without worries. Self-release the payment when you get what you wanted." 
+          content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />
         <link rel="canonical" href="https://yescrow.io" />
-        <link rel="icon" href="white_vector_crow_icon.png" />
+        <link rel="icon" href="/white_vector_crow_icon.png" />
       </Head>
       <Script
           id="matomo"
