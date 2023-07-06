@@ -23,11 +23,11 @@ export default function Tips() {
         <main>
             <h1 class="m-4 text-4xl text-center font-bold">Foolproof way to avoid getting scammed by online strangers that want to sell you their services or goods.</h1>
             <p>
-            Let me show you that it is completely possible to protect yourself from an online scammer by using an escrow as if it were your scam shield. For free. Absolutely for free. Can’t believe it? Yes, this trick is that mighty. So bear with me as I show you how to navigate the matrix.
+            Let me show you that it is completely possible to protect yourself from an online scammer by using an escrow as if it were your scam shield. For free. Absolutely for free. Can`t believe it? Yes, this trick is that mighty. So bear with me as I show you how to navigate the matrix.
             </p>
             <br/>
             <p>
-            I just received an e-mail. In it, it said: "If you would like to rank your product in the top position of Producthunt.com, please contact me. It is totally organic and safe method."
+            I just received an e-mail. In it, it said: &quot;If you would like to rank your product in the top position of Producthunt.com, please contact me. It is totally organic and safe method.&quot;
             </p>
             <br/>
             <p>
@@ -35,7 +35,7 @@ export default function Tips() {
             </p>
             <br/>
             <p>
-            However, I did reply to the man on the other side of the wire. "Hello, Heron! Sure. How much would you like me to escrow you for the service? As soon as the product is ranked in the top position, as you suggested - I will release the money to you."
+            However, I did reply to the man on the other side of the wire. &quot;Hello, Heron! Sure. How much would you like me to escrow you for the service? As soon as the product is ranked in the top position, as you suggested - I will release the money to you.&quot;
             </p>
             <br/>
             <p>
@@ -107,7 +107,7 @@ export default function Tips() {
                 </li>
                 <br/>
                 <p>
-                ``Hi Jennifer, I`m interested in purchasing your antique collectibles on the online marketplace. To ensure a secure transaction, I suggest we use Yes Crow, a crypto escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you."
+                &quot;Hi Jennifer, I`m interested in purchasing your antique collectibles on the online marketplace. To ensure a secure transaction, I suggest we use Yes Crow, a crypto escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you.&quot;
                 </p>
                 <br/>
                 <li>
@@ -115,7 +115,7 @@ export default function Tips() {
                 </li>
                 <br/>
                 <p>
-                ``Hello David, I`m thrilled to work with you on the website development project. To ensure a fair and secure collaboration, let`s utilize the escrow tool. You can deposit our agreed upon milestone payments into escrow, and once each milestone is successfully complete, the funds will be released accordingly."
+                &quot;Hello David, I`m thrilled to work with you on the website development project. To ensure a fair and secure collaboration, let`s utilize the escrow tool. You can deposit our agreed upon milestone payments into escrow, and once each milestone is successfully complete, the funds will be released accordingly.&quot;
                 </p>
                 <br/>
             </ul>
