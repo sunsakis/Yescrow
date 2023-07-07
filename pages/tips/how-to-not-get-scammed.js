@@ -32,6 +32,7 @@ export default function Tips() {
                 "height": 600
               }
             }
+          }
       `,
         };
       }
