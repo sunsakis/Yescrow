@@ -88,7 +88,7 @@ export default function Tips() {
             </h2>
             <br/>
             <p>
-            Escrow is an agreement in which a third party holds the funds until the conditions of the deal are fulfilled, properly. In the case of Yes Crow, the funds are held on a smart contract that lives on the Ethereum`s blockchain. It is a simple logic written in code, public and verified to be unbreakable. No one can change it. You don’t need to trust Yes Crow, only trust in logic. To use Yes Crow, all you need to do is install MetaMask - an extension of your browser. If you do not have MetaMask installed, just click on “Connect Wallet” that you see at the top right of the page and follow the lead. 
+            Escrow is an agreement in which a third party holds the funds until the conditions of the deal are fulfilled, properly. In the case of <Link href="/">Yes Crow</Link>, the funds are held on a smart contract that lives on the Ethereum`s blockchain. It is a simple logic written in code, public and verified to be unbreakable. No one can change it. You don’t need to trust Yes Crow, only trust in logic. To use Yes Crow, all you need to do is install MetaMask - an extension of your browser. If you do not have MetaMask installed, just click on “Connect Wallet” that you see at the top right of the page and follow the lead. 
             </p>
             <br/>
             <p>
