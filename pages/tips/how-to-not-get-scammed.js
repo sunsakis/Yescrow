@@ -63,7 +63,7 @@ export default function Tips() {
             </p>
             <br/>
             <p>
-            I just received an e-mail. In it, it said: &quot;If you would like to rank your product in the top position of Producthunt.com, please contact me. It is totally organic and safe method.&quot;
+            I just received an e-mail. In it, it said: &quot;<i>If you would like to rank your product in the top position of Producthunt.com, please contact me. It is totally organic and safe method.</i>&quot;
             </p>
             <br/>
             <p>
@@ -71,11 +71,11 @@ export default function Tips() {
             </p>
             <br/>
             <p>
-            However, I did reply to the man on the other side of the wire. &quot;Hello, Heron! Sure. How much would you like me to escrow you for the service? As soon as the product is ranked in the top position, as you suggested - I will release the money to you.&quot;
+            However, I did reply to the man on the other side of the wire. &quot;<i>Hello, Heron! Sure. How much would you like me to escrow you for the service? As soon as the product is ranked in the top position, as you suggested - I will release the money to you.</i>&quot;
             </p>
             <br/>
             <p>
-                Let me just say, the guy has not responded yet…
+                Let me just say, the guy has not responded yet…<br/>
                 <i>Edit:</i> The guy responded, told me the sum to escrow, now I know he is legit.
             </p>
             <br/>
@@ -84,11 +84,11 @@ export default function Tips() {
             </p>
             <br/>
             <h2 class="m-4 text-3xl text-center font-bold">
-            Understanding Yes Crow - A Powerful Crypto Escrow Tool Living On Ethereum
+            Understanding <Link href="/">Yes Crow - A Powerful Crypto Escrow Tool Living On Ethereum</Link>
             </h2>
             <br/>
             <p>
-            Escrow is an agreement in which a third party holds the funds until the conditions of the deal are fulfilled, properly. In the case of <Link href="/">Yes Crow</Link>, the funds are held on a smart contract that lives on the Ethereum`s blockchain. It is a simple logic written in code, public and verified to be unbreakable. No one can change it. You don’t need to trust Yes Crow, only trust in logic. To use Yes Crow, all you need to do is install MetaMask - an extension of your browser. If you do not have MetaMask installed, just click on “Connect Wallet” that you see at the top right of the page and follow the lead. 
+            Escrow is an agreement in which a third party holds the funds until the conditions of the deal are fulfilled, properly. In the case of Yes Crow, the funds are held on a smart contract that lives on the Ethereum`s blockchain. It is a simple logic written in code, public and verified to be unbreakable. No one can change it. You don’t need to trust Yes Crow, only trust in logic. To use Yes Crow, all you need to do is install MetaMask - an extension of your browser. If you do not have MetaMask installed, just click on “Connect Wallet” that you see at the top right of the page and follow the lead. 
             </p>
             <br/>
             <p>
@@ -141,7 +141,7 @@ export default function Tips() {
                 </li>
                 <br/>
                 <p>
-                &quot;Hi Jennifer, I`m interested in purchasing your antique collectibles that you wrote about in the forum. To ensure a secure transaction, I suggest we use Yes Crow, a crypto escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you.&quot;
+                &quot;<i>Hi Jennifer, I`m interested in purchasing your antique collectibles that you wrote about in the forum. To ensure a secure transaction, I suggest we use Yes Crow, a crypto escrow tool. We can deposit the agreed-upon amount into escrow, and once I receive the items in the promised condition, the funds will be released to you.</i>&quot;
                 </p>
                 <br/>
                 <li>
@@ -149,7 +149,7 @@ export default function Tips() {
                 </li>
                 <br/>
                 <p>
-                &quot;Hi Sarah, I`m considering hiring your software development company for a project. In order to protect both parties and ensure timely delivery, I suggest using an escrow arrangement. We can establish an escrow account where I will deposit the project`s funds. As we reach specific milestones or deliverables, you can request the release of a portion of the funds from the escrow account. This way, we can ensure that the project progresses smoothly, and both parties are satisfied with the results.&quot;
+                &quot;<i>Hi Sarah, I`m considering hiring your software development company for a project. In order to protect both parties and ensure timely delivery, I suggest using an escrow arrangement. We can establish an escrow account where I will deposit the project`s funds. As we reach specific milestones or deliverables, you can request the release of a portion of the funds from the escrow account. This way, we can ensure that the project progresses smoothly, and both parties are satisfied with the results.</i>&quot;
                 </p>
                 <br/>
                 <li>
@@ -157,21 +157,21 @@ export default function Tips() {
                 </li>
                 <br/>
                 <p>
-                &quot;Dear Mr. Rodriguez, I am interested in acquiring your company. To ensure a fair and secure transaction, I propose using an escrow service. We can agree on a purchase price, and the buyer will deposit the funds into an escrow account. The funds will be held until the necessary due diligence is completed, including legal, financial, and operational assessments. If everything checks out, the funds will be released to you, and the ownership of the company will be transferred to me.&quot;
+                &quot;<i>Dear Mr. Rodriguez, I am interested in acquiring your company. To ensure a fair and secure transaction, I propose using an escrow service. We can agree on a purchase price, and the buyer will deposit the funds into an escrow account. The funds will be held until the necessary due diligence is completed, including legal, financial, and operational assessments. If everything checks out, the funds will be released to you, and the ownership of the company will be transferred to me.</i>&quot;
                 </p><br/>
                 <li>
                 <b>Crowdfunding campaign</b>:
                 </li>
                 <br/>
                 <p>
-                    &quot;Hey everyone, I am launching a crowdfunding campaign to bring my innovative product to market. To establish trust and transparency, I will be using an escrow service. Once the campaign reaches its funding goal, the funds will be deposited into an escrow account. This way, backers can be confident that their contributions are protected, and I can proceed with manufacturing and delivering the product. If the campaign fails to reach its goal, the funds will be returned to the backers.&quot;
+                    &quot;<i>Hey everyone, I am launching a crowdfunding campaign to bring my innovative product to market. To establish trust and transparency, I will be using an escrow service. Once the campaign reaches its funding goal, the funds will be deposited into an escrow account. This way, backers can be confident that their contributions are protected, and I can proceed with manufacturing and delivering the product. If the campaign fails to reach its goal, the funds will be returned to the backers.</i>&quot;
                 </p><br/>
                 <li>
                     <b>Dispute resolution</b>:
                 </li>
                 <br/>
                 <p>
-                    &quot;Hi there, to build trust and ensure transparency in our agreement, let`s incorporate an escrow service. By depositing the funds into an escrow account, we establish a transparent and verifiable payment process. This way, both parties can track the progress of the transaction and have peace of mind knowing that the funds are protected until all the obligations are fulfilled.&quot;
+                    &quot;<i>Hi there, to build trust and ensure transparency in our agreement, let`s incorporate an escrow service. By depositing the funds into an escrow account, we establish a transparent and verifiable payment process. This way, both parties can track the progress of the transaction and have peace of mind knowing that the funds are protected until all the obligations are fulfilled.</i>&quot;
                 </p><br/>
             </ul>
             <br/>
