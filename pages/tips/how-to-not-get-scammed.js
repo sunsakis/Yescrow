@@ -100,21 +100,25 @@ export default function Tips() {
             Now you can use MetaMask to sign transactions and escrow crypto dollars (stablecoins), Ether, or any other tokens on the Ethereum’s blockchain. If you would like to send an escrow, however, you will need to get some ETH (Ether) in your wallet to pay for gas. Every transaction on Ethereum’s blockchain costs gas, but the way we see it is that it costs a little bit to be in total control over your money. And these fees, they are 100x lower than traditional escrow services.
             </p>
             <br/>
+            <div class="mt-5 flex justify-center">
             <Image
                 src="/escrow_com_fees.png"
                 alt="Escrow.com fees"
                 width={500}
                 height={500}
             />
-            <label>Above are escrow fees on the popular online platform escrow.com</label>
+            </div>
+            <label class="flex justify-center">Above are escrow fees on the popular online platform escrow.com</label>
             <br/><br/>
+            <div class="flex justify-center">
             <Image
                 src="/metamask_fees.png"
                 alt="Yes Crow fees"
                 width={500}
                 height={500}
             />
-            <label>Above was the fee for using Yes Crow. The difference is clear.</label>
+            </div>
+            <label class="flex justify-center">Above was the fee for using Yes Crow. The difference is clear.</label>
             <br/><br/>
             <h3 class="m-4 text-2xl text-center font-bold">So what is escrow, exactly?</h3>
             <br/>
