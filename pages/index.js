@@ -132,7 +132,7 @@ export default function Home() {
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
-        alt="a scheme of how Ethereum escrow works" 
+        alt="how to escrow Ethereum" 
         width={400} 
         height={340} />
         </div>
