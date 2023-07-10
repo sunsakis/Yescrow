@@ -13,21 +13,21 @@ function MyApp({ Component, pageProps }) {
     });
   }, []);
 
-  function addMatomo() {
-    return {
-      __html: `
-      var _paq = window._paq || [];
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        _paq.push(['setTrackerUrl', 'https://yescrow.matomo.cloud/piwik.php']);
-        _paq.push(['setSiteId', 1]);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://yescrow.matomo.cloud/piwik.js'; s.parentNode.insertBefore(g,s);
-      })();
-      `,
-    };
-  }
+  // function addMatomo() {
+  //   return {
+  //     __html: `
+  //     var _paq = window._paq || [];
+  //     _paq.push(['trackPageView']);
+  //     _paq.push(['enableLinkTracking']);
+  //     (function() {
+  //       _paq.push(['setTrackerUrl', 'https://yescrow.matomo.cloud/piwik.php']);
+  //       _paq.push(['setSiteId', 1]);
+  //       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  //       g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://yescrow.matomo.cloud/piwik.js'; s.parentNode.insertBefore(g,s);
+  //     })();
+  //     `,
+  //   };
+  // }
 
   return (
     <ThirdwebProvider 
@@ -35,12 +35,15 @@ function MyApp({ Component, pageProps }) {
       supportedChains={[Ethereum, Sepolia]}
     >
       <Component {...pageProps} />
-      <Script
-          id="matomo"
-          type="text/javascript"
-          dangerouslySetInnerHTML={addMatomo()}
-          key="website-jsonld"
+      <Script src="https://scripts.simpleanalyticscdn.com/latest.js"  />
+      <noscript>
+        {/* eslint-disable @next/next/no-img-element */}
+        <img
+          src="https://queue.simpleanalyticscdn.com/noscript.gif"
+          alt=""
+          referrerPolicy="no-referrer-when-downgrade"
         />
+      </noscript>
     </ThirdwebProvider>
   );
 }

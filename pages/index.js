@@ -13,21 +13,21 @@ export default function Home() {
 
   
 
-  function addMatomo() {
-    return {
-      __html: `
-      var _paq = window._paq || [];
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        _paq.push(['setTrackerUrl', 'https://yescrow.matomo.cloud/piwik.php']);
-        _paq.push(['setSiteId', 1]);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://yescrow.matomo.cloud/piwik.js'; s.parentNode.insertBefore(g,s);
-      })();
-      `,
-    };
-  }
+  // function addMatomo() {
+  //   return {
+  //     __html: `
+  //     var _paq = window._paq || [];
+  //     _paq.push(['trackPageView']);
+  //     _paq.push(['enableLinkTracking']);
+  //     (function() {
+  //       _paq.push(['setTrackerUrl', 'https://yescrow.matomo.cloud/piwik.php']);
+  //       _paq.push(['setSiteId', 1]);
+  //       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  //       g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://yescrow.matomo.cloud/piwik.js'; s.parentNode.insertBefore(g,s);
+  //     })();
+  //     `,
+  //   };
+  // }
 
   function addWebsiteJsonLd() {
     return {
@@ -115,12 +115,12 @@ export default function Home() {
         <link rel="canonical" href="https://yescrow.io" />
         <link rel="icon" href="/white_crow_icon_black_bg.png" />
       </Head>
-      <Script
+      {/* <Script
           id="matomo"
           type="text/javascript"
           dangerouslySetInnerHTML={addMatomo()}
           key="website-jsonld"
-        />
+        /> */}
         <Header />
         <main>
         <div> 
