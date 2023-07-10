@@ -20,7 +20,7 @@ export default function Tips() {
             "articleBody": "Let me show you that it is completely possible to protect yourself from an online scammer by using an escrow as if it were your scam shield. For free. Absolutely for free. Can't believe it? Yes, this trick is that mighty. So bear with me as I show you how to navigate the matrix.\n\nI just received an e-mail...",
             "author": {
               "@type": "Person",
-              "name": "Sun Sakis"
+              "name": "sunsAkis"
             },
             "publisher": {
               "@type": "Organization",

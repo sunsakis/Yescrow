@@ -31,8 +31,10 @@ export default function EscrowForm() {
   }
 
   return (
-    <div class="rounded-3xl pt-3 pb-2 text-center bg-[#161618]">
-        <h2 class="font-bold text-xl">Which Ethereum token would you like to escrow?</h2>
+    <div 
+    class="rounded-3xl pt-3 pb-2 text-center bg-[#161618]"
+    id="Deposit">
+        <h3 class="font-bold text-xl">Which Ethereum token would you like to escrow?</h3>
         <br />
         <div>
           <ul>
