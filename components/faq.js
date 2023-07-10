@@ -66,7 +66,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                Can Yes Crow rug pull?
+                                What cryptocurrencies does Yes Crow support?
                             </h2>
                         </div>
                         <div class="
@@ -89,7 +89,53 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                As much as crows love all things shiny, it is impossible for Yes Crow to steal customer funds due to the decentralized nature of the smart contract. 
+                                Yes Crow supports Ethereum and all the other ERC20 tokens such as USDT, USDC, DAI, LINK, UNI, etc. 
+                                </p>
+                            </div>
+                        </div>
+            </div>
+            <div class="relative overflow-hidden m-3">
+                    <input 
+                        type="checkbox" 
+                        class="
+                            peer
+                            absolute top-0 inset-x-0
+                            w-full h-12
+                            opacity-0 z-10 cursor-pointer
+                            "
+                    />
+                        <div class="
+                            rounded-xl peer-checked:rounded-b-none
+                            bg-[#161618]
+                            peer-checked:bg-matrix
+                            h-12 w-fill pl-5
+                            flex items-center
+                        ">
+                            <h2 class="text-white">
+                            How can I contact customer support?
+                            </h2>
+                        </div>
+                        <div class="
+                            absolute top-3 right-3
+                            text-red
+                            transition-transform duration-500
+                            rotate-0 peer-checked:rotate-180
+                            ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                        <div class="
+                        rounded-b-xl
+                        bg-[#161618]
+                        overflow-hidden
+                        transition-all duration-500
+                        max-h-0 peer-checked:max-h-80
+                        p-0 peer-checked:p-2
+                        ">
+                            <div class="p-4  text-gray-400">
+                                <p>
+                                You can contact our customer support by emailing escrow@yescrow.io. 
                                 </p>
                             </div>
                         </div>
@@ -339,57 +385,6 @@ export default function Faq() {
                                         target="_blank"
                                         class="text-matrix"> Macro
                                     </Link> - a leading blockchain security firm. Emails are encrypted, data is stored in Western Europe.
-                                </p>
-                            </div>
-                        </div>
-            </div>
-            <div class="relative overflow-hidden m-3">
-                    <input 
-                        type="checkbox" 
-                        class="
-                            peer
-                            absolute top-0 inset-x-0
-                            w-full h-12
-                            opacity-0 z-10 cursor-pointer
-                            "
-                    />
-                        <div class="
-                            rounded-xl peer-checked:rounded-b-none
-                            bg-[#161618]
-                            peer-checked:bg-matrix
-                            h-12 w-fill pl-5
-                            flex items-center
-                        ">
-                            <h2 class="text-white">
-                                So, Yes Crow is the best open-source crypto escrow?
-                            </h2>
-                        </div>
-                        <div class="
-                            absolute top-3 right-3
-                            text-red
-                            transition-transform duration-500
-                            rotate-0 peer-checked:rotate-180
-                            ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </div>
-                        <div class="
-                        rounded-b-xl
-                        bg-[#161618]
-                        overflow-hidden
-                        transition-all duration-500
-                        max-h-0 peer-checked:max-h-80
-                        p-0 peer-checked:p-2
-                        ">
-                            <div class="p-4  text-gray-400">
-                                <p>
-                                Yes, you can find the code on <Link 
-                                    href="https://github.com/sunsakis/yescrow"
-                                    rel="nofollow"
-                                    target="_blank"
-                                    class="text-matrix"
-                                    >Github</Link>. 
                                 </p>
                             </div>
                         </div>
