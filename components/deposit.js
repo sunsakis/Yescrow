@@ -43,7 +43,7 @@ export default function EscrowForm() {
                   class="fill-current h-6 w-6 mr-1" 
                   width="48" 
                   height="48" 
-                  alt="Ethereum logo">
+                  alt="Ethereum">
                 </Image> Ether
               </li></button>
             <button 
@@ -55,7 +55,7 @@ export default function EscrowForm() {
                   class="fill-current h-6 w-6 mr-1" 
                   width="48" 
                   height="48" 
-                  alt="Tether logo">
+                  alt="USDT">
                 </Image> USDT</li></button>
             <button 
               class={`${borderUsdc} m-3 border-matrix bg-[#3B3B3B] rounded-xl py-3 px-3 font-bold hover:text-green-500 hover:border-green-500`} 
@@ -66,7 +66,7 @@ export default function EscrowForm() {
                   class="fill-current h-6 w-6 mr-1" 
                   width="48" 
                   height="48" 
-                  alt="USDC logo">
+                  alt="USDC">
                 </Image> USDC</li></button>
             <button 
               class={`${borderErc20} m-3 border-matrix bg-[#3B3B3B] rounded-xl py-3 px-3 font-bold hover:text-green-500 hover:border-green-500`} 
@@ -77,7 +77,7 @@ export default function EscrowForm() {
                   class="fill-current h-6 w-6 mr-1" 
                   width="48" 
                   height="48" 
-                  alt="Ethereum logo">
+                  alt="ERC20">
                 </Image> ERC20</li></button>
           </ul>
         </div>
