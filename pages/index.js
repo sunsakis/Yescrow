@@ -113,7 +113,7 @@ export default function Home() {
           key="desc"
           />
         <link rel="canonical" href="https://yescrow.io" />
-        <link rel="icon" href="/white_vector_crow_icon.png" />
+        <link rel="icon" href="/white_crow_icon_black_bg.png" />
       </Head>
       <Script
           id="matomo"
@@ -131,7 +131,7 @@ export default function Home() {
         <Table />
         <Image 
         class="mx-auto"
-        src="/yescrow_trinity.png" 
+        src="/yescrow_trinity_black_bg.png" 
         alt="a scheme of how yescrow works" 
         width={400} 
         height={340} />
