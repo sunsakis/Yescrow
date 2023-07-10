@@ -66,6 +66,7 @@ export default function Home() {
         <link rel="icon" href="/white_crow_icon_black_bg.png" />
       </Head>
       <Script
+        id="website-schema"
         dangerouslySetInnerHTML={addWebsiteJsonLd()}
         type="application/ld+json"
       />
