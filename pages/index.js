@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Yes Crow - Build Online Trust For Cents - Ethereum Escrow dApp</title>
+        <title>Yes Crow - Build Trust Online - Free Ethereum Escrow dApp</title>
         <meta 
           name="description" 
           content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
@@ -132,7 +132,7 @@ export default function Home() {
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
-        alt="a scheme of how yescrow works" 
+        alt="a scheme of how Ethereum escrow works" 
         width={400} 
         height={340} />
         </div>
