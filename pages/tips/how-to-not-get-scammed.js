@@ -85,7 +85,7 @@ export default function Tips() {
             </p>
             <br/>
             <h2 class="m-4 text-3xl text-center font-bold">
-            Understanding <Link href="/">Yes Crow - A Powerful Crypto Escrow Tool Living On Ethereum</Link>
+            Understanding <Link href="/">Yes Crow - A Powerful Yet Simple Escrow Tool</Link>
             </h2>
             <br/>
             <p>

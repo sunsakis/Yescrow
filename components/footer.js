@@ -11,7 +11,7 @@ export default function Footer() {
                         <span class="text-white"> escrow@yescrow.io</span>
                     </code>
                 </p>
-                <div class="flex justify-center m-3">
+                {/* <div class="flex justify-center m-3">
                 <Link 
                         href="https://github.com/sunsakis/Yescrow"
                         rel="nofollow"
@@ -40,7 +40,7 @@ export default function Footer() {
                             xmlns="http://www.w3.org/2000/svg"
                             alt="GitHub logo" />
                     </Link>
-                    </div>
+                    </div> */}
             </div>
         </footer>
 

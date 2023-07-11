@@ -21,7 +21,7 @@ export default function Faq() {
                         flex items-center
                     ">
                         <h2 class="text-white">
-                            What is Yes Crow?
+                            What is a crypto escrow?
                         </h2>
                     </div>
                     <div class="
@@ -44,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yes Crow is a multisig Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other.</p>
+                            Yes Crow is a multisig Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other using cryptocurrencies.</p>
                         </div>
                     </div>
             </div>
@@ -66,7 +66,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                What cryptocurrencies does Yes Crow support?
+                                Which currencies does Yes Crow support?
                             </h2>
                         </div>
                         <div class="
@@ -89,7 +89,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yes Crow supports Ethereum and all the other ERC20 tokens such as USDT, USDC, DAI, LINK, UNI, etc. 
+                                Yes Crow supports <Link href="/euro" class="text-matrix">Euro deposits</Link> as well as <Link href="/" class="text-matrix">Ethereum</Link> and all the other ERC20 tokens such as USDT, USDC, DAI, LINK, UNI, etc. 
                                 </p>
                             </div>
                         </div>
@@ -112,53 +112,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                            How can I contact customer support?
-                            </h2>
-                        </div>
-                        <div class="
-                            absolute top-3 right-3
-                            text-red
-                            transition-transform duration-500
-                            rotate-0 peer-checked:rotate-180
-                            ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </div>
-                        <div class="
-                        rounded-b-xl
-                        bg-[#161618]
-                        overflow-hidden
-                        transition-all duration-500
-                        max-h-0 peer-checked:max-h-80
-                        p-0 peer-checked:p-2
-                        ">
-                            <div class="p-4  text-gray-400">
-                                <p>
-                                You can contact our customer support by emailing escrow@yescrow.io. 
-                                </p>
-                            </div>
-                        </div>
-            </div>
-            <div class="relative overflow-hidden m-3">
-                    <input 
-                        type="checkbox" 
-                        class="
-                            peer
-                            absolute top-0 inset-x-0
-                            w-full h-12
-                            opacity-0 z-10 cursor-pointer
-                            "
-                    />
-                        <div class="
-                            rounded-xl peer-checked:rounded-b-none
-                            bg-[#161618]
-                            peer-checked:bg-matrix
-                            h-12 w-fill pl-5
-                            flex items-center
-                        ">
-                            <h2 class="text-white">
-                                How does Yes Crow work?
+                                How does a crypto escrow work?
                             </h2>
                         </div>
                         <div class="
@@ -204,7 +158,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                What are the escrow fees? 
+                                What are the Ethereum escrow fees? 
                             </h2>
                         </div>
                         <div class="
@@ -227,7 +181,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                There are no escrow fees. it is free if the depositor releases the funds to the original recipient. In disputes, Yes Crow can act as the arbitre for a 5% fee. 
+                                You only have to pay the gas fees. Gas is what you pay for using a decentralized blockchain. In escrow disputes, Yes Crow acts as the arbitre for a 5% fee. 
                                 </p>
                             </div>
                         </div>

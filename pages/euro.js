@@ -2,12 +2,12 @@ import Head from 'next/head'
 import Footer from '../components/footer';
 import Header from '../components/header';
 import Image from 'next/image';
-import EscrowForm from '../components/deposit';
+import EscrowForm from '../components/depositEur';
 import Faq from '../components/faq';
 import Script from 'next/script';
-import Table from '../components/table';
 import TipsButton from '../components/tipsButton';
 import Link from 'next/link';
+
 
 export default function Home() {
 
@@ -128,14 +128,12 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Yes Crow - Build Trust Online - Free Ethereum Escrow dApp</title>
+        <title>Yes Crow - Build Trust Online - Escrow Euro (SEPA)</title>
         <meta 
-          name="description" 
-          content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
-          //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
-          key="desc"
+          name="description"
+          content="When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow." 
           />
-        <link rel="canonical" href="https://yescrow.io" />
+        <link rel="canonical" href="https://yescrow.io/euro" />
         <link rel="icon" href="/white_crow_icon_black_bg.png" />
       </Head>
       <Script
@@ -146,11 +144,10 @@ export default function Home() {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers using a blockchain escrow.</h1>
-          <h2 class="m-4 font-medium text-center">Send a crypto payment to a smart contract, release it yourself after you get what you wanted.</h2>
-          <br/>
+          <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers - deposit to a SEPA escrow.</h1>
+          <h2 class="m-4 mb-5 font-medium text-center">Send euro payments to a European escrow bank account and we will release them after you get what you wanted.</h2>
         <EscrowForm />
-        <Table />
+        <p class="text-2xl p-5 flex justify-center">1% + €10 fee per escrow</p>
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
@@ -158,15 +155,12 @@ export default function Home() {
         width={400} 
         height={340} />
         </div>
-        <br/>
-        <Link href="/euro">
-          <p class="m-4 text-center font-bold text-xl text-matrix">Escrow Euro</p>
+        <Link href="/">
+          <p class="m-4 text-center font-bold text-xl text-matrix">Escrow on Ethereum`s blockchain</p>
         </Link>
-        <Faq />
         <TipsButton />
         </main>
       <Footer />
-      
     </div>
     
   )

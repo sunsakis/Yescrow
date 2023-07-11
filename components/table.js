@@ -135,9 +135,6 @@ export default function Table() {
 
     
     function addBlock( readableID, amount, transactionHash, depositor, receiver, ticker, age) {
-        const txHashLink = "https://etherscan.io/tx/" + transactionHash;
-        const depositorAddressLink = "https://etherscan.io/address/" + depositor;
-        const receiverAddressLink = "https://etherscan.io/address/" + receiver;
         return (
 
             <tr key={readableID}>
@@ -148,34 +145,30 @@ export default function Table() {
                 {amount} {ticker ? ticker : "ETH"}
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-whitetracking-wider">
-                <Link href={txHashLink}
+                <p  onClick={() => alert(transactionHash)}
                     onMouseOver={e => e.target.style.color = '#FFD700'}
                     title={transactionHash}
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
                 >
                     <code>{transactionHash.substring(0,4)}..</code>
-                </Link>
+                </p>
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
-                <Link href={depositorAddressLink}
+                <p  
                     title={depositor}
                     onMouseOver={e => e.target.style.color = '#FFD700'}
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
+                    onClick={() => alert(depositor)}
                 >
                     <code>{depositor.slice(0,4) + ".." + depositor.slice(-2)}</code>
-                </Link>
+                </p>
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
-                <Link href={receiverAddressLink}
+            <p 
                 title={receiver}
                 onMouseOver={e => e.target.style.color = '#FFD700'}
-                rel="noopener noreferrer nofollow"
-                target="_blank"
+                onClick={() => alert(receiver)}
                 >
                     <code>{receiver.slice(0,4) + ".." + receiver.slice(-2)}</code>
-                </Link>
+                </p>
             </th>
             <th scope="col" class="px-1 py-3 text-left text-xs font-medium text-white tracking-wider">
             <Web3Button
@@ -197,7 +190,7 @@ export default function Table() {
 
         return (
         <div class="flex flex-col">
-            <h3 class="text-2xl font-bold m-4 mb-1 text-white text-center">Assets in escrow:</h3>
+            <h3 class="text-2xl font-bold m-4 mb-1 text-white text-center">Crypto in escrow:</h3>
           <div class="my-2 overflow-x-auto sm:mx-6 lg:mx-2">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-3">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -230,7 +223,7 @@ export default function Table() {
                         </th>
                       </tr>
                       </thead>
-                    <tbody class="bg-[#3B3B3B] divide-y-2 divide-[#161618] ">
+                    <tbody class="bg-[#161618] divide-y-2 divide-[#161618] ">
                     {data.slice().reverse().map((item) => (
                         addBlock(
                         item.depositId,
