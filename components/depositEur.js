@@ -49,7 +49,8 @@ export default function EurEscrowForm() {
   return (
         <form onSubmit={sendEmail}
         >
-          <div class="m-2 flex justify-center border-2 p-5 rounded-3xl bg-[#161618]">
+          <div class="m-2 flex justify-center border-2 p-5 rounded-3xl bg-[#161618]"
+                id="EscrowEuro">
               <div>
                 <label class="justify-center flex mb-2">Your email:</label>
                 <input class="text-center rounded-xl mb-2 max-w-xs sm:max-w-md"
