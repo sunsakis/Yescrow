@@ -31,8 +31,8 @@ export default function Home() {
         "logo": {
           "@type": "ImageObject",
           "url": "https://yescrow.io/white_crow_icon_black_bg.png",
-          "width": 600,
-          "height": 60
+          "width": "600",
+          "height": "60"
         },
         "provider": {
           "@type": "Organization",
@@ -46,7 +46,7 @@ export default function Home() {
             "https://twitter.com/theyescrow"
           ]
         }
-      }      
+      }          
       `,
     };
   }
