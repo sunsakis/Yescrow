@@ -4,6 +4,7 @@ export default function EurEscrowForm() {
 
   const [_senderEmail, setSenderAddress] = useState('')
   const [_receiverEmail, setReceiverAddress] = useState('')
+  const [buttonDisabled, setButtonDisabled] = useState(false)
 
   function handleSenderChange(e) {
     setSenderAddress(e.target.value);
@@ -18,6 +19,7 @@ export default function EurEscrowForm() {
             <div class="justify-center flex">
                     <button 
                         type="submit"
+                        disabled={buttonDisabled}
                         class="mt-3 bg-matrix hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
                         >
                     SUBMIT
@@ -27,9 +29,11 @@ export default function EurEscrowForm() {
     )
 }
 
+
     async function sendEmail(e) {
         try {
             e.preventDefault();
+            setButtonDisabled(true);
             await fetch("/api/depositMail", {
                 body: JSON.stringify({
                 sender: _senderEmail,
@@ -41,7 +45,7 @@ export default function EurEscrowForm() {
             method: "POST",
             });
             alert("Email sent! We will contact you shortly.");
-            } 
+            }
         catch (error) {
             console.log(error)}
     }

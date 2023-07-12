@@ -74,7 +74,7 @@ export default function Home() {
           <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers - deposit euros to a SEPA escrow.</h1>
           <h2 class="m-4 mb-5 font-medium text-center">Escrow money to a European bank account and release it after you get what you wanted: code, work or physical matter.</h2>
         <EscrowForm />
-        <p class="text-2xl p-5 flex justify-center">1% + €10 fee per escrow</p>
+        <p class="text-2xl pt-5 flex justify-center">1% + €10 fee per escrow</p>
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
