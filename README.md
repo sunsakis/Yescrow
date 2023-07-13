@@ -2,7 +2,7 @@
 
 Transact with strangers online without worries.
 
-0 escrow fees. Self-released. Goodbye legacy escrow services.
+Self-released. Goodbye legacy escrow services.
 
 In case of a quarrel, <a href="https://yescrow.io">Yes Crow</a> acts as an arbitre. 
 

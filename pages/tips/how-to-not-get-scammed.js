@@ -48,7 +48,6 @@ export default function Tips() {
           key="desc"
           />
         <link rel="canonical" href="https://yescrow.io/tips/how-to-not-get-scammed" />
-        <link rel="icon" href="/white_crow_icon_black_bg.png" />
       </Head>
       <Script
             id="schema"

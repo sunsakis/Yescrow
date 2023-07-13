@@ -136,7 +136,6 @@ export default function Home() {
           key="desc"
           />
         <link rel="canonical" href="https://yescrow.io" />
-        <link rel="icon" href="/white_crow_icon_black_bg.png" />
       </Head>
       <Script
         id="website-schema"

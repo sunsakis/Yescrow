@@ -61,7 +61,6 @@ export default function Home() {
           content="When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow." 
           />
         <link rel="canonical" href="https://yescrow.io/euro" />
-        <link rel="icon" href="/white_crow_icon_black_bg.png" />
       </Head>
       <Script
         id="website-schema"
@@ -74,18 +73,21 @@ export default function Home() {
           <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers - deposit euros to a SEPA escrow.</h1>
           <h2 class="m-4 mb-5 font-medium text-center">Escrow money to a European bank account and release it after you get what you wanted: code, work or physical matter.</h2>
         <EscrowForm />
-        <p class="text-2xl pt-5 flex justify-center">1% + €10 fee per escrow</p>
+        <p class="text-2xl pt-5 flex justify-center">€10 / escrow</p>
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
         alt="how to escrow Ethereum on Yes Crow" 
         width={400} 
         height={340} />
+        <p class="text-2xl pt-5 flex justify-center">1% for dispute resolution.</p>
         </div>
-        <Link href="/">
-          <p class="m-4 text-center font-bold text-xl text-matrix">Escrow on Ethereum`s blockchain</p>
-        </Link>
+        <br/>
         <TipsButton />
+        <br/>
+        <Link href="/">
+          <p class="m-4 text-center font-bold text-xl text-matrix">Escrow on Ethereum</p>
+        </Link>
         </main>
       <Footer />
     </div>

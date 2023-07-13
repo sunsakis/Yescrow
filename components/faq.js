@@ -44,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yes Crow is a multisig Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other using cryptocurrencies.</p>
+                            Yes Crow is an Ethereum escrow agent that allows users to transact with each other without having to trust each other.</p>
                         </div>
                     </div>
             </div>
@@ -158,7 +158,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                What are the Ethereum escrow fees? 
+                                How much does it cost to escrow? 
                             </h2>
                         </div>
                         <div class="
@@ -181,7 +181,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                You only have to pay the gas fees. Gas is what you pay for using a decentralized blockchain. In escrow disputes, Yes Crow acts as the arbitre for a 5% fee. 
+                                You only pay the blockchain gas fees, they range between $5 and $15 per transaction. In case of a dispute, Yes Crow can act as an arbitre for a 5% fee. 
                                 </p>
                             </div>
                         </div>
