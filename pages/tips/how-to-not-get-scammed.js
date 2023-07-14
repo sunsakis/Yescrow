@@ -180,10 +180,10 @@ export default function Tips() {
             </ul>
             <br/>
             <p>
-            <h4>I think you get the idea. You were smart enough to find this article, I believe you are a smart person. Assess the risk and do the calculated thing.</h4>
+            <h4 class="text-2xl">I think you get the idea. You were <b>smart</b> enough to find this article, I believe you are a smart person. Assess the risk and do the calculated thing.</h4>
             </p>
             <br/><br/>
-            <h4 class="text-xl mb-2">
+            <h4 class="text-md mb-2">
             By incorporating the escrow tool into your online interactions, you can safeguard your transactions, promote trust, encourage truth and minimize the potential to fall victim for scams. Protect yourself and your business by embracing this powerful tool and enjoy peace of mind in online dealings.
             </h4>
         </main>
