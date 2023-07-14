@@ -6,6 +6,7 @@ import EscrowForm from '../components/depositEur';
 import Script from 'next/script';
 import TipsButton from '../components/tipsButton';
 import Link from 'next/link';
+import Faq from '../components/faq';
 
 
 export default function Home() {
@@ -83,6 +84,8 @@ export default function Home() {
         <p class="text-2xl pt-5 flex justify-center">1% for dispute resolution.</p>
         </div>
         <br/>
+        <p class="m-4 text-center font-bold text-xl">Escrow: <Link href="/usdt" class="text-matrix">USDT</Link> | <Link href="/usdc" class="text-matrix">USDC</Link> | <Link href="/erc20" class="text-matrix">ERC20</Link> | <Link href="/euro" class="text-matrix">EURO</Link></p>
+        <Faq />
         <TipsButton />
         <br/>
         <Link href="/">

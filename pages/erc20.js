@@ -2,12 +2,12 @@ import Head from 'next/head'
 import Footer from '../components/footer';
 import Header from '../components/header';
 import Image from 'next/image';
-import EscrowForm from '../components/deposit';
-import Faq from '../components/faq';
 import Script from 'next/script';
 import Table from '../components/table';
 import TipsButton from '../components/tipsButton';
 import Link from 'next/link';
+import EscrowForm from '../components/erc20Deposit';
+import Faq from '../components/faq';
 
 export default function Home() {
 
@@ -18,7 +18,7 @@ export default function Home() {
         "@graph": [
           {
             "@type": "PaymentService",
-            "url": "https://yescrow.io",
+            "url": "https://yescrow.io/erc20",
             "name": "Yes Crow",
             "alternateName": "YesCrow",
             "description": "Establish trust with strangers using a blockchain escrow.",
@@ -26,11 +26,11 @@ export default function Home() {
               "@type": "TransferAction",
               "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://yescrow.io/#Deposit"
+                "urlTemplate": "https://yescrow.io/erc20#EscrowERC20"
               },
-              "description": "Escrow"
+              "description": "Escrow ERC20"
             },
-            "serviceType": "Ethereum Escrow",
+            "serviceType": "ERC20 Escrow",
             "logo": {
               "@type": "ImageObject",
               "url": "https://yescrow.io/white_crow_icon_black_bg.png",
@@ -128,14 +128,14 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Yes Crow - Build Trust Online - Ethereum Escrow dApp</title>
+        <title>Yes Crow - ERC20 Escrow Service - Escrow Tokens</title>
         <meta 
           name="description" 
           content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />
-        <link rel="canonical" href="https://yescrow.io" />
+        <link rel="canonical" href="https://yescrow.io/erc20" />
       </Head>
       <Script
         id="website-schema"
@@ -145,20 +145,24 @@ export default function Home() {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers using an Ethereum escrow agent.</h1>
-          <h2 class="m-4 font-medium text-center">Send a crypto payment to a smart contract, release it yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
+          <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers using a ERC20 escrow agent.</h1>
+          <h2 class="m-4 font-medium text-center">Send tokens to a smart contract, release them yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
           <br/>
+          <div class="m-2 flex justify-center text-center border-2 p-5 rounded-3xl bg-[#161618]"
+                id="EscrowERC20">
         <EscrowForm />
+        </div>
         <Table />
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
-        alt="how to escrow Ethereum on Yes Crow" 
+        alt="how to escrow ERC20 tokens on Yes Crow" 
         width={400} 
         height={340} />
         </div>
         <br/>
-          <p class="m-4 text-center font-bold text-xl">Escrow: <Link href="/usdt" class="text-matrix">USDT</Link> | <Link href="/usdc" class="text-matrix">USDC</Link> | <Link href="/erc20" class="text-matrix">ERC20</Link> | <Link href="/euro" class="text-matrix">EURO</Link></p>
+        <p class="m-4 text-center font-bold text-xl">Escrow: <Link href="/usdt" class="text-matrix">USDT</Link> | <Link href="/usdc" class="text-matrix">USDC</Link> | <Link href="/erc20" class="text-matrix">ERC20</Link> | <Link href="/euro" class="text-matrix">EURO</Link></p>
+        <Faq />
         <Faq />
         <TipsButton />
         </main>
