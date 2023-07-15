@@ -58,7 +58,7 @@ export default function Home() {
                 "name": "What is Yes Crow?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes Crow is a multisig Ethereum Virtual Machine escrow agent that allows users to transact with each other without having to trust each other."
+                  "text": "Yes Crow is an Ethereum escrow agent that allows users to transact with each other without having to trust each other."
                 }
               },
               {
@@ -90,7 +90,7 @@ export default function Home() {
                 "name": "What are the escrow fees?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "There are no escrow fees. it is free if the depositor releases the funds to the original recipient. In disputes, Yes Crow can act as the arbiter for a 5% fee."
+                  "text": "Yes crow charges 0.5% per escrow. In case of a dispute, Yes Crow can act as an arbitre for a 1% fee."
                 }
               },
               {

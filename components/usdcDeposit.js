@@ -50,14 +50,14 @@ export default function EscrowForm() {
     );
   
     const escrowContract = new ethers.Contract(
-      process.env.NEXT_PUBLIC_MAINNET_V2,
+      process.env.NEXT_PUBLIC_MAINNET,
       humanReadableABI,
       signer
     );
     
     try {
       const approveTx = await tokenContract.approve(
-          process.env.NEXT_PUBLIC_MAINNET_V2,
+          process.env.NEXT_PUBLIC_MAINNET,
           ethers.utils.parseUnits(_amount)
       );
       await approveTx.wait();
@@ -107,7 +107,7 @@ export default function EscrowForm() {
           </div>
           <br />
           <Web3Button 
-                contractAddress={process.env.NEXT_PUBLIC_MAINNET_V2}
+                contractAddress={process.env.NEXT_PUBLIC_MAINNET}
                 contractAbi={jsonABI}
                 action={async () => {
                   await blockchainTalk()
