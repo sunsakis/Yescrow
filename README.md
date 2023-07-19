@@ -10,7 +10,7 @@ In case of a quarrel, <a href="https://yescrow.io">Yes Crow</a> acts as an arbit
 
 ## Interface
 
-Use our website <a href="https://yescrow.io">yescrow.io</a> to communicate with the <a href="https://etherscan.io/address/0x450082ADE010fE62EB12c08350f0bA3CE55f46eF">smart contract.</a>
+Use our website <a href="https://yescrow.io">yescrow.io</a> to communicate with the <a href="https://etherscan.io/address/0x20EB13F9457b37a4daae2d1Fd218293FDC94c72B">smart contract.</a>
 
 Or boot the interface locally:
 
