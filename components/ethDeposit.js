@@ -61,7 +61,7 @@ export default function EthEscrowForm() {
                 </div>
                 <br />
                 <Web3Button 
-                contractAddress={process.env.NEXT_PUBLIC_MAINNET_V2}
+                contractAddress={process.env.NEXT_PUBLIC_MAINNET}
                 contractAbi={jsonABI}
                 action={async (contract) => { await contract.call("createDepositETH", [_seller], { value: ethers.utils.parseEther(_amount) })}}
                 onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message escrow@yescrow.io for guidance.")}

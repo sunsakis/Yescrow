@@ -90,7 +90,7 @@ export default function Home() {
                 "name": "What are the escrow fees?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "You only pay the blockchain gas fees, they range between $5 and $15 per transaction. In case of a dispute, Yes Crow can act as an arbitre for a 5% fee."
+                  "text": "Yes crow charges 0.5% per escrow. In case of a dispute, Yes Crow can act as an arbitre for a 1% fee."
                 }
               },
               {

@@ -36,7 +36,7 @@ export default function Table() {
         
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_V2, humanReadableABI, signer);
+        const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET, humanReadableABI, signer);
         
         const fetchData = async () => {
 
@@ -172,7 +172,7 @@ export default function Table() {
             </th>
             <th scope="col" class="px-1 py-3 text-left text-xs font-medium text-white tracking-wider">
             <Web3Button
-                contractAddress={process.env.NEXT_PUBLIC_MAINNET_V2}
+                contractAddress={process.env.NEXT_PUBLIC_MAINNET}
                 contractAbi={jsonABI}
                 action={async (contract) => {await contract.call("releaseDeposit", [readableID], {gasLimit: 250000})}}
                 onError={() => alert("Not your funds. Only depositor address can release this escrow.")}
