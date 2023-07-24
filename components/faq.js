@@ -66,7 +66,7 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                Which currencies does Yes Crow support?
+                                What cryptocurrencies does Yes Crow support?
                             </h2>
                         </div>
                         <div class="
@@ -89,7 +89,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yes Crow supports <Link href="/euro" class="text-matrix">Euro deposits</Link> as well as <Link href="/" class="text-matrix">Ethereum</Link> and all the other <Link href="/erc20" class="text-matrix">ERC20</Link> tokens such as <Link href="/usdt" class="text-matrix">USDT</Link>, <Link href="/usdc" class="text-matrix">USDC</Link>, DAI, LINK, UNI, etc. 
+                                Yes Crow supports Ethereum and all the other <Link href="yescrow.io/erc20">ERC20 tokens</Link> such as <Link href="yescrow.io/usdt">USDT</Link>, <Link href="yescrow.io/usdc">USDC</Link>, DAI, LINK, UNI, etc. 
                                 </p>
                             </div>
                         </div>
