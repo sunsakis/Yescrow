@@ -89,7 +89,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yes Crow supports Ethereum and all the other <Link href="yescrow.io/erc20">ERC20 tokens</Link> such as <Link href="yescrow.io/usdt">USDT</Link>, <Link href="yescrow.io/usdc">USDC</Link>, DAI, LINK, UNI, etc. 
+                                Yes Crow supports Ethereum and all the other <Link href="/erc20">ERC20 tokens</Link> such as <Link href="/usdt">USDT</Link>, <Link href="/usdc">USDC</Link>, DAI, LINK, UNI, etc. 
                                 </p>
                             </div>
                         </div>
