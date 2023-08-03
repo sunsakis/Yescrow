@@ -7,17 +7,12 @@ import Script from "next/script";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    init({
-      url: process.env.NEXT_PUBLIC_MATOMO_URL,
-      siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
-    });
-  }, []);
 
   return (
     <ThirdwebProvider 
       activeChain={Ethereum}
       supportedChains={[Ethereum, Sepolia]}
+      clientId={process.env.NEXT_PUBLIC_THIRDWEB_ID}
     >
       <Component {...pageProps} />
       <Script src="https://scripts.simpleanalyticscdn.com/latest.js"  />
