@@ -128,7 +128,7 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Free USDT Escrow Service - Only Pay For Gas - Yes Crow</title>
+        <title>USDT Escrow Service: Super Smooth - Yes Crow!</title>
         <meta 
           name="description" 
           content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 

@@ -44,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yes Crow is a decentralized Ethereum escrow agent that allows users to transact with each other without having to trust each other.</p>
+                            Yes Crow is an Ethereum escrow agent that allows users to transact with each other without having to trust each other.</p>
                         </div>
                     </div>
             </div>
@@ -181,7 +181,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                Yes crow does not charge per escrow. Only in case of a quarrel Yes Crow can act as an arbitre for a % fee. 
+                                0.5% fee per escrow. In case of a quarrel, Yes Crow can act as an arbitre for a 1% fee. 
                                 </p>
                             </div>
                         </div>
