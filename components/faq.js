@@ -263,39 +263,6 @@ export default function Faq() {
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
                         </div>
-                        <div class="
-                        rounded-b-xl
-                        bg-[#161618]
-                        overflow-hidden
-                        transition-all duration-500
-                        max-h-0 peer-checked:max-h-80
-                        p-0 peer-checked:p-2
-                        ">
-                            <div class="p-4  text-gray-400">
-                                <p>
-                                    The smart contract is 
-                                    <Link 
-                                        href="https://etherscan.io/address/0x450082ADE010fE62EB12c08350f0bA3CE55f46eF"
-                                        rel="nofollow"
-                                        target="_blank"
-                                        class="text-matrix"
-                                    > public</Link>. Audited by
-                                    <Link 
-                                        href="https://twitter.com/karooolis"
-                                        rel="nofollow"
-                                        target="_blank"
-                                        class="text-matrix"
-                                    > @karooolis
-                                    </Link> from  
-                                    <Link 
-                                        href="https://0xmacro.com"
-                                        rel="nofollow"
-                                        target="_blank"
-                                        class="text-matrix"> Macro
-                                    </Link> - a leading blockchain security firm. Emails are encrypted, data is stored in Western Europe.
-                                </p>
-                            </div>
-                        </div>
             </div>
         </section>
     )
