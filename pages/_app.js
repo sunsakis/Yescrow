@@ -1,7 +1,5 @@
 import "../styles/globals.css";
-import React, { useEffect } from "react";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
-import { init } from "@socialgouv/matomo-next";
 import { Ethereum, Sepolia } from "@thirdweb-dev/chains";
 import Script from "next/script";
 import Head from "next/head";
