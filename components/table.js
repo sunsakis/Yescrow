@@ -9,7 +9,7 @@ import Router from 'next/router';
 
 
 
-const humanReadableABI = [
+const ABI = [
     "function createDepositETH(address _receiver) external payable",
     "function createDepositERC20(address _receiver, address _token, uint256 _amount) external",
     "function releaseDeposit(uint256 _id) external",
@@ -18,12 +18,7 @@ const humanReadableABI = [
     "event DepositReleased(uint256 indexed id)"
     ];
 
-const humanReadableERC20ABI = [
-    "function approve(address _spender, uint256 _value) external",
-    "function symbol() external view returns (string)"
-    ];
-
-const iface = new Interface(humanReadableABI);
+const iface = new Interface(ABI);
 const jsonABI = iface.format(FormatTypes.json);
 
 

@@ -9,7 +9,7 @@ import Link from 'next/link';
 import EscrowForm from '../components/usdcDeposit';
 import Faq from '../components/faq';
 
-export default function Home() {
+export default function Home({data}) {
 
   function addWebsiteJsonLd() {
     return {
@@ -152,7 +152,7 @@ export default function Home() {
                 id="EscrowUSDC">
         <EscrowForm />
         </div>
-        <Table />
+        <Table data={data}/>
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
@@ -171,4 +171,110 @@ export default function Home() {
     </div>
     
   )
+}
+
+export async function getServerSideProps() {
+
+  const settings = {
+    apiKey: process.env.ALCHEMY_API, // Replace with your Alchemy API Key.
+    network: Network.ETH_MAINNET, // Replace with your network.
+  };
+
+  const alchemy = new Alchemy(settings);
+  const ethersProvider = await alchemy.config.getProvider();
+  const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET, ABI, ethersProvider);
+  const newDepositETH = await contract.queryFilter("NewDepositETH", 0, "latest");
+  const newDepositERC20 = await contract.queryFilter("NewDepositERC20", 0, "latest");
+  const releasedDepositResults = await contract.queryFilter("DepositReleased", 0, "latest");
+
+  const resultsWithoutReleasedETHDeposits = newDepositETH.filter((result) => {
+    const depositId = result.args.depositId;
+    const isReleased = releasedDepositResults.some((releasedDepositResult) => {
+        const releasedDepositId = releasedDepositResult.args.id;
+        return depositId.eq(releasedDepositId);
+    });
+    return !isReleased;
+});
+
+  const resultsWithoutReleasedERC20Deposits = newDepositERC20.filter((result) => {
+    const depositId = result.args.depositId;
+    const isReleased = releasedDepositResults.some((releasedDepositResult) => {
+        const releasedDepositId = releasedDepositResult.args.id;
+        return depositId.eq(releasedDepositId);
+    });
+    return !isReleased;
+  });
+
+  const concatData = resultsWithoutReleasedETHDeposits.concat(resultsWithoutReleasedERC20Deposits);
+
+  const formattedData = await Promise.all(concatData.map(async (result) => {
+                
+    const {
+        depositId, 
+        depositor, 
+        receiver, 
+        amount,
+        token,
+        
+    } = result.args;
+
+    async function getTokenTicker(tokenContract) {
+        try {
+          const ticker = await tokenContract.symbol();
+          return ticker;
+        } catch (error) {
+          console.error('Error occurred while fetching token ticker:', error);
+          return ''; // Return an empty string in case of an error
+        }
+      }
+
+    let ticker = '';
+    if (token) {
+      const tokenContract = new ethers.Contract(token, ERC20ABI, ethersProvider);
+      ticker = await getTokenTicker(tokenContract, signer);
+    }
+
+    function calculateAge(timestamp) {
+        const currentTime = Math.floor(Date.now() / 1000);
+        const ageInSeconds = currentTime - timestamp;
+        const ageInMinutes = Math.floor(ageInSeconds / 60);
+        const ageInHours = Math.floor(ageInMinutes / 60);
+        const ageInDays = Math.floor(ageInHours / 24);
+        return ageInDays;
+        }
+
+    function sortAge(timestamp) {
+        const currentTime = Math.floor(Date.now() / 1000);
+        const ageInSeconds = currentTime - timestamp;
+        return ageInSeconds;
+        }
+
+    const transactionHash = result.transactionHash;
+    const amountInETH = ethers.utils.formatEther(amount);
+    const readableID = BigNumber.from(depositId).toString();
+    const timestamp = (await ethersProvider.getBlock(result.blockNumber)).timestamp;
+    const age = calculateAge(timestamp);
+    const ageInSeconds = sortAge(timestamp);
+
+    return {
+        depositId: readableID,
+        depositor: depositor,
+        receiver: receiver,
+        amount: amountInETH,
+        transactionHash: transactionHash,
+        ticker: ticker,
+        age: age,
+        ageInSeconds: ageInSeconds,
+    };
+}, [], 
+));
+
+formattedData.sort((a, b) => b.ageInSeconds - a.ageInSeconds);
+console.log(formattedData);
+
+return {
+    props: {
+      data: formattedData,
+    },
+  };
 }
