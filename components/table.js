@@ -1,7 +1,4 @@
-import { useState, React, useEffect } from 'react';
-import { ethers } from 'ethers';
 import Image from 'next/image';
-import { BigNumber } from 'ethers';
 import { Web3Button } from '@thirdweb-dev/react';
 import styles from '../styles/Home.module.css';
 import { Interface, FormatTypes } from '@ethersproject/abi';
