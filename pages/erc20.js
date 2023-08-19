@@ -8,6 +8,22 @@ import TipsButton from '../components/tipsButton';
 import Link from 'next/link';
 import EscrowForm from '../components/erc20Deposit';
 import Faq from '../components/faq';
+import { ethers, BigNumber } from 'ethers';
+import { Network, Alchemy } from 'alchemy-sdk';
+
+const ABI = [
+  "function createDepositETH(address _receiver) external payable",
+  "function createDepositERC20(address _receiver, address _token, uint256 _amount) external",
+  "function releaseDeposit(uint256 _id) external",
+  "event NewDepositETH(uint256 indexed depositId, address indexed depositor, address indexed receiver, uint256 amount)",
+  "event NewDepositERC20(uint256 indexed depositId, address indexed depositor, address indexed receiver, address token, uint256 amount)",
+  "event DepositReleased(uint256 indexed id)"
+  ];
+
+const ERC20ABI = [
+  "function approve(address _spender, uint256 _value) external",
+  "function symbol() external view returns (string)"
+  ];
 
 export default function Home( {data} ) {
 
