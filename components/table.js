@@ -25,11 +25,19 @@ export default function Table( { data } ) {
         return (
 
             <tr key={readableID}>
-            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider hover:text-black">
-                {age} <code>days</code>
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
+                <p
+                    onMouseOver={e => e.target.style.color = '#FFD700'}
+                >
+                    {age} <code>days</code>
+                </p>
             </th>
-            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider hover:text-matrix ">
-                {amount} {ticker ? ticker : "ETH"}
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
+                <p
+                    onMouseOver={e => e.target.style.color = '#FFD700'}
+                >
+                    {amount} {ticker ? ticker : "ETH"}
+                </p>
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-whitetracking-wider">
                 <p  onClick={() => alert(transactionHash)}
@@ -62,7 +70,7 @@ export default function Table( { data } ) {
                 contractAddress={process.env.NEXT_PUBLIC_MAINNET}
                 contractAbi={jsonABI}
                 action={async (contract) => {await contract.call("releaseDeposit", [readableID], {gasLimit: 250000})}}
-                onError={() => alert("Not your funds. Only depositor address can release this escrow.")}
+                onError={() => alert("Not your funds. Only the depositor can release this escrow.")}
                 onSuccess={() => Router.reload(window.location.pathname)}
                 className={styles.rls}
                 
