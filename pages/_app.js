@@ -20,14 +20,6 @@ function MyApp({ Component, pageProps }) {
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
       <link rel="manifest" href="/favicon/site.webmanifest" />
       </Head>
-      <noscript>
-        {/* eslint-disable @next/next/no-img-element */}
-        <img
-          src="https://queue.simpleanalyticscdn.com/noscript.gif"
-          alt=""
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-      </noscript>
     </ThirdwebProvider>
   );
 }

@@ -128,10 +128,10 @@ export default function Home() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>USDT Escrow Service - Super Smooth - Yes Crow!</title>
+        <title>USDT Escrow Service - No Login Needed | Yes Crow</title>
         <meta 
           name="description" 
-          content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
+          content="Just connect your MetaMask wallet and you are good to go." 
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />

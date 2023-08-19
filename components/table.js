@@ -8,6 +8,7 @@ import { Interface, FormatTypes } from '@ethersproject/abi';
 import Router from 'next/router';
 
 
+
 const humanReadableABI = [
     "function createDepositETH(address _receiver) external payable",
     "function createDepositERC20(address _receiver, address _token, uint256 _amount) external",
@@ -26,112 +27,7 @@ const iface = new Interface(humanReadableABI);
 const jsonABI = iface.format(FormatTypes.json);
 
 
-export default function Table() {
-
-    useEffect(() => {
-        if (!window.ethereum) {
-            return;
-        }
-        
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET, humanReadableABI, signer);
-        
-        const fetchData = async () => {
-
-            const newDepositETH = await contract.queryFilter("NewDepositETH", 0, "latest");
-            const newDepositERC20 = await contract.queryFilter("NewDepositERC20", 0, "latest");
-            const releasedDepositResults = await contract.queryFilter("DepositReleased", 0, "latest");
-
-            const resultsWithoutReleasedETHDeposits = newDepositETH.filter((result) => {
-                const depositId = result.args.depositId;
-                const isReleased = releasedDepositResults.some((releasedDepositResult) => {
-                    const releasedDepositId = releasedDepositResult.args.id;
-                    return depositId.eq(releasedDepositId);
-                });
-                return !isReleased;
-            });
-            const resultsWithoutReleasedERC20Deposits = newDepositERC20.filter((result) => {
-                const depositId = result.args.depositId;
-                const isReleased = releasedDepositResults.some((releasedDepositResult) => {
-                    const releasedDepositId = releasedDepositResult.args.id;
-                    return depositId.eq(releasedDepositId);
-                });
-                return !isReleased;
-            });
-
-            const concatData = resultsWithoutReleasedETHDeposits.concat(resultsWithoutReleasedERC20Deposits);
-            
-            const formattedData = await Promise.all(concatData.map(async (result) => {
-                
-                const {
-                    depositId, 
-                    depositor, 
-                    receiver, 
-                    amount,
-                    token,
-                    
-                } = result.args;
-
-                async function getTokenTicker(tokenContract) {
-                    try {
-                      const ticker = await tokenContract.symbol();
-                      return ticker;
-                    } catch (error) {
-                      console.error('Error occurred while fetching token ticker:', error);
-                      return ''; // Return an empty string in case of an error
-                    }
-                  }
-
-                let ticker = '';
-                if (token) {
-                  const tokenContract = new ethers.Contract(token, humanReadableERC20ABI, signer);
-                  ticker = await getTokenTicker(tokenContract, signer);
-                }
-
-                function calculateAge(timestamp) {
-                    const currentTime = Math.floor(Date.now() / 1000);
-                    const ageInSeconds = currentTime - timestamp;
-                    const ageInMinutes = Math.floor(ageInSeconds / 60);
-                    const ageInHours = Math.floor(ageInMinutes / 60);
-                    const ageInDays = Math.floor(ageInHours / 24);
-                    return ageInDays;
-                    }
-
-                function sortAge(timestamp) {
-                    const currentTime = Math.floor(Date.now() / 1000);
-                    const ageInSeconds = currentTime - timestamp;
-                    return ageInSeconds;
-                    }
-
-                const transactionHash = result.transactionHash;
-                const amountInETH = ethers.utils.formatEther(amount);
-                const readableID = BigNumber.from(depositId).toString();
-                const timestamp = (await provider.getBlock(result.blockNumber)).timestamp;
-                const age = calculateAge(timestamp);
-                const ageInSeconds = sortAge(timestamp);
-
-                return {
-                    depositId: readableID,
-                    depositor: depositor,
-                    receiver: receiver,
-                    amount: amountInETH,
-                    transactionHash: transactionHash,
-                    ticker: ticker,
-                    age: age,
-                    ageInSeconds: ageInSeconds,
-                };
-            }, [], 
-            ));
-            formattedData.sort((a, b) => b.ageInSeconds - a.ageInSeconds);
-            setData(formattedData);
-            
-        };
-        fetchData();
-    }, []);
-
-        const [data, setData] = useState([]);
-
+export default function Table( { data } ) {
     
     function addBlock( readableID, amount, transactionHash, depositor, receiver, ticker, age) {
         return (
