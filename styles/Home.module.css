@@ -28,3 +28,12 @@
     color: white !important;
     box-shadow : 0px 0px 10px 0px #FFD700 !important;
   }
+
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+    cursor: pointer;
+  }

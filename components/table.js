@@ -23,13 +23,51 @@ export default function Table( { data } ) {
     
     function addBlock( readableID, amount, transactionHash, depositor, receiver, ticker, age) {
 
+        const copyHash = (e) => {
+            navigator.clipboard.writeText(transactionHash)
+            e.target.style.color = '#FFD700'
+            setTimeout(() => {
+                e.target.style.color = '#ffffff'
+                alert("Copied tx hash!")
+            }
+            , 1)
+        }
+
+        const copyDepositor = (e) => {
+            navigator.clipboard.writeText(depositor)
+            e.target.style.color = '#FFD700'
+            setTimeout(() => {
+                e.target.style.color = '#ffffff'
+                alert("Copied depositor's address!")
+            }
+            , 1)
+        }
+
+        const copyReceiver = (e) => {
+            navigator.clipboard.writeText(receiver)
+            e.target.style.color = '#FFD700'
+            setTimeout(() => {
+                e.target.style.color = '#ffffff'
+                alert("Copied receiver's address!")
+            }
+            , 1)
+        }
+
+        const fadeColor = (e) => {
+            e.target.style.color = '#FFD700'
+            setTimeout(() => {
+                e.target.style.color = '#ffffff'
+            }
+            , 1000)
+        }
+
         return (
 
             <tr key={readableID}>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
-                <p id="age"
+                <p  id="age"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
-                    
+                    onMouseOut={fadeColor}
                 >
                     {age} <code>days</code>
                 </p>
@@ -37,16 +75,17 @@ export default function Table( { data } ) {
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
                 <p id="amount"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
-                   
+                   onMouseOut={fadeColor}
                 >
                     {amount} {ticker ? ticker : "ETH"}
                 </p>
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
                 <p  
+                    class="cursor-pointer"
                     id="hash"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
-                   
+                    onClick={copyHash}
                     title={transactionHash}
                 >
                     <code>{transactionHash.substring(0,4)}..</code>
@@ -54,9 +93,11 @@ export default function Table( { data } ) {
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
                 <p  
+                    class="cursor-pointer"
                     id="depositor"
                     title={depositor}
                     onMouseOver={e => e.target.style.color = '#FFD700'}
+                    onClick={copyDepositor}
                     
                 >
                     <code>{depositor.slice(0,4) + ".." + depositor.slice(-2)}</code>
@@ -64,39 +105,11 @@ export default function Table( { data } ) {
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
             <p 
+                class="cursor-pointer"
                 id="receiver"
                 title={receiver}
                 onMouseOver={e => e.target.style.color = '#FFD700'}
-                
-                // Also I want the UI to say "copied" when the user clicks on the address
-                // and then it should go back to normal after a few seconds
-                // I think I can do this with a setTimeout function
-                // I can also do this with a CSS animation
-                // I can also do this with a React hook
-                // I can also do this with a React state
-                // Which method is the most efficient?
-                // I think the CSS animation is the most efficient
-                // But I don't know how to do it
-                // I think the React hook is the second most efficient
-                // But I don't know how to do it
-                // I think the React state is the third most efficient
-                // But I don't know how to do it
-                // I think the setTimeout function is the least efficient
-                // But I know how to do it
-                // How come you do not know how to do CSS animation? Or React?
-                // I don't know how to do CSS animation because I have never done it before
-                // I don't know how to do React because I have never done it before
-                // I don't know how to do React hooks because I have never done it before
-                // Let's do it for the first time?
-                //Why is the setTimeout least efficient?
-                // Because it is a function that runs every time the component is rendered
-                // So it is not a good idea to use it
-                // But it is the only one I know how to do
-                // Why is it React hook less efficient than CSS?
-                // Because it is a function that runs every time the component is rendered
-
-
-
+                onClick={copyReceiver}
                 >
                     <code>{receiver.slice(0,4) + ".." + receiver.slice(-2)}</code>
                 </p>
