@@ -58,7 +58,7 @@ export default function Table( { data } ) {
             setTimeout(() => {
                 e.target.style.color = '#ffffff'
             }
-            , 1000)
+            , 500)
         }
 
         return (
