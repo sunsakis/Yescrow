@@ -1,4 +1,4 @@
-# The Yes Crow - An Escrow Agent On Ethereum
+# Yes Crow - An Escrow Agent On Ethereum
 
 Transact with strangers online without worries.
 
@@ -33,5 +33,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 ## Contact, requests and feedback
 
 escrow@yescrow.io
-
-<a href="https://twitter.com/theyescrow">Twitter</a>

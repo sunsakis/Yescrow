@@ -22,26 +22,31 @@ const jsonABI = iface.format(FormatTypes.json);
 export default function Table( { data } ) {
     
     function addBlock( readableID, amount, transactionHash, depositor, receiver, ticker, age) {
+
         return (
 
             <tr key={readableID}>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
-                <p
+                <p id="age"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
+                    
                 >
                     {age} <code>days</code>
                 </p>
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
-                <p
+                <p id="amount"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
+                   
                 >
                     {amount} {ticker ? ticker : "ETH"}
                 </p>
             </th>
-            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-whitetracking-wider">
-                <p  onClick={() => alert(transactionHash)}
+            <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
+                <p  
+                    id="hash"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
+                   
                     title={transactionHash}
                 >
                     <code>{transactionHash.substring(0,4)}..</code>
@@ -49,18 +54,49 @@ export default function Table( { data } ) {
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
                 <p  
+                    id="depositor"
                     title={depositor}
                     onMouseOver={e => e.target.style.color = '#FFD700'}
-                    onClick={() => alert(depositor)}
+                    
                 >
                     <code>{depositor.slice(0,4) + ".." + depositor.slice(-2)}</code>
                 </p>
             </th>
             <th scope="col" class="px-3 py-3 text-left text-xs font-medium text-white tracking-wider">
             <p 
+                id="receiver"
                 title={receiver}
                 onMouseOver={e => e.target.style.color = '#FFD700'}
-                onClick={() => alert(receiver)}
+                
+                // Also I want the UI to say "copied" when the user clicks on the address
+                // and then it should go back to normal after a few seconds
+                // I think I can do this with a setTimeout function
+                // I can also do this with a CSS animation
+                // I can also do this with a React hook
+                // I can also do this with a React state
+                // Which method is the most efficient?
+                // I think the CSS animation is the most efficient
+                // But I don't know how to do it
+                // I think the React hook is the second most efficient
+                // But I don't know how to do it
+                // I think the React state is the third most efficient
+                // But I don't know how to do it
+                // I think the setTimeout function is the least efficient
+                // But I know how to do it
+                // How come you do not know how to do CSS animation? Or React?
+                // I don't know how to do CSS animation because I have never done it before
+                // I don't know how to do React because I have never done it before
+                // I don't know how to do React hooks because I have never done it before
+                // Let's do it for the first time?
+                //Why is the setTimeout least efficient?
+                // Because it is a function that runs every time the component is rendered
+                // So it is not a good idea to use it
+                // But it is the only one I know how to do
+                // Why is it React hook less efficient than CSS?
+                // Because it is a function that runs every time the component is rendered
+
+
+
                 >
                     <code>{receiver.slice(0,4) + ".." + receiver.slice(-2)}</code>
                 </p>
@@ -137,3 +173,8 @@ export default function Table( { data } ) {
           </div>
       </div>
 )}
+
+// I have an HTML table with rows. In every row there is some long text that is shortened to fit on the screen.  
+// I want to show the full text when the user hovers over the text.
+// I tried to use the title attribute, but it doesn't work. I also tried to use the onmouseover event, but it doesn't work either.
+// How can I do this?

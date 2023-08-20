@@ -174,8 +174,8 @@ export default function Home( { data } ) {
         height={340} />
         </div>
         <br/>
-          <p class="m-4 text-center font-bold text-xl">Escrow: <Link href="/usdt" class="text-matrix">USDT</Link> | <Link href="/usdc" class="text-matrix">USDC</Link> | <Link href="/erc20" class="text-matrix">ERC20</Link></p>
         <Faq />
+        <p class="m-4 text-center font-bold text-xl">Escrow: <Link href="/usdt" class="text-matrix">USDT</Link> | <Link href="/usdc" class="text-matrix">USDC</Link> | <Link href="/erc20" class="text-matrix">ERC20</Link></p>
         <TipsButton />
         </main>
       <Footer />
