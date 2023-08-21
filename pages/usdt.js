@@ -144,7 +144,7 @@ export default function Home({data}) {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>USDT Escrow Service - No Login Needed | Yes Crow</title>
+        <title>Escrow USDT - No Login Needed | Yes Crow</title>
         <meta 
           name="description" 
           content="Just connect your wallet and you are good to go." 
@@ -161,8 +161,9 @@ export default function Home({data}) {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers using a USDT escrow agent.</h1>
-          <h2 class="m-4 font-medium text-center">Send a payment to a smart contract, release it yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
+          <h1 class="m-4 text-4xl text-center font-bold">Escrow USDT to establish digital trust.</h1>
+          <h2 class="m-4 font-medium text-center">Send a payment to the smart contract, release it once the deal is done.
+          <br/> All is transparent on the blockchain.</h2>
           <br/>
           <div class="m-2 flex justify-center text-center border-2 p-5 rounded-3xl bg-[#161618]"
                 id="EscrowUSDT">

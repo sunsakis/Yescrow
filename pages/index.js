@@ -161,8 +161,9 @@ export default function Home( { data } ) {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers using an Ethereum escrow agent.</h1>
-          <h2 class="m-4 font-medium text-center">Send a payment to a smart contract, release it yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
+          <h1 class="m-4 text-4xl text-center font-bold">Your gateway to digital trust.</h1>
+          <h2 class="m-4 font-medium text-center">Send a payment to the smart contract, release it once the deal is done.
+          <br/> All is transparent on the blockchain.</h2>
           <br/>
         <EscrowForm />
         <Table data={data} />
