@@ -185,6 +185,11 @@ export default function Tips() {
             </p>
         </main>
         <EscrowButton/>
+        <br/>
+        <div class="flex justify-center">
+        <p class="inline-block"><Link href="/usdt" class="hover:text-matrix">USDT</Link></p>
+        <p class="inline-block justify-end"><Link href="/blog" class="hover:text-matrix">Blog</Link></p>
+        </div>
         <Footer />
         </div>
     )

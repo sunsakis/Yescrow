@@ -21,7 +21,7 @@ export default function Faq() {
                         flex items-center
                     ">
                         <h2 class="text-white">
-                            What is a crypto escrow?
+                            What is Yes Crow?
                         </h2>
                     </div>
                     <div class="
@@ -89,7 +89,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                By sending a cryptocurrency with the receiver`s address to the smart contract. You can release the deposit to the receiver as soon as you get what you wanted. 
+                                Designate the receiving address and send crypto to escrow. Release the payment as soon as the deal is completed. Else Yes Crow judges.
                                 </p>
                             </div>
                         </div>
@@ -135,7 +135,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                0.5% fee per escrow + gas for blockchain validators.  
+                                0.5% fee per escrow + gas.  
                                 </p>
                             </div>
                         </div>
