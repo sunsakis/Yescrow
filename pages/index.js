@@ -144,7 +144,7 @@ export default function Home( { data } ) {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Crypto Escrow Agent - Ethereum Escrow Service | Yes Crow</title>
+        <title>Escrow USDT or ETH - Ethereum Escrow Service | Yes Crow</title>
         <meta 
           name="description" 
           content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
@@ -162,7 +162,7 @@ export default function Home( { data } ) {
         <main>
         <div> 
           <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers using an Ethereum escrow agent.</h1>
-          <h2 class="m-4 font-medium text-center">Send a crypto payment to a smart contract, release it yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
+          <h2 class="m-4 font-medium text-center">Send a payment to a smart contract, release it yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
           <br/>
         <EscrowForm />
         <Table data={data} />
@@ -175,9 +175,13 @@ export default function Home( { data } ) {
         </div>
         <br/>
         <Faq />
-        <p class="m-4 text-center font-bold text-xl">Escrow: <Link href="/usdt" class="text-matrix">USDT</Link> | <Link href="/usdc" class="text-matrix">USDC</Link> | <Link href="/erc20" class="text-matrix">ERC20</Link></p>
         <TipsButton />
         </main>
+        <br/>
+        <div class="flex justify-center">
+        <p class="inline-block"><Link href="/usdt" class="hover:text-matrix">USDT</Link></p> |
+        <p class="inline-block justify-end"><Link href="/blog" class="hover:text-matrix">Blog</Link></p>
+        </div>
       <Footer />
       
     </div>

@@ -35,7 +35,9 @@ export default function EthEscrowForm() {
   return (
           <div class="m-5">
               <div>
-                <label>Stranger`s Ethereum address:</label>
+                <Image src="ethereum.svg" alt="ethereum logo" width="26" height="26" class="mx-auto"/>
+                <br/>
+                <label>Receiving Ethereum address:</label>
                 <br/>
                 <input class="text-center rounded-xl mt-2 mb-2 max-w-xs sm:max-w-md"
                   type="text" 

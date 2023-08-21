@@ -66,52 +66,6 @@ export default function Faq() {
                             flex items-center
                         ">
                             <h2 class="text-white">
-                                What cryptocurrencies does Yes Crow support?
-                            </h2>
-                        </div>
-                        <div class="
-                            absolute top-3 right-3
-                            text-red
-                            transition-transform duration-500
-                            rotate-0 peer-checked:rotate-180
-                            ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                            </svg>
-                        </div>
-                        <div class="
-                        rounded-b-xl
-                        bg-[#161618]
-                        overflow-hidden
-                        transition-all duration-500
-                        max-h-0 peer-checked:max-h-80
-                        p-0 peer-checked:p-2
-                        ">
-                            <div class="p-4  text-gray-400">
-                                <p>
-                                Yes Crow supports Ethereum and all the other <Link href="/erc20">ERC20 tokens</Link> such as <Link href="/usdt">USDT</Link>, <Link href="/usdc">USDC</Link>, DAI, LINK, UNI, etc. 
-                                </p>
-                            </div>
-                        </div>
-            </div>
-            <div class="relative overflow-hidden m-3">
-                    <input 
-                        type="checkbox" 
-                        class="
-                            peer
-                            absolute top-0 inset-x-0
-                            w-full h-12
-                            opacity-0 z-10 cursor-pointer
-                            "
-                    />
-                        <div class="
-                            rounded-xl peer-checked:rounded-b-none
-                            bg-[#161618]
-                            peer-checked:bg-matrix
-                            h-12 w-fill pl-5
-                            flex items-center
-                        ">
-                            <h2 class="text-white">
                                 How does a crypto escrow work?
                             </h2>
                         </div>

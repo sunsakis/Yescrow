@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ethers } from "ethers";
 import { Web3Button } from "@thirdweb-dev/react";
 import { Interface, FormatTypes } from "@ethersproject/abi";
@@ -81,7 +81,9 @@ export default function EscrowForm() {
   return (
     <div class="m-5">
         <div>
-          <label>Stranger`s Ethereum address:</label>
+          <Image src="tether-usdt-logo.svg" width="48" height="48" alt="USDT logo" class="mx-auto"/>
+          <br/>
+          <label>Receiving Ethereum address:</label>
           <br/>
           <input class="text-center rounded-xl mt-2 mb-2 max-w-xs sm:max-w-md"
             type="text" 

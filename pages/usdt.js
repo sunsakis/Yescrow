@@ -147,7 +147,7 @@ export default function Home({data}) {
         <title>USDT Escrow Service - No Login Needed | Yes Crow</title>
         <meta 
           name="description" 
-          content="Just connect your MetaMask wallet and you are good to go." 
+          content="Just connect your wallet and you are good to go." 
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />
@@ -162,7 +162,7 @@ export default function Home({data}) {
         <main>
         <div> 
           <h1 class="m-4 text-4xl text-center font-bold">Establish trust with strangers using a USDT escrow agent.</h1>
-          <h2 class="m-4 font-medium text-center">Send a crypto payment to a smart contract, release it yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
+          <h2 class="m-4 font-medium text-center">Send a payment to a smart contract, release it yourself after you get what you wanted. Everything is transparent on the blockchain.</h2>
           <br/>
           <div class="m-2 flex justify-center text-center border-2 p-5 rounded-3xl bg-[#161618]"
                 id="EscrowUSDT">
@@ -177,10 +177,13 @@ export default function Home({data}) {
         height={340} />
         </div>
         <br/>
-        <p class="m-4 text-center font-bold text-xl">Escrow: <Link href="/usdt" class="text-matrix">USDT</Link> | <Link href="/usdc" class="text-matrix">USDC</Link> | <Link href="/erc20" class="text-matrix">ERC20</Link></p>
         <Faq />
         <TipsButton />
         </main>
+        <br/>
+        <div class="flex justify-center">
+        <p class="inline-block justify-end"><Link href="/blog" class="hover:text-matrix">Blog</Link></p>
+        </div>
       <Footer />
     </div>
   )

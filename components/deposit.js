@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import EthEscrowForm from './ethDeposit';
 import UsdtEscrowForm from './usdtDeposit';
-import UsdcEscrowForm from './usdcDeposit';
-import Erc20EscrowForm from './erc20Deposit';
 import Image from 'next/image';
 
 const ABI = [
@@ -22,19 +20,11 @@ export default function EscrowForm() {
     var borderUsdt = "border text-matrix"
   }
 
-  if (active === "USDC") {
-    var borderUsdc = "border text-matrix"
-  }
-
-  if (active === "ERC20") {
-    var borderErc20 = "border text-matrix"
-  }
-
   return (
     <div 
     class="rounded-3xl pt-3 pb-2 text-center border-2 bg-[#161618]"
     id="DepositCrypto">
-        <h3 class="font-bold text-xl">Which Ethereum token would you like to escrow?</h3>
+        <h3 class="font-bold text-xl">Which token would you like to escrow?</h3>
         <br />
         <div>
           <ul>
@@ -59,35 +49,11 @@ export default function EscrowForm() {
                   height="48" 
                   alt="USDT">
                 </Image> USDT</li></button>
-            <button 
-              class={`${borderUsdc} m-3 border-matrix bg-[#3B3B3B] rounded-xl py-3 px-3 font-bold hover:text-green-500 hover:border-green-500`} 
-              onClick={() => setActive("USDC")}>
-                <li class="flex items-center">
-                <Image
-                  src="/usd-coin-usdc-logo.svg" 
-                  class="fill-current h-6 w-6 mr-1" 
-                  width="48" 
-                  height="48" 
-                  alt="USDC">
-                </Image> USDC</li></button>
-            <button 
-              class={`${borderErc20} m-3 border-matrix bg-[#3B3B3B] rounded-xl py-3 px-3 font-bold hover:text-green-500 hover:border-green-500`} 
-              onClick={() => setActive("ERC20")}>
-                <li class="flex items-center">
-                <Image
-                  src="/ethereum.svg" 
-                  class="fill-current h-6 w-6 mr-1" 
-                  width="48" 
-                  height="48" 
-                  alt="ERC20">
-                </Image> ERC20</li></button>
           </ul>
         </div>
       <div>
         {active === "ETH" && <EthEscrowForm />}
         {active === "USDT" && <UsdtEscrowForm />}
-        {active === "USDC" && <UsdcEscrowForm />}
-        {active === "ERC20" && <Erc20EscrowForm />}
       </div>   
     </div>    
   )
