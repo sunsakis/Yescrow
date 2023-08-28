@@ -53,6 +53,28 @@ export default function Table( { data } ) {
             , 1)
         }
 
+        const copyAge = (e) => {
+            navigator.clipboard.writeText(age + ' days')
+            e.target.style.color = '#FFD700'
+            setTimeout(() => {
+                e.target.style.color = '#ffffff'
+                alert("Escrow age copied!")
+            }
+            , 1)
+        }
+
+        const copyAmount = (e) => {
+            navigator.clipboard.writeText(amount)
+            e.target.style.color = '#FFD700'
+            setTimeout(() => {
+                e.target.style.color = '#ffffff'
+                alert("Copied escrow amount!")
+            }
+            , 1)
+        }
+
+        
+
         const fadeColor = (e) => {
             e.target.style.color = '#FFD700'
             setTimeout(() => {
@@ -68,6 +90,7 @@ export default function Table( { data } ) {
                 <p  id="age"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
                     onMouseOut={fadeColor}
+                    onClick={copyAge}
                 >
                     {age} <code>days</code>
                 </p>
@@ -76,6 +99,7 @@ export default function Table( { data } ) {
                 <p id="amount"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
                    onMouseOut={fadeColor}
+                     onClick={copyAmount}
                 >
                     {amount} {ticker ? ticker : "ETH"}
                 </p>

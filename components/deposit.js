@@ -10,7 +10,7 @@ const ABI = [
 
 export default function EscrowForm() {
 
-  const [active, setActive] = useState("ETH");
+  const [active, setActive] = useState("USDT");
 
   if (active === "ETH") {
     var borderEth = "border text-matrix"
