@@ -1,3 +1,5 @@
+import { Network, Alchemy } from 'alchemy-sdk';
+import { ethers, BigNumber } from 'ethers';
 import Head from 'next/head'
 import Footer from '../components/footer';
 import Header from '../components/header';
@@ -8,8 +10,6 @@ import Script from 'next/script';
 import Table from '../components/table';
 import TipsButton from '../components/tipsButton';
 import Link from 'next/link';
-import { Network, Alchemy } from 'alchemy-sdk';
-import { ethers, BigNumber } from 'ethers';
 
 const ABI = [
   "function createDepositETH(address _receiver) external payable",
@@ -196,12 +196,15 @@ export async function getServerSideProps() {
     network: Network.ETH_MAINNET, // Replace with your network.
   };
 
+
   const alchemy = new Alchemy(settings);
   const ethersProvider = await alchemy.config.getProvider();
   const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET, ABI, ethersProvider);
   const newDepositETH = await contract.queryFilter("NewDepositETH", 0, "latest");
   const newDepositERC20 = await contract.queryFilter("NewDepositERC20", 0, "latest");
   const releasedDepositResults = await contract.queryFilter("DepositReleased", 0, "latest");
+
+  
 
   const resultsWithoutReleasedETHDeposits = newDepositETH.filter((result) => {
     const depositId = result.args.depositId;
