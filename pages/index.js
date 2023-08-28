@@ -189,7 +189,7 @@ export default function Home( { data } ) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 
   const settings = {
     apiKey: process.env.ALCHEMY_API, // Replace with your Alchemy API Key.
@@ -295,5 +295,6 @@ return {
     props: {
       data: formattedData,
     },
+    revalidate: 1,
   };
 }
