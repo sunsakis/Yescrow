@@ -138,7 +138,7 @@ Now, let`s talk speed—escrowing stablecoins have got it in spades. In a world 
 </p>
 <br/>
 <p>
-Security, ahoy! Escrowing stablecoins comes with a fancy sidekick called decentralization. Your assets are spread across a network of computers, making them resistant to single points of failure. It`s like a game of digital "Red Rover" where hackers and bad actors struggle to break through the united front of the blockchain. Escrowing dollars, while established and regulated, can still raise concerns about physical theft, counterfeit bills, or even the occasional misplaced envelope. It`s like comparing a digital fortress to a well-guarded vault.
+Security, ahoy! Escrowing stablecoins comes with a fancy sidekick called decentralization. Your assets are spread across a network of computers, making them resistant to single points of failure. It`s like a game of digital <i>Red Rover</i> where hackers and bad actors struggle to break through the united front of the blockchain. Escrowing dollars, while established and regulated, can still raise concerns about physical theft, counterfeit bills, or even the occasional misplaced envelope. It`s like comparing a digital fortress to a well-guarded vault.
 </p>
 <br/>
 <p>
