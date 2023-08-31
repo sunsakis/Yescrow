@@ -3,8 +3,6 @@ import Footer from '../components/footer';
 import Header from '../components/header';
 import Image from 'next/image';
 import Script from 'next/script';
-import Table from '../components/table';
-import TipsButton from '../components/tipsButton';
 import Link from 'next/link';
 import EscrowForm from '../components/usdtDeposit';
 import Faq from '../components/faq';
@@ -151,7 +149,7 @@ export default function Home({data}) {
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />
-        <link rel="canonical" href="https://yescrow.io/usdt" />
+        <link rel="canonical" href="https://yescrow.io" />
       </Head>
       <Script
         id="website-schema"
@@ -162,14 +160,13 @@ export default function Home({data}) {
         <main>
         <div> 
           <h1 class="m-4 text-4xl text-center font-bold">Escrow USDT to establish digital trust.</h1>
-          <h2 class="m-4 font-medium text-center">Send a payment to the smart contract, release it once the deal is done.
+          <h2 class="m-4 font-medium text-center">Escrow the payment, release it once the deal is done.
           <br/> All is transparent on the blockchain.</h2>
           <br/>
           <div class="m-2 flex justify-center text-center border-2 p-5 rounded-3xl bg-[#161618]"
                 id="EscrowUSDT">
         <EscrowForm />
         </div>
-        <Table data={data}/>
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
@@ -179,7 +176,6 @@ export default function Home({data}) {
         </div>
         <br/>
         <Faq />
-        <TipsButton />
         </main>
         <br/>
         <div class="flex justify-center">

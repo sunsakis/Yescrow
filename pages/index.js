@@ -8,7 +8,6 @@ import EscrowForm from '../components/deposit';
 import Faq from '../components/faq';
 import Script from 'next/script';
 import Table from '../components/table';
-import TipsButton from '../components/tipsButton';
 import Link from 'next/link';
 
 const ABI = [
@@ -162,7 +161,7 @@ export default function Home( { data } ) {
         <main>
         <div> 
           <h1 class="m-4 text-4xl text-center font-bold">Your gateway to digital trust.</h1>
-          <h2 class="m-4 font-medium text-center">Send a payment to the smart contract, release it once the deal is done.
+          <h2 class="m-4 font-medium text-center">Escrow your payment, release it once the deal is done.
           <br/> All is transparent on the blockchain.</h2>
           <br/>
         <EscrowForm />
@@ -176,7 +175,6 @@ export default function Home( { data } ) {
         </div>
         <br/>
         <Faq />
-        <TipsButton />
         </main>
         <br/>
         <div class="flex justify-center">
