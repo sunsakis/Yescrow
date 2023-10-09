@@ -143,7 +143,7 @@ export default function Home( { data } ) {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Escrow USDT or ETH - Ethereum Escrow Service | Yes Crow</title>
+        <title>Escrow USDT or ETH - Ethereum Escrow Service</title>
         <meta 
           name="description" 
           content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
