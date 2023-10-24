@@ -36,21 +36,21 @@ export default function Home( { data } ) {
             "url": "https://yescrow.io",
             "name": "Yes Crow",
             "alternateName": "YesCrow",
-            "description": "Establish trust with strangers using a blockchain escrow.",
+            "description": "Establish trust with online strangers.",
             "potentialAction": {
               "@type": "TransferAction",
               "target": {
                 "@type": "EntryPoint",
                 "urlTemplate": "https://yescrow.io/#Deposit"
               },
-              "description": "Escrow"
+              "description": "Escrow USDT"
             },
-            "serviceType": "Ethereum Escrow",
+            "serviceType": "USDT Escrow",
             "logo": {
               "@type": "ImageObject",
               "url": "https://yescrow.io/white_crow_icon_black_bg.png",
               "width": 600,
-              "height": 60
+              "height": 600
             },
             "provider": {
               "@type": "Organization",
@@ -60,9 +60,6 @@ export default function Home( { data } ) {
                 "@type": "ContactPoint",
                 "contactType": "customer support"
               },
-              "sameAs": [
-                "https://twitter.com/theyescrow"
-              ]
             }
           },
           {
@@ -73,47 +70,29 @@ export default function Home( { data } ) {
                 "name": "What is Yes Crow?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes Crow is a decentralized Ethereum escrow agent that allows users to transact with each other without having to trust each other."
+                  "text": "Yes Crow is an Ethereum escrow agent that allows strangers to establish trust and transact without knowing each another."
                 }
               },
               {
                 "@type": "Question",
-                "name": "What cryptocurrencies does Yes Crow support?",
+                "name": "How does a crypto escrow work?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes Crow supports Ethereum and all the other ERC20 tokens such as USDT, USDC, DAI, LINK, UNI, etc."
+                  "text": "Designate the receiving address and send crypto to escrow. Release the token as soon as you receive what you agreed upon.
+
+                  If any side is unsatisfied with how the deal turned out, Yes Crow will collect evidence from both parties and arbitrate to whom belongs the escrow, keeping 1% of the escrow amount for the work.
+                  
+                  In case the crypto in escrow was an NFT, Yes Crow will judge free of charge."
                 }
               },
               {
                 "@type": "Question",
-                "name": "How can I contact customer support?",
+                "name": "How much does it cost to escrow?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "You can contact our customer support by emailing escrow@yescrow.io."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How does Yes Crow work?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "By sending a cryptocurrency with the receiver's address to the smart contract. You can release the deposit to the receiver as soon as you get what you wanted."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What are the escrow fees?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes crow does not charge per escrow. Only in case of a quarrel Yes Crow can act as an arbitre for a % fee."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is Yes Crow decentralized?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, it is a decentralized service - 2 out of 3 signatures are needed to change the receiver. The depositor, the receiver, and Yes Crow each have one signature."
+                  "text": "ETH and ERC20 tokens - 0.5% fee per escrow + gas.
+
+                  If you escrow NFTs, you only pay for the gas."
                 }
               },
               {
@@ -121,15 +100,7 @@ export default function Home( { data } ) {
                 "name": "What if the depositor does not release the funds?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "If the designated receiver does not contact us within 90 days to claim the funds, the depositor is then allowed to withdraw them."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How can I know that I can trust Yes Crow, though?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The smart contract is public. Audited by @karooolis from Macro - a leading blockchain security firm. Emails are encrypted, data is stored in Western Europe."
+                  "text": "If the designated receiver does not contact us within 90 days to claim the funds, the depositor is then allowed to withdraw them back to their Ethereum wallet."
                 }
               }
             ]
@@ -143,13 +114,14 @@ export default function Home( { data } ) {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Escrow USDT or ETH - Ethereum Escrow Service</title>
+        <title>Escrow USDT | Yes Crow</title>
         <meta 
           name="description" 
-          content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 
-          //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
-          key="desc"
+          content="Yes Crow is a decentralized escrow service with the intention to let people escrow their crypto as simply as possible." 
           />
+        <meta 
+          name="keywords"
+          content="escrow, USDT, service"/>
         <link rel="canonical" href="https://yescrow.io" />
       </Head>
       <Script
@@ -160,12 +132,16 @@ export default function Home( { data } ) {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Your gateway to digital trust.</h1>
-          <h2 class="m-4 font-medium text-center">Escrow your payment, release it once the deal is done.
-          <br/> All is transparent on the blockchain.</h2>
+          <h1 class="m-4 text-4xl text-center font-bold">Escrow USDT to establish trust online.</h1>
+          <p class="m-4 text-xl text-center"><i>Yes Crow</i> is a decentralized escrow service with the intention to let people escrow their crypto as simply as possible.</p>
           <br/>
         <EscrowForm />
+        <br/>
         <Table data={data} />
+        <p class="m-4 text-xl text-center">Would you like to escrow your <span class="font-bold">NFT</span>?
+          <br/>
+          We offer a <Link href="/nft" class="underline font-bold">NFT escrow service</Link>. Just pay for the gas.
+        </p>
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
@@ -173,12 +149,38 @@ export default function Home( { data } ) {
         width={400} 
         height={340} />
         </div>
+        <div 
+          class="rounded-3xl m-5 pt-3 pb-2 text-center border-2 bg-[#161618]">
+            <h2 class="m-4 text-xl font-semibold text-center">USDT escrow service - at your service. In the escrow form, just choose the amount to escrow and the wallet address of the counterparty.</h2>
+            <p class="m-4 font-medium text-center">
+              Deposit your payment and release it once you are happy with the deal.
+              <br/>
+              You will never have to wait for the middleman to comply ever again. 
+              <br/> 
+              All transactions are transparent on Ethereum`s blockchain!
+            </p>
+            <p class="m-4 font-medium text-center">
+              
+                We also offer <u>custom tailored solutions.</u>
+              
+                <br/> 
+                Contact us to find out more.</p>
+            <Link href="mailto:escrow@yescrow.io">
+              <Image
+                class="mx-auto m-5" 
+                src="envelope-white-bg.svg"
+                alt="envelope"
+                width="50"
+                height="25"
+              />
+            </Link>
+          </div>
         <br/>
         <Faq />
         </main>
         <br/>
         <div class="flex justify-center">
-        <p class="inline-block justify-end"><Link href="/blog" class="hover:text-matrix">Blog</Link></p>
+        <p class="inline-block justify-end"><Link href="/info" class="hover:text-matrix">Info</Link></p>
         </div>
       <Footer />
       

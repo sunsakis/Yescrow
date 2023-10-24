@@ -66,7 +66,9 @@ export default function EthEscrowForm() {
                 contractAddress={process.env.NEXT_PUBLIC_MAINNET}
                 contractAbi={jsonABI}
                 action={async (contract) => { await contract.call("createDepositETH", [_seller], { value: ethers.utils.parseEther(_amount) })}}
-                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message escrow@yescrow.io for guidance.")}
+                onError={() => 
+                  alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message escrow@yescrow.io for guidance.")
+                  .then(Router.reload(window.location.pathname))}
                 onSuccess={() => Router.reload(window.location.pathname)}
                 className={styles.btn}
                 >

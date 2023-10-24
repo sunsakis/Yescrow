@@ -15,7 +15,7 @@ export default function Tips() {
           content="When paying with USDT - use protection: the only way to trust a stranger online is to use an escrow." 
           key="desc"
           />
-        <link rel="canonical" href="https://yescrow.io/blog/escrow-usdt" />
+        <link rel="canonical" href="https://yescrow.io/info/escrow-usdt" />
       </Head>
         <Header />
         <main>
@@ -186,9 +186,6 @@ So there you have it, dear reader—10 dazzling reasons why stablecoin escrow em
 
         </main>
         <br/>
-        <div class="flex justify-center">
-        <p class="inline-block justify-end"><Link href="/blog" class="hover:text-matrix">Blog</Link></p>
-        </div>
         <Footer />
         </div>
     )

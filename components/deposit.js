@@ -3,11 +3,6 @@ import EthEscrowForm from './ethDeposit';
 import UsdtEscrowForm from './usdtDeposit';
 import Image from 'next/image';
 
-const ABI = [
-  "function createDepositETH(address _seller) external payable",
-  "event NewDepositETH(uint256 indexed currentId, address indexed buyer, address indexed seller, uint256 amount)"
-  ];
-
 export default function EscrowForm() {
 
   const [active, setActive] = useState("USDT");
@@ -23,8 +18,8 @@ export default function EscrowForm() {
   return (
     <div 
     class="rounded-3xl pt-3 pb-2 text-center border-2 bg-[#161618]"
-    id="DepositCrypto">
-        <h3 class="font-bold text-xl">Which token would you like to escrow?</h3>
+    id="EscrowUSDT">
+        <p class="font-bold text-xl">Which token would you like to escrow?</p>
         <br />
         <div>
           <ul>
@@ -38,7 +33,8 @@ export default function EscrowForm() {
                   alt="Ethereum">
                 </Image> Ether
               </li></button>
-            <button 
+            <button
+              id="Deposit" 
               class={`${borderUsdt} m-3 border-matrix bg-[#3B3B3B] rounded-xl py-3 px-3 font-bold hover:text-green-500 hover:border-green-500`} 
               onClick={() => setActive("USDT")}>
               <li class="flex items-center">

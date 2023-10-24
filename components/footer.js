@@ -7,8 +7,9 @@ export default function Footer() {
             <div>
                 <p class="flex justify-center text-gray-500 text-xs">
                     <code class="text-gray-500 text-xs">
-                        2023 © yescrow. <span class="text-gray-300">For sale.</span> 
-                        <span class="text-white"> sunsakis@pm.me</span>
+                        2023 © yescrow. 
+                        {/* <span class="text-gray-300">For sale.</span>  */}
+                        <span class="text-white"> escrow@yescrow.io</span>
                     </code>
                 </p>
                 {/* <div class="flex justify-center m-3">

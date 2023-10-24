@@ -77,7 +77,7 @@ export default function EscrowForm() {
       });
   } catch (error) {
       console.error(error);
-      alert("Make sure you have enough funds to cover the transaction cost. Message escrow@yescrow.io for guidance.");
+      alert("Make sure you have enough funds to cover the transaction cost. Message escrow@yescrow.io for guidance.")
   }
   }
 
