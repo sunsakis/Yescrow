@@ -56,13 +56,13 @@ export default function NFT() {
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer support"
-              },
+              }
             }
-          },
+          }
          ]
       }      
-      `,
-    };
+      `
+    }
   }
 
   return (
