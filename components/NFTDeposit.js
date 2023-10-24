@@ -124,7 +124,7 @@ export default function EscrowForm() {
           </div>
           <br />
           <Web3Button 
-                contractAddress={process.env.NEXT_PUBLIC_MAINNET_ADDRESS}
+                contractAddress={process.env.NEXT_PUBLIC_MAINNET}
                 contractAbi={jsonABI}
                 action={() => {
                   blockchainTalk()}}
