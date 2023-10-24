@@ -62,7 +62,7 @@ export default function EscrowForm() {
         await escrowTx.wait();
   } catch (error) {
       console.error(error);
-      alert("Make sure you fill the fields correctly and have enough ETH in your wallet to cover the gas cost. Message escrow@yescrow.io if something.");
+      alert("Make sure you fill the fields correctly and have enough ETH in your wallet to cover gas costs. Message escrow@yescrow.io for guidance.");
   }
   }
 
