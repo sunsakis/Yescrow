@@ -62,25 +62,8 @@ export default function EscrowForm() {
         await escrowTx.wait();
   } catch (error) {
       console.error(error);
-      alert(error + " Message escrow@yescrow.io for guidance.");
+      alert("Make sure you fill the fields correctly and have enough ETH in your wallet to cover the gas cost. Message escrow@yescrow.io if something.");
   }
-  }
-
-  async function eventListener () {
-    await ethereum.request({ method: 'eth_requestAccounts' })
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(process.env.NEXT_PUBLIC_MAINNET_ADDRESS, humanReadableABI, signer);
-    alert("Escrow created! Wait for the transaction to be mined. If something: escrow@yescrow.io");
-    try {
-      contract.once("NewDepositERC721", (counter, buyerAddress, sellerAddress, event) => {
-          alert(
-            "Buyer address: "+buyerAddress,
-            "Seller address: "+sellerAddress,
-            "Escrow ID: "+counter,
-            "Transaction hash: "+event.transactionHash);   
-      })
-    } catch (error) {console.log(error)};
   }
 
   return (
@@ -128,8 +111,6 @@ export default function EscrowForm() {
                 contractAbi={jsonABI}
                 action={() => {
                   blockchainTalk()}}
-                onError={() => alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message crow@yescrow.io for guidance.")}
-                onSuccess={() => eventListener()}
                 className={styles.btn}
                 >
                 <li class="flex items-center">
