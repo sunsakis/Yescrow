@@ -47,7 +47,7 @@ export default function Tips() {
           //When transacting on the internet - use protection: the only way to trust a stranger online is to use an escrow. 
           key="desc"
           />
-        <link rel="canonical" href="https://yescrow.io/info/how-to-not-get-scammed" />
+        <link rel="canonical" href="https://yescrow.io/tips/how-to-not-get-scammed" />
       </Head>
       <Script
             id="schema"

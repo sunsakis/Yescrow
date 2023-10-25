@@ -177,7 +177,7 @@ export default function Home( { data } ) {
         </main>
         <br/>
         <div class="flex justify-center">
-        <p class="inline-block justify-end"><Link href="/info" class="hover:text-matrix">Info</Link></p>
+        <p class="inline-block justify-end"><Link href="/tips" class="hover:text-matrix">Tips</Link></p>
         </div>
       <Footer />
       

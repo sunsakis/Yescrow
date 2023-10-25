@@ -15,7 +15,7 @@ export default function Tips() {
           content="When paying with USDT - use protection: the only way to trust a stranger online is to use an escrow." 
           key="desc"
           />
-        <link rel="canonical" href="https://yescrow.io/info/escrow-usdt" />
+        <link rel="canonical" href="https://yescrow.io/tips/escrow-usdt" />
       </Head>
         <Header />
         <main>
