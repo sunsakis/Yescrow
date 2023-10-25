@@ -30,93 +30,80 @@ export default function Home( { data } ) {
     return {
       __html: 
         `
-          {
-            "@context": "https://schema.org",
-            "@graph": 
-              [
-                {
-                  "@type": "PaymentService",
-                  "url": "https://yescrow.io",
-                  "name": "Yes Crow",
-                  "alternateName": "YesCrow",
-                  "description": "Establish trust with online strangers.",
-                  "potentialAction": 
-                    {
-                      "@type": "TransferAction",
-                      "target": 
-                        {
-                          "@type": "EntryPoint",
-                          "urlTemplate": "https://yescrow.io/#Deposit"
-                        },
-                      "description": "Escrow USDT"
-                    },
-                  "serviceType": "USDT Escrow",
-                  "logo": 
-                    {
-                      "@type": "ImageObject",
-                      "url": "https://yescrow.io/white_crow_icon_black_bg.png",
-                      "width": 600,
-                      "height": 600
-                    },
-                  "provider": 
-                    {
-                      "@type": "Organization",
-                      "name": "Yes Crow",
-                      "email": "escrow@yescrow.io",
-                      "contactPoint": 
-                        {
-                          "@type": "ContactPoint",
-                          "contactType": "customer support"
-                        },
-                    }
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "PaymentService",
+              "url": "https://yescrow.io",
+              "name": "Yes Crow",
+              "alternateName": "YesCrow",
+              "description": "Establish trust with online strangers.",
+              "potentialAction": {
+                "@type": "TransferAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://yescrow.io/#Deposit"
                 },
+                "description": "Escrow USDT"
+              },
+              "serviceType": "USDT Escrow",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://yescrow.io/white_crow_icon_black_bg.png",
+                "width": 600,
+                "height": 600
+              },
+              "provider": {
+                "@type": "Organization",
+                "name": "Yes Crow",
+                "email": "escrow@yescrow.io",
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "contactType": "customer support"
+                }
+              }
+            },
             {
               "@type": "FAQPage",
-              "mainEntity": 
-                [
-                  {
-                    "@type": "Question",
-                    "name": "What is Yes Crow?",
-                    "acceptedAnswer": 
-                      {
-                        "@type": "Answer",
-                        "text": "Yes Crow is an Ethereum escrow agent that allows strangers to establish trust and transact without knowing each another."
-                      }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "How does a crypto escrow work?",
-                    "acceptedAnswer": 
-                      {
-                        "@type": "Answer",
-                        "text": "Designate the receiving address and send crypto to escrow. Release the token as soon as you receive what you agreed upon.
-                        If any side is unsatisfied with how the deal turned out, Yes Crow will collect evidence from both parties and arbitrate to whom belongs the escrow, keeping 1% of the escrow amount for the work.
-                        In case the crypto in escrow was an NFT, Yes Crow will judge free of charge."
-                      }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "How much does it cost to escrow?",
-                    "acceptedAnswer": 
-                      {
-                        "@type": "Answer",
-                        "text": "ETH and ERC20 tokens - 0.5% fee per escrow + gas.
-                          If you escrow NFTs, you only pay for the gas."
-                      }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "What if the depositor does not release the funds?",
-                    "acceptedAnswer": 
-                      {
-                        "@type": "Answer",
-                        "text": "If the designated receiver does not contact us within 90 days to claim the funds, the depositor is then allowed to withdraw them back to their Ethereum wallet."
-                      }
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is Yes Crow?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes Crow is an Ethereum escrow agent that allows strangers to establish trust and transact without knowing each another."
                   }
-                ]
-            }}
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does a crypto escrow work?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Designate the receiving address and send crypto to escrow. Release the token as soon as you receive what you agreed upon. If any side is unsatisfied with how the deal turned out, Yes Crow will collect evidence from both parties and arbitrate to whom belongs the escrow, keeping 1% of the escrow amount for the work. In case the crypto in escrow was an NFT, Yes Crow will judge free of charge."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much does it cost to escrow?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ETH and ERC20 tokens - 0.5% fee per escrow + gas. If you escrow NFTs, you only pay for the gas."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What if the depositor does not release the funds?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "If the designated receiver does not contact us within 90 days to claim the funds, the depositor is then allowed to withdraw them back to their Ethereum wallet."
+                  }
+                }
               ]
-          }      
+            }
+          ]
+        }
+        
         `,
     };
   }

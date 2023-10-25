@@ -27,51 +27,45 @@ export default function NFT() {
     return {
       __html: 
       `
-        {
-        
-          "@context": "https://schema.org",
-        
-          "@graph": 
-            [
-              {
-                "@type": "PaymentService",
-                "url": "https://yescrow.io",
-                "name": "Yes Crow",
-                "alternateName": "YesCrow",
-                "description": "Escrow NFT to establish online trust.",
-                "potentialAction": 
-                  {
-                    "@type": "TransferAction",
-                    "target": 
-                      {
-                        "@type": "EntryPoint",
-                        "urlTemplate": "https://yescrow.io/#Deposit"
-                      },
-                    "description": "Escrow USDT"
-                  },
-                "serviceType": "USDT Escrow",
-                "logo": 
-                  {
-                    "@type": "ImageObject",
-                    "url": "https://yescrow.io/white_crow_icon_black_bg.png",
-                    "width": 600,
-                    "height": 600
-                  },
-                "provider": 
-                  {
-                    "@type": "Organization",
-                    "name": "Yes Crow",
-                    "email": "escrow@yescrow.io",
-                    "contactPoint": 
-                    {
-                      "@type": "ContactPoint",
-                      "contactType": "customer support"
-                    }
-                  }
-                }
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "PaymentService",
+            "url": "https://yescrow.io",
+            "name": "Yes Crow",
+            "alternateName": "YesCrow",
+            "description": "Establish trust with online strangers.",
+            "potentialAction": {
+              "@type": "TransferAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://yescrow.io/#Deposit"
+              },
+              "description": "Escrow USDT"
+            },
+            "serviceType": "USDT Escrow",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://yescrow.io/white_crow_icon_black_bg.png",
+              "width": 600,
+              "height": 600
+            },
+            "provider": {
+              "@type": "Organization",
+              "name": "Yes Crow",
+              "email": "escrow@yescrow.io",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer support"
               }
-            ] 
-        }      
+            }
+          }
+          
+          }
+        ]
+      }
+      
       `
     }
   }
