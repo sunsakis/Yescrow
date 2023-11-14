@@ -1,10 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
     return (
         <footer class="text-center m-5">
             <div>
+                <Link href="/tips">
+                    <p class="flex justify-center text-gray-200 text-sm mb-2 underline hover:text-matrix"> 
+                        Tips 
+                    </p>
+                </Link>
                 <p class="flex justify-center text-gray-500 text-xs">
                     <code class="text-gray-500 text-xs">
                         2023 © yescrow. 
