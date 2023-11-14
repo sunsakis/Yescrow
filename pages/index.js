@@ -181,10 +181,11 @@ export default function Home( { data } ) {
           className="rounded-3xl m-5 pt-3 pb-2 text-center border-2 bg-[#161618]">
             <h3 className="m-4 text-xl font-semibold text-center">Affiliation with $CROW token.</h3>
               <b>Yes Crow</b> and <b>$CROW</b> token are separate entities managed by different people.
-              <br/><br/>
-              <p>Yes Crow does not endorse $CROW in any way.</p>
+              <br/>
               <br/>
               You do not need to use any kind of tokens to use Yes Crow, just good ol` Ether.
+              <br/>
+              <p>Yes Crow does not endorse $CROW in any way.</p>
               <br/> 
             <p>Yes Crow does not believe social media. We believe in decentralization.</p>
             <p className="m-4 font-medium text-center">
