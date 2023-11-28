@@ -188,6 +188,7 @@ export default function Home( { data } ) {
               <p>Yes Crow does not endorse $CROW in any way.</p>
               <br/> 
             <p>Yes Crow does not believe social media. We believe in decentralization.</p>
+            <br/>
             {/* <p className="m-4 font-medium text-center">
                 $CROW socials:</p>
               <div className="flex justify-center">
