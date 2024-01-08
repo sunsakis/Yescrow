@@ -135,9 +135,9 @@ export default function Home( { data } ) {
         <EscrowForm />
         <br/>
         <Table data={data} />
-        <p class="m-4 text-xl text-center">Would you like to escrow your <span class="font-bold">NFT</span>?
+        <p class="m-4 text-xl text-center">Would you like to escrow <span class="font-bold">ERC721</span> tokens?
           <br/>
-          We offer a <Link href="/nft" class="underline font-bold">NFT escrow service</Link>. Just pay for the gas.
+          <Link href="/nft" class="underline font-bold text-matrix">NFT escrow</Link> will save your day.
         </p>
         <Image 
         class="mx-auto"
@@ -162,7 +162,7 @@ export default function Home( { data } ) {
               
                 <br/> 
                 Contact us to find out more.</p>
-            <Link href="mailto:escrow@yescrow.io">
+            <Link href="mailto:sunsakis@pm.me">
               <Image
                 class="mx-auto m-5" 
                 src="envelope-white-bg.svg"

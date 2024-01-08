@@ -109,16 +109,9 @@ export default function NFT() {
         </div> 
     </div>    
         <br/>
-        <p class="m-4 text-xl text-center">Would you like to escrow <span class="font-bold">ERC20</span>?
+        <p class="m-4 text-xl text-center">Would you like to escrow <span class="font-bold">ERC20</span> tokens?
           <br/>
-          We offer a <Link href="/nft" class="underline font-bold">USDT and ETH escrow service</Link>.<br/>
-        </p>
-        <p class="m-4 text-xl text-center">
-          <br/>If you would like to escrow any other Ethereum tokens - 
-          <Link 
-            class="underline"
-            href="mailto:escrow@yescrow.io"> let us know!
-          </Link>
+          Check out <Link href="/" class="underline font-bold text-matrix">USDT and ETH escrow service</Link>.<br/>
         </p>
         <Image 
         class="mx-auto"
@@ -143,7 +136,7 @@ export default function NFT() {
               
                 <br/> 
                 Contact us to find out more.</p>
-            <Link href="mailto:escrow@yescrow.io">
+            <Link href="mailto:sunsakis@pm.me">
               <Image
                 class="mx-auto m-5" 
                 src="envelope-white-bg.svg"
