@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Faq from '../components/faq';
 import Script from 'next/script';
 import Link from 'next/link';
-import NFTEscrow from '../components/NFTDeposit.js';
+import USDCDeposit from '../components/usdcDeposit.js';
 
-export default function NFT() {
+export default function USDC() {
 
   function addWebsiteJsonLd() {
     return {
@@ -28,9 +28,9 @@ export default function NFT() {
                 "@type": "EntryPoint",
                 "urlTemplate": "https://yescrow.io/#Deposit"
               },
-              "description": "Escrow NFT"
+              "description": "Escrow USDC"
             },
-            "serviceType": "NFT Escrow",
+            "serviceType": "USDC Escrow",
             "logo": {
               "@type": "ImageObject",
               "url": "https://yescrow.io/white_crow_icon_black_bg.png",
@@ -59,15 +59,15 @@ export default function NFT() {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>NFT Escrow | Yescrow</title>
+        <title>Escrow USDC | Yescrow</title>
         <meta 
           name="description" 
           content="Yescrow is a decentralized escrow service with the intention to let people escrow their crypto as simply as possible." 
         />
         <meta 
           name="keywords"
-          content="escrow, nft, service"/>
-        <link rel="canonical" href="https://yescrow.io/nft" />
+          content="escrow, eth, service"/>
+        <link rel="canonical" href="https://yescrow.io/usdc" />
       </Head>
       <Script
         id="website-schema"
@@ -77,31 +77,21 @@ export default function NFT() {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Escrow NFT to establish online trust.</h1>
-          <p class="m-4 text-xl text-center">Yescrow lets people escrow their crypto as simply as possible.</p>
+          <h1 class="m-4 text-4xl text-center font-bold">Escrow USDC to establish online trust.</h1>
+          <p class="m-4 text-xl text-center">Yescrow lets people escrow crypto as simply as possible.</p>
           <br/>
           <div 
     class="rounded-3xl pt-3 pb-2 text-center border-2 bg-[#161618]"
-    id="EscrowNFT">
+    id="EscrowUSDC">
         <div>
-                <Image
-                  src="/nft_logo.png" 
-                  class="mx-auto m-2"
-                  width="60" 
-                  height="50" 
-                  alt="NFT logo">
-                </Image>
-        <NFTEscrow />
+        <USDCDeposit />
         </div> 
     </div>    
         <br/>
-        <p class="m-4 text-xl text-center">Would you like to <Link href="/" class="underline font-bold text-matrix">escrow <span class="font-bold">ERC20</span> tokens?</Link>
-          <br/>
-        </p>
         <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
-        alt="how to escrow Ethereum on Yes Crow" 
+        alt="how to escrow Ethereum on Yescrow" 
         width={400} 
         height={340} />
         </div>
@@ -109,7 +99,7 @@ export default function NFT() {
           class="rounded-3xl m-5 pt-3 pb-2 text-center border-2 bg-[#161618]">
             <h2 class="m-4 text-xl font-semibold text-center">Yescrow is at your service. No need to create any accounts, no bullshit, just cut the middleman.</h2>
             <p class="m-4 font-medium text-center">
-              Deposit your NFT and release it once the deal goes through.
+              Deposit your USDC and release it once the deal goes through.
               <br/>
               Yescrow will only interfere if one of the parties is not satisfied. 
               <br/> 

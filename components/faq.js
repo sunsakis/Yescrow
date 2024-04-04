@@ -21,7 +21,7 @@ export default function Faq() {
                         flex items-center
                     ">
                         <h2 class="text-white">
-                            What is Yes Crow?
+                            What is Yescrow?
                         </h2>
                     </div>
                     <div class="
@@ -44,7 +44,7 @@ export default function Faq() {
                     ">
                         <div class="p-4 text-gray-400">
                             <p>
-                            Yes Crow is an Ethereum escrow agent that allows strangers to establish trust and transact without knowing each another.</p>
+                            Yescrow is an Ethereum escrow agent that allows strangers to establish trust and transact with each other without knowing each another.</p>
                         </div>
                     </div>
             </div>
@@ -91,9 +91,9 @@ export default function Faq() {
                                 <p>
                                 Designate the receiving address and send crypto to escrow. Release the token as soon as you receive what you agreed upon. 
                                 <br/><br/>
-                                If any side is unsatisfied with how the deal turned out, Yes Crow will collect evidence from both parties and arbitrate to whom belongs the escrow, keeping 1% of the escrow amount for the work.
+                                If any side is unsatisfied with how the deal turned out, Yescrow will collect evidence from both parties and arbitrate to whom belongs the escrow, keeping 1% of the escrow amount for the work.
                                 <br/><br/>
-                                In case the crypto in escrow was an NFT, Yes Crow will judge free of charge.
+                                In case the crypto in escrow was an NFT, Yescrow will judge free of charge.
                                 </p>
                             </div>
                         </div>
@@ -139,7 +139,7 @@ export default function Faq() {
                         ">
                             <div class="p-4  text-gray-400">
                                 <p>
-                                ETH and ERC20 tokens - 0.5% fee per escrow + gas. <br/><br/>If you escrow NFTs, you only pay for the gas.
+                                ETH and ERC20 tokens - 0.5% fee per escrow + gas. <br/>ETH escrows use less gas than USDT or USDC.<br/>If you escrow NFTs, you only pay for the gas.
                                 </p>
                             </div>
                         </div>

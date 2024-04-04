@@ -24,7 +24,7 @@ const ERC20ABI = [
   "function symbol() external view returns (string)"
   ];
 
-export default function Home( { data } ) {
+export default function Home( { data, totalDepositedEther } ) {
 
   function addWebsiteJsonLd() {
     return {
@@ -36,8 +36,7 @@ export default function Home( { data } ) {
             {
               "@type": "PaymentService",
               "url": "https://yescrow.io",
-              "name": "Yes Crow",
-              "alternateName": "YesCrow",
+              "name": "Yescrow",
               "description": "Establish trust with online strangers.",
               "potentialAction": {
                 "@type": "TransferAction",
@@ -45,9 +44,9 @@ export default function Home( { data } ) {
                   "@type": "EntryPoint",
                   "urlTemplate": "https://yescrow.io/#Deposit"
                 },
-                "description": "Escrow USDT"
+                "description": "Escrow ETH, USDT or USDC"
               },
-              "serviceType": "USDT Escrow",
+              "serviceType": "Crypto Escrow",
               "logo": {
                 "@type": "ImageObject",
                 "url": "https://yescrow.io/white_crow_icon_black_bg.png",
@@ -56,8 +55,8 @@ export default function Home( { data } ) {
               },
               "provider": {
                 "@type": "Organization",
-                "name": "Yes Crow",
-                "email": "escrow@yescrow.io",
+                "name": "Yescrow",
+                "email": "sunsakis@pm.me",
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "contactType": "customer support"
@@ -69,10 +68,10 @@ export default function Home( { data } ) {
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "name": "What is Yes Crow?",
+                  "name": "What is Yescrow?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes Crow is an Ethereum escrow agent that allows strangers to establish trust and transact without knowing each another."
+                    "text": "Yescrow is an Ethereum escrow agent that allows strangers to establish trust and transact without knowing each another."
                   }
                 },
                 {
@@ -80,7 +79,7 @@ export default function Home( { data } ) {
                   "name": "How does a crypto escrow work?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Designate the receiving address and send crypto to escrow. Release the token as soon as you receive what you agreed upon. If any side is unsatisfied with how the deal turned out, Yes Crow will collect evidence from both parties and arbitrate to whom belongs the escrow, keeping 1% of the escrow amount for the work. In case the crypto in escrow was an NFT, Yes Crow will judge free of charge."
+                    "text": "Designate the receiving address and send crypto to escrow. Release the token as soon as you receive what you agreed upon. If any side is unsatisfied with how the deal turned out, Yescrow will collect evidence from both parties and arbitrate to whom belongs the escrow, keeping 1% of the escrow amount for the work. In case the crypto in escrow was an NFT, Yes Crow will judge free of charge."
                   }
                 },
                 {
@@ -111,14 +110,14 @@ export default function Home( { data } ) {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Escrow USDT and ETH | Yes Crow</title>
+        <title>Escrow ETH, USDT And USDC | Yes Crow</title>
         <meta 
           name="description" 
-          content="Yes Crow is a decentralized escrow service with the intention to let people escrow their crypto as simply as possible." 
+          content="Yes Crow is an escrow service that makes escrowing crypto as simple as possible." 
           />
         <meta 
           name="keywords"
-          content="escrow, USDT, service"/>
+          content="escrow, USDT, ETH, USDC, Ether, Ethereum, ERC20"/>
         <link rel="canonical" href="https://yescrow.io" />
       </Head>
       <Script
@@ -129,49 +128,36 @@ export default function Home( { data } ) {
         <Header />
         <main>
         <div> 
-          <h1 class="m-4 text-4xl text-center font-bold">Escrow USDT to establish trust online.</h1>
-          <p class="m-4 text-xl text-center"><i>Yes Crow</i> is a decentralized escrow service with the intention to let people escrow their crypto as simply as possible.</p>
+          <h1 class="m-4 text-4xl text-center font-bold">Escrow crypto to establish trust online.</h1>
+          <p class="m-4 text-xl text-center">Escrowing on Ethereum has never been simpler.</p>
           <br/>
         <EscrowForm />
         <br/>
+        <h2 class="m-4 text-xl text-center">Successfully escrowed <Link rel="noopener noreferrer" target="_blank" class="text-matrix hover:underline" href="https://etherscan.io/address/0x450082ade010fe62eb12c08350f0ba3ce55f46ef">${(totalDepositedEther*3333).toFixed(2)}</Link> and counting...</h2>
         <Table data={data} />
-        <p class="m-4 text-xl text-center">Would you like to escrow <span class="font-bold">ERC721</span> tokens?
+        </div>
+        <br/>
+        <div 
+          class="rounded-3xl m-5 pt-3 pb-2 text-center border-2 bg-[#161618]">
+            <h2 class="m-4 text-xl font-semibold text-center">IT DOES NOT GET SIMPLER</h2>
+            <p class="m-4 font-medium text-center">
+              <b class="text-xl text-matrix">1.</b> Type in the escrow amount and the wallet address of the counterparty.
+              <br/><br/>
+              <b class="text-xl text-matrix">2.</b> Deposit the payment. Release it once you are happy with the deal or get your money back if the deal goes south.
+              <br/><br/>
+              Voilà! You have just established trust with a stranger.
+            </p>
+          </div><br/>
+          <p class="m-4 text-xl text-center">Would you like to escrow <span class="font-bold">an NFT</span>?
           <br/>
-          <Link href="/nft" class="underline font-bold text-matrix">NFT escrow</Link> will save your day.
+          Then <Link href="/nft" class="underline font-bold text-matrix">NFT escrow</Link> will save your day.
         </p>
-        <Image 
+          <Image 
         class="mx-auto"
         src="/yescrow_trinity_black_bg.png" 
         alt="how to escrow Ethereum on Yes Crow" 
         width={400} 
         height={340} />
-        </div>
-        <div 
-          class="rounded-3xl m-5 pt-3 pb-2 text-center border-2 bg-[#161618]">
-            <h2 class="m-4 text-xl font-semibold text-center">USDT escrow service - at your service. In the escrow form, just choose the amount to escrow and the wallet address of the counterparty.</h2>
-            <p class="m-4 font-medium text-center">
-              Deposit your payment and release it once you are happy with the deal.
-              <br/>
-              You will never have to wait for the middleman to comply ever again. 
-              <br/> 
-              All transactions are transparent on Ethereum`s blockchain!
-            </p>
-            <p class="m-4 font-medium text-center">
-              
-                We also offer <u>custom tailored solutions.</u>
-              
-                <br/> 
-                Contact us to find out more.</p>
-            <Link href="mailto:sunsakis@pm.me">
-              <Image
-                class="mx-auto m-5" 
-                src="envelope-white-bg.svg"
-                alt="envelope"
-                width="50"
-                height="25"
-              />
-            </Link>
-          </div>
         <br/>
         <Faq />
         </main>
@@ -179,26 +165,23 @@ export default function Home( { data } ) {
         <div 
           id="crow"
           className="rounded-3xl m-5 pt-3 pb-2 text-center border-2 bg-[#161618]">
-            <h3 className="m-4 text-xl font-semibold text-center">Affiliation with $CROW token.</h3>
-              <b>Yes Crow</b> and <b>$CROW</b> token are separate entities managed by different people.
-              <br/>
-              <br/>
-              You do not need to use any kind of tokens to use Yes Crow, just good ol` Ether.
-              <br/>
-              <p>Yes Crow does not endorse $CROW in any way.</p>
+            <h3 className="m-4 text-xl font-semibold text-center">Have something in mind?</h3>
+            <p class="m-4 font-medium text-center">
+              
+              We offer <u>custom tailored solutions.</u>
+            
               <br/> 
-            <p>Yes Crow does not believe social media. We believe in decentralization.</p>
+              Contact us to find out more.</p>
+          <Link href="mailto:sunsakis@pm.me">
+            <Image
+              class="mx-auto m-5" 
+              src="envelope-white-bg.svg"
+              alt="envelope"
+              width="50"
+              height="25"
+            />
+          </Link>
             <br/>
-            {/* <p className="m-4 font-medium text-center">
-                $CROW socials:</p>
-              <div className="flex justify-center">
-                <Link href="https://t.me/YesCrowETH" rel="nofollow noopenner external" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 496 512" className="fill-white m-3"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></svg>
-                </Link>
-                <Link href="https://x.com/Yescrowerc20" rel="nofollow noopenner external" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512" className="fill-white m-3"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
-                </Link>
-              </div> */}
           </div>
         <br/>
         <br/>
@@ -224,7 +207,14 @@ export async function getStaticProps() {
   const newDepositERC20 = await contract.queryFilter("NewDepositERC20", 0, "latest");
   const releasedDepositResults = await contract.queryFilter("DepositReleased", 0, "latest");
 
-  
+  // Get the total amount of ETH deposited
+  const filter = contract.filters.NewDepositETH();
+  const total = await contract.queryFilter(filter, 0, "latest").then((results) => {
+    const depAmounts = results.map((result) => result.args.amount);
+    const depAmountsInEther = depAmounts.map((amount) => ethers.utils.formatEther(amount));
+    const totalDepositedEther = depAmountsInEther.reduce((total, amount) => total + parseFloat(amount), 0);
+    return totalDepositedEther;
+  });
 
   const resultsWithoutReleasedETHDeposits = newDepositETH.filter((result) => {
     const depositId = result.args.depositId;
@@ -309,11 +299,11 @@ export async function getStaticProps() {
 ));
 
 formattedData.sort((a, b) => b.ageInSeconds - a.ageInSeconds);
-console.log(formattedData);
 
 return {
     props: {
       data: formattedData,
+      totalDepositedEther: total
     },
     revalidate: 1,
   };

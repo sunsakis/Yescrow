@@ -28,7 +28,7 @@ export default function Table( { data } ) {
             e.target.style.color = '#FFD700'
             setTimeout(() => {
                 e.target.style.color = '#ffffff'
-                alert("Copied tx hash!")
+                alert(`Copied transaction hash! ${transactionHash}`)
             }
             , 1)
         }
@@ -38,7 +38,7 @@ export default function Table( { data } ) {
             e.target.style.color = '#FFD700'
             setTimeout(() => {
                 e.target.style.color = '#ffffff'
-                alert("Copied depositor's address!")
+                alert(`Copied depositor's address! ${depositor}`)
             }
             , 1)
         }
@@ -48,7 +48,7 @@ export default function Table( { data } ) {
             e.target.style.color = '#FFD700'
             setTimeout(() => {
                 e.target.style.color = '#ffffff'
-                alert("Copied receiver's address!")
+                alert(`Copied receiver's address! ${receiver}`)
             }
             , 1)
         }
@@ -58,7 +58,7 @@ export default function Table( { data } ) {
             e.target.style.color = '#FFD700'
             setTimeout(() => {
                 e.target.style.color = '#ffffff'
-                alert("Escrow age copied!")
+                alert(`Escrow is ${age} days old.`)
             }
             , 1)
         }
@@ -68,7 +68,7 @@ export default function Table( { data } ) {
             e.target.style.color = '#FFD700'
             setTimeout(() => {
                 e.target.style.color = '#ffffff'
-                alert("Copied escrow amount!")
+                alert(`Copied escrow amount! (${amount} ${ticker ? ticker : "ETH"})`)
             }
             , 1)
         }
@@ -110,6 +110,7 @@ export default function Table( { data } ) {
                     id="hash"
                     onMouseOver={e => e.target.style.color = '#FFD700'}
                     onClick={copyHash}
+                    onMouseOut={fadeColor}
                     title={transactionHash}
                 >
                     <code>{transactionHash.substring(0,4)}..</code>
@@ -121,6 +122,7 @@ export default function Table( { data } ) {
                     id="depositor"
                     title={depositor}
                     onMouseOver={e => e.target.style.color = '#FFD700'}
+                    onMouseOut={fadeColor}
                     onClick={copyDepositor}
                     
                 >
@@ -134,6 +136,7 @@ export default function Table( { data } ) {
                 title={receiver}
                 onMouseOver={e => e.target.style.color = '#FFD700'}
                 onClick={copyReceiver}
+                onMouseOut={fadeColor}
                 >
                     <code>{receiver.slice(0,4) + ".." + receiver.slice(-2)}</code>
                 </p>
@@ -158,7 +161,7 @@ export default function Table( { data } ) {
 
         return (
         <div class="flex flex-col">
-            <h3 class="text-2xl font-bold m-4 mb-1 text-white text-center">Crypto in escrow:</h3>
+            <h3 class="text-2xl font-bold m-4 mb-1 text-white text-center">Unsettled escrows</h3>
           <div class="my-2 overflow-x-auto sm:mx-6 lg:mx-2">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-3">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -210,8 +213,3 @@ export default function Table( { data } ) {
           </div>
       </div>
 )}
-
-// I have an HTML table with rows. In every row there is some long text that is shortened to fit on the screen.  
-// I want to show the full text when the user hovers over the text.
-// I tried to use the title attribute, but it doesn't work. I also tried to use the onmouseover event, but it doesn't work either.
-// How can I do this?
