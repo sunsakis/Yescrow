@@ -8,7 +8,7 @@ export default function Tips() {
     return (
         <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Crypto Escrow Tips | Yes Crow</title>
+        <title>Crypto Escrow Tips | Yescrow</title>
         <meta 
           name="description" 
           content="Get to trust internet strangers without worries. Self-release the payment when you get what you wanted." 

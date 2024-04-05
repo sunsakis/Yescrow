@@ -110,7 +110,7 @@ export default function Home( { data, totalDepositedEther } ) {
   return (
     <div class="container max-w-2xl mx-auto justify-center">
       <Head>
-        <title>Escrow ETH, USDT And USDC | Yes Crow</title>
+        <title>Escrow ETH, USDT And USDC | Yescrow</title>
         <meta 
           name="description" 
           content="Yes Crow is an escrow service that makes escrowing crypto as simple as possible." 
