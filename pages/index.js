@@ -9,6 +9,8 @@ import Faq from '../components/faq';
 import Script from 'next/script';
 import Table from '../components/table';
 import Link from 'next/link';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const ABI = [
   "function createDepositETH(address _receiver) external payable",
@@ -23,6 +25,9 @@ const ERC20ABI = [
   "function approve(address _spender, uint256 _value) external",
   "function symbol() external view returns (string)"
   ];
+
+
+
 
 export default function Home( { data, totalDepositedEther } ) {
 
@@ -133,7 +138,7 @@ export default function Home( { data, totalDepositedEther } ) {
           <br/>
         <EscrowForm />
         <br/>
-        <h2 class="m-4 text-xl text-center">Successfully escrowed <Link rel="noopener noreferrer" target="_blank" class="text-matrix hover:underline" href="https://etherscan.io/address/0x450082ade010fe62eb12c08350f0ba3ce55f46ef">${(totalDepositedEther*3333).toFixed(2)}</Link> and counting...</h2>
+        <h2 class="m-4 text-xl text-center">Successfully escrowed <span class="text-matrix hover:underline">${(totalDepositedEther).toFixed(2)}</span> and counting...</h2>
         <Table data={data} />
         </div>
         <br/>
@@ -194,6 +199,19 @@ export default function Home( { data, totalDepositedEther } ) {
 
 export async function getStaticProps() {
 
+  const getEthPrice = async () => {
+    try {
+      const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+      return response.data.ethereum.usd;
+    } catch (error) {
+      console.error('Error getting ETH price:', error);
+      return null;
+    }
+  };
+  
+  const ethPrice = await getEthPrice();
+  console.log('ETH price:', ethPrice);
+
   const settings = {
     apiKey: process.env.ALCHEMY_API, // Replace with your Alchemy API Key.
     network: Network.ETH_MAINNET, // Replace with your network.
@@ -213,7 +231,8 @@ export async function getStaticProps() {
     const depAmounts = results.map((result) => result.args.amount);
     const depAmountsInEther = depAmounts.map((amount) => ethers.utils.formatEther(amount));
     const totalDepositedEther = depAmountsInEther.reduce((total, amount) => total + parseFloat(amount), 0);
-    return totalDepositedEther;
+    // Return the total amount of ETH deposited in USD
+    return totalDepositedEther*ethPrice;
   });
 
   const resultsWithoutReleasedETHDeposits = newDepositETH.filter((result) => {

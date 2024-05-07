@@ -11,6 +11,7 @@ const humanReadableABI = [
   "function createDepositETH(address _receiver) external payable",
   "function createDepositERC20(address _receiver, address _token, uint256 _amount) external",
   "function releaseDeposit(uint256 _id) external",
+  "function intervene(uint256 _id, address _to) external",
   "event NewDepositETH(uint256 indexed depositId, address indexed depositor, address indexed receiver, uint256 amount)",
   "event NewDepositERC20(uint256 indexed depositId, address indexed depositor, address indexed receiver, address token, uint256 amount)",
   "event DepositReleased(uint256 indexed id)"
@@ -67,7 +68,7 @@ export default function EthEscrowForm() {
                 contractAbi={jsonABI}
                 action={async (contract) => { await contract.call("createDepositETH", [_seller], { value: ethers.utils.parseEther(_amount) })}}
                 onError={() => 
-                  alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message escrow@yescrow.io for guidance.")
+                  alert("Make sure to fill out the fields properly and have enough ETH in the wallet. Message sunsakis@pm.me for guidance.")
                   .then(Router.reload(window.location.pathname))}
                 onSuccess={() => Router.reload(window.location.pathname)}
                 className={styles.btn}
