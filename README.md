@@ -10,7 +10,7 @@ In case of a quarrel, YesCrow acts as an arbitre.
 
 ## Interface
 
-Use <a href="https://www.theyescrow.com">theyescrow.com</a> to communicate with the smart contract.
+Use <a href="https://yescrow.vercel.app">Yescrow Vercel app</a> to communicate with the smart contract.
 
 Or boot the interface locally:
 
